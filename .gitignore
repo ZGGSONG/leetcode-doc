@@ -1,4 +1,10 @@
-# ---> Go
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# go.gitignore from https://github.com/github/gitignore/blob/master/Go.gitignore
 # Binaries for programs and plugins
 *.exe
 *.exe~
@@ -13,5 +19,7 @@
 *.out
 
 # Dependency directories (remove the comment below to include it)
+# 如果使用go vendor 进行构建代码
+# go.mod
+# go.sum
 # vendor/
-
