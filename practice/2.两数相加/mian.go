@@ -1,13 +1,14 @@
 package main
 
 func main() {
-	l1 := &ListNode{}
-	l2 := &ListNode{}
-	ln := addTwoNumbers(l1, l2)
-	if len(ln) != 2 {
-		panic("add two numbers")
-	}
-
+	// l1 := &ListNode{
+	// 	Val: 2,
+	// }
+	// l2 := &ListNode{}
+	// ln := addTwoNumbers(l1, l2)
+	// if len(ln) != 2 {
+	// 	panic("add two numbers")
+	// }
 }
 
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
