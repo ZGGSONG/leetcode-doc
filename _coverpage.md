@@ -1,4 +1,4 @@
-![logo](./con.svg)
+![logo](./icon.svg)
 
 # LeetCode刷题记录文档 <small>1.0</small>
 
