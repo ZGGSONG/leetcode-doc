@@ -8,5 +8,5 @@
 - 无需生成 html 文件
 - 众多主题 -->
 
-[GitHub](https://github.com/zggsong/wiki)
+[GitHub](https://github.com/ZGGSONG/leetcode-doc)
 [Started](#说明)
