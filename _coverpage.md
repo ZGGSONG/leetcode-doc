@@ -1,6 +1,6 @@
 ![logo](./icon.svg)
 
-# LeetCode刷题记录文档 <small>1.0</small>
+# LeetCode刷题记录 <small>1.0</small>
 
 <!-- > 一个神奇的文档网站生成器。
 
