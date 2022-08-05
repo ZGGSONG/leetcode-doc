@@ -13,7 +13,12 @@ echo -e "\033[42;37m当前文件名: ${INDEX} ${CNNAME} \033[0m"
 
 if [ ! -d "./code/${INDEX}${CNNAME}" ]; then
   mkdir ./code/${INDEX}${CNNAME}
-  echo > ./code/${INDEX}${CNNAME}/main.go
+  echo "package main
+
+func main() {
+
+}
+" > ./code/${INDEX}${CNNAME}/main.go
 fi
 
 # 分组
