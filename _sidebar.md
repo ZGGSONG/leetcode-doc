@@ -7,3 +7,4 @@
   * [121. 买卖股票的最佳时机](docs/array/0121.best-time-to-buy-and-sell-stock.md)
   * [136. 只出现一次的数字](docs/array/136.single-number.md)
   * [1403. 非递增顺序的最小子序列](docs/array/1403.minimum-subsequence-in-non-increasing-order.md)
+  * [1408. 数组中的字符串匹配](docs/string/1408.string-matching-in-an-array.md)
