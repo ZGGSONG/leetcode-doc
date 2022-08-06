@@ -45,18 +45,28 @@ if [[ -z $FILENAME ]]; then
 fi
 echo -e "\033[42;37m当前文件名: ${FILENAME} \033[0m"
 
-# 追加信息到_sidebar.md
+# 难度
 echo -e "\033[42;37m---------------\033[0m"
-echo -e "\033[42;37m是否追加到侧边栏(y/n)\033[0m"
+echo -e "\033[42;37m难度(1: 简单/2: 中等/3: 困难)\033[0m"
 echo -e "\033[42;37m---------------\033[0m"
-read isSideBar
-if [[ $isSideBar == "Y" || $isSideBar == "y" ]]; then
-  echo >> _sidebar.md
-  echo "  * [${INDEX} ${CNNAME}](docs/${FILEPATH}/${FILENAME})" | awk '{printf $0}' >> _sidebar.md
-  echo -e "\033[42;37m已添加至侧边栏目录 \033[0m"
-else
-	echo -e "\033[41;36m取消添加至侧边栏 \033[0m"
+read difficulty
+if [[ -z $difficulty ]]; then
+  difficulty="未知"
+  echo -e "\033[41;36m难度设置为默认未知 \033[0m"
+elif [[ $difficulty == "1" ]]; then
+  difficulty="简单"
+elif [[ $difficulty == "2" ]]; then
+  difficulty="中等"
+elif [[ $difficulty == "3" ]]; then
+  difficulty="困难"
 fi
+echo -e "\033[42;37m难度设置为${difficulty} \033[0m"
+echo ""
+
+# 追加信息到_sidebar.md
+echo >> _sidebar.md
+echo "  * [${INDEX} ${CNNAME} (${difficulty})](docs/${FILEPATH}/${FILENAME})" | awk '{printf $0}' >> _sidebar.md
+echo -e "\033[42;37m已添加至侧边栏目录 \033[0m"
 
 ENTITLE=`echo $FILENAME | tr '.' ' ' | awk '{print$2}'`
 
