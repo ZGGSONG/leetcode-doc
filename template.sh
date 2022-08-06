@@ -2,11 +2,11 @@
 
 # 中文名
 echo -e "\033[42;37m---------------\033[0m"
-echo -e "\033[42;37m填入中文名(121.买卖股票的最佳时机)\033[0m"
+echo -e "\033[42;37m填入中文名(121. 买卖股票的最佳时机)\033[0m"
 echo -e "\033[42;37m---------------\033[0m"
 read INDEX CNNAME
 if [[ -z $CNNAME || -z $INDEX ]]; then
-  INDEX="000."
+  INDEX="0."
   CNNAME="默认题目"
 fi
 echo -e "\033[42;37m当前文件名: ${INDEX} ${CNNAME} \033[0m"
@@ -58,9 +58,34 @@ else
 	echo -e "\033[41;36m取消添加至侧边栏 \033[0m"
 fi
 
-# 创建新文件
-file_text=$(< ./template.md)
-echo "${file_text}" > ./docs/${FILEPATH}/${FILENAME}
+ENTITLE=`echo $FILENAME | tr '.' ' ' | awk '{print$2}'`
+
+echo "## [题目说明](https://leetcode.cn/problems/${ENTITLE}/)
+
+
+
+示例 1：
+\`\`\`text
+
+\`\`\`
+示例 2：
+\`\`\`text
+
+\`\`\`
+
+## 解题思路
+
+1. (self)
+
+\`\`\`go
+
+\`\`\`
+
+2. [(other)]()
+
+\`\`\`go
+
+\`\`\`" > ./docs/${FILEPATH}/${FILENAME}
 
 echo "Successfully created docs/${FILEPATH}/${FILENAME}"
 
