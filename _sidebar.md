@@ -2,6 +2,7 @@
   * [说明](README.md)
 * 数组
   * [1. 两数之和 (简单)](docs/array/0001.two-sum.md)
+  * [2. 两数相加 (中等)](docs/linkedList/0002.add-two-numbers.md)
   * [11. 盛最多水的容器 (中等)](docs/array/0011.container-with-most-water.md)
   * [88. 合并两个有序数组 (简单)](docs/array/0088.merge-sorted-array.md)
   * [118. 杨辉三角 (简单)](docs/array/0118.pascals-triangle.md)
