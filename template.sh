@@ -85,13 +85,13 @@ echo "## [题目说明](https://leetcode.cn/problems/${ENTITLE}/)
 
 ## 解题思路
 
-1. (self)
+-
 
 \`\`\`go
 
 \`\`\`
 
-2. [(other)]()
+-
 
 \`\`\`go
 
