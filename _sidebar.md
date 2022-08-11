@@ -13,3 +13,4 @@
   * [136. 只出现一次的数字 (简单)](docs/array/0136.single-number.md)
   * [1403. 非递增顺序的最小子序列 (简单)](docs/array/1403.minimum-subsequence-in-non-increasing-order.md)
   * [1408. 数组中的字符串匹配 (简单)](docs/string/1408.string-matching-in-an-array.md)
+  * [1417. 重新格式化字符串 (简单)](docs/string/1417.reformat-the-string.md)
