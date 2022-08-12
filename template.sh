@@ -85,17 +85,7 @@ echo "## [题目说明](https://leetcode.cn/problems/${ENTITLE}/)
 
 ## 解题思路
 
--
-
-\`\`\`go
-
-\`\`\`
-
--
-
-\`\`\`go
-
-\`\`\`" > ./docs/${FILEPATH}/${FILENAME}
+- "> ./docs/${FILEPATH}/${FILENAME}
 
 echo "Successfully created docs/${FILEPATH}/${FILENAME}"
 
