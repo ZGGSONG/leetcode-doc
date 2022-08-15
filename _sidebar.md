@@ -6,6 +6,7 @@
   * [15. 三数之和 (中等)](docs/array/0015.3sum.md)
   * [16. 最接近的三数之和 (中等)](docs/array/0016.3sum-closest.md)
   * [18. 四数之和 (中等)](docs/array/0018.4sum.md)
+  * [31. 下一个排列 (中等)](docs/array/0031.next-permutation.md)
   * [88. 合并两个有序数组 (简单)](docs/array/0088.merge-sorted-array.md)
   * [118. 杨辉三角 (简单)](docs/array/0118.pascals-triangle.md)
   * [119. 杨辉三角 II (简单)](docs/array/0119.pascals-triangle-ii.md)
