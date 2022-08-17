@@ -6,6 +6,15 @@
   <description>LeetCode刷题记录</description>
    
   <item>
+    <title><![CDATA[说明]]></title>
+    <link>https://scanas.ml/leetcode-doc/#/README</link>
+    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/README</guid>
+    <description><![CDATA[<h1 id="说明">说明</h1>
+<p>leetcode刷题记录, RSS <a href="//pages.zsong.ml/leetcode-doc/feed.xml">pages.zsong.ml/leetcode-doc/feed.xml</a>, 个人博客 <a href="//www.zggsong.cn">zggsong.cn</a>, wiki <a href="//wiki.zggsong.cn">wiki.zggsong.cn</a></p>]]></description>
+    <pubDate>Wed, 17 Aug 2022 18:51:02 +0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[ 重新格式化字符串]]></title>
     <link>https://scanas.ml/leetcode-doc/#/docs/string/1417.reformat-the-string</link>
     <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/string/1417.reformat-the-string</guid>
@@ -188,15 +197,6 @@
 <a class="sourceLine" id="cb5-4" title="4">    ret[i] = ret[i<span class="dv">-1</span>] * (rowIndex - i + <span class="dv">1</span>) / i</a>
 <a class="sourceLine" id="cb5-5" title="5">}</a>
 <a class="sourceLine" id="cb5-6" title="6"><span class="kw">return</span> ret</a></code></pre></div>]]></description>
-    <pubDate>Wed, 17 Aug 2022 17:09:26 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[说明]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/README</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/README</guid>
-    <description><![CDATA[<h1 id="说明">说明</h1>
-<p>leetcode刷题记录, RSS <a href="//scanas.ml/leetcode-doc/feed.xml">scanas.ml/leetcode-doc/feed.xml</a>, 个人博客 <a href="//www.zggsong.cn">zggsong.cn</a>, wiki <a href="//wiki.zggsong.cn">wiki.zggsong.cn</a></p>]]></description>
     <pubDate>Wed, 17 Aug 2022 17:09:26 +0800</pubDate>
   </item>
    
