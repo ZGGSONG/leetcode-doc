@@ -6,227 +6,11 @@
   <description>LeetCode刷题记录</description>
    
   <item>
-    <title><![CDATA[ [题目说明](https://leetcode.cn/problems/binary-search/)]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/array/704.binary-search</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/704.binary-search</guid>
-    <description><![CDATA[<h2 id="题目说明"><a href="https://leetcode.cn/problems/binary-search/">题目说明</a></h2>
-<p>给定一个n个元素有序的（升序）整型数组nums 和一个目标值target ，写一个函数搜索nums中的 target，如果目标值存在返回下标，否则返回 -1。</p>
-<p>示例 1：</p>
-<pre class="text"><code>输入: nums = [-1,0,3,5,9,12], target = 9
-输出: 4
-解释: 9 出现在 nums 中并且下标为 4</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入: nums = [-1,0,3,5,9,12], target = 2
-输出: -1
-解释: 2 不存在 nums 中因此返回 -1</code></pre>
-<p>提示：</p>
-<ul>
-<li>你可以假设 nums 中的所有元素是不重复的。</li>
-<li>n 将在 [1, 10000]之间。</li>
-<li>nums 的每个元素都将在 [-9999, 9999]之间。</li>
-</ul>
-<h2 id="解题思路">解题思路</h2>
-<ul>
-<li><p>二分法主要关注循环条件，以及循环里判断后，针对中间值的处理过程，闭区间与开区间需要区分</p></li>
-<li>左闭右闭</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">func</span> search(nums []<span class="dt">int</span>, target <span class="dt">int</span>) <span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb3-2" title="2">    begin, end, mid := <span class="dv">0</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span>, (<span class="bu">len</span>(nums)-<span class="dv">1</span>)/<span class="dv">2</span></a>
-<a class="sourceLine" id="cb3-3" title="3">    <span class="co">//左闭右闭</span></a>
-<a class="sourceLine" id="cb3-4" title="4">    <span class="kw">for</span> begin &lt;= end {</a>
-<a class="sourceLine" id="cb3-5" title="5">        <span class="kw">if</span> target &lt; nums[mid] {</a>
-<a class="sourceLine" id="cb3-6" title="6">            end = mid - <span class="dv">1</span></a>
-<a class="sourceLine" id="cb3-7" title="7">        } <span class="kw">else</span> <span class="kw">if</span> target &gt; nums[mid] {</a>
-<a class="sourceLine" id="cb3-8" title="8">            begin = mid + <span class="dv">1</span></a>
-<a class="sourceLine" id="cb3-9" title="9">        } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb3-10" title="10">            <span class="kw">return</span> mid</a>
-<a class="sourceLine" id="cb3-11" title="11">        }</a>
-<a class="sourceLine" id="cb3-12" title="12">        mid = (begin + end) / <span class="dv">2</span></a>
-<a class="sourceLine" id="cb3-13" title="13">        <span class="co">//begin和end为int，避免越界可以写成</span></a>
-<a class="sourceLine" id="cb3-14" title="14">        <span class="co">//mid = begin + (end - begin) / 2</span></a>
-<a class="sourceLine" id="cb3-15" title="15">    }</a>
-<a class="sourceLine" id="cb3-16" title="16">    <span class="kw">return</span> <span class="dv">-1</span></a>
-<a class="sourceLine" id="cb3-17" title="17">}</a></code></pre></div>
-<ul>
-<li>左闭右开</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">func</span> search(nums []<span class="dt">int</span>, target <span class="dt">int</span>) <span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb4-2" title="2">    left, right := <span class="dv">0</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-3" title="3">    <span class="kw">for</span> left &lt; right {</a>
-<a class="sourceLine" id="cb4-4" title="4">        mid := left + (right-left)/<span class="dv">2</span></a>
-<a class="sourceLine" id="cb4-5" title="5">        <span class="kw">if</span> nums[mid] &gt; target {</a>
-<a class="sourceLine" id="cb4-6" title="6">            right = mid</a>
-<a class="sourceLine" id="cb4-7" title="7">        } <span class="kw">else</span> <span class="kw">if</span> nums[mid] &lt; target {</a>
-<a class="sourceLine" id="cb4-8" title="8">            left = mid + <span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-9" title="9">        } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb4-10" title="10">            <span class="kw">return</span> mid</a>
-<a class="sourceLine" id="cb4-11" title="11">        }</a>
-<a class="sourceLine" id="cb4-12" title="12">    }</a>
-<a class="sourceLine" id="cb4-13" title="13">    <span class="kw">return</span> <span class="dv">-1</span></a>
-<a class="sourceLine" id="cb4-14" title="14">}</a></code></pre></div>]]></description>
-    <pubDate>Wed, 17 Aug 2022 16:31:31 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[开始]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/_sidebar</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/_sidebar</guid>
-    <description><![CDATA[<ul>
-<li>开始
-<ul>
-<li><a href="README.md">说明</a></li>
-</ul></li>
-<li>数组
-<ul>
-<li><a href="docs/array/0001.two-sum.md">1. 两数之和 (简单)</a></li>
-<li><a href="docs/array/0011.container-with-most-water.md">11. 盛最多水的容器 (中等)</a></li>
-<li><a href="docs/array/0015.3sum.md">15. 三数之和 (中等)</a></li>
-<li><a href="docs/array/0016.3sum-closest.md">16. 最接近的三数之和 (中等)</a></li>
-<li><a href="docs/array/0018.4sum.md">18. 四数之和 (中等)</a></li>
-<li><a href="docs/array/0031.next-permutation.md">31. 下一个排列 (中等)</a></li>
-<li><a href="docs/array/0088.merge-sorted-array.md">88. 合并两个有序数组 (简单)</a></li>
-<li><a href="docs/array/0118.pascals-triangle.md">118. 杨辉三角 (简单)</a></li>
-<li><a href="docs/array/0119.pascals-triangle-ii.md">119. 杨辉三角 II (简单)</a></li>
-<li><a href="docs/array/0121.best-time-to-buy-and-sell-stock.md">121. 买卖股票的最佳时机 (简单)</a></li>
-<li><a href="docs/array/0136.single-number.md">136. 只出现一次的数字 (简单)</a></li>
-<li><a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></li>
-<li><a href="docs/array/1403.minimum-subsequence-in-non-increasing-order.md">1403. 非递增顺序的最小子序列 (简单)</a></li>
-</ul></li>
-<li>字符串
-<ul>
-<li><a href="docs/string/1408.string-matching-in-an-array.md">1408. 数组中的字符串匹配 (简单)</a></li>
-<li><a href="docs/string/1417.reformat-the-string.md">1417. 重新格式化字符串 (简单)</a></li>
-</ul></li>
-<li>链表
-<ul>
-<li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
-</ul></li>
-</ul>]]></description>
-    <pubDate>Wed, 17 Aug 2022 16:31:31 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ [题目说明](https://leetcode.cn/problems/next-permutation/)]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/array/0031.next-permutation</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0031.next-permutation</guid>
-    <description><![CDATA[<h2 id="题目说明"><a href="https://leetcode.cn/problems/next-permutation/">题目说明</a></h2>
-<p>整数数组的一个 排列 就是将其所有成员以序列或线性顺序排列。</p>
-<p>例如，arr = [1,2,3] ，以下这些都可以视作 arr 的排列：[1,2,3]、[1,3,2]、[3,1,2]、[2,3,1] 。 整数数组的 下一个排列 是指其整数的下一个字典序更大的排列。更正式地，如果数组的所有排列根据其字典顺序从小到大排列在一个容器中，那么数组的 下一个排列 就是在这个有序容器中排在它后面的那个排列。如果不存在下一个更大的排列，那么这个数组必须重排为字典序最小的排列（即，其元素按升序排列）。</p>
-<p>例如，arr = [1,2,3] 的下一个排列是 [1,3,2] 。 类似地，arr = [2,3,1] 的下一个排列是 [3,1,2] 。 而 arr = [3,2,1] 的下一个排列是 [1,2,3] ，因为 [3,2,1] 不存在一个字典序更大的排列。 给你一个整数数组 nums ，找出 nums 的下一个排列。</p>
-<p>必须 原地 修改，只允许使用额外常数空间。</p>
-<p>示例 1：</p>
-<pre class="text"><code>输入：nums = [1,2,3]
-输出：[1,3,2]</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：nums = [3,2,1]
-输出：[1,2,3]</code></pre>
-<p>示例 3：</p>
-<pre class="text"><code>输入：nums = [1,1,5]
-输出：[1,5,1]</code></pre>
-<p>提示： - 1 &lt;= nums.length &lt;= 100 - 0 &lt;= nums[i] &lt;= 100</p>
-<h2 id="解题思路">解题思路</h2>
-<figure>
-<img src="https://code-thinking.cdn.bcebos.com/pics/31.%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97.png" alt="解释" /><figcaption>解释</figcaption>
-</figure>
-<ul>
-<li>理解：把数组本身看作一个数，就是一个数的从小到大的排列，随后对找出这个数在排列中后一位比他大的数，边界情况则找到最小数。</li>
-<li>常规情况：倒序遍历数组，找到第一个降序的部分，中间的值暂且称为山峰，随后将山峰两侧的值进行交换，最后在对山峰到数组末尾的值进行排序</li>
-<li>边界情况：本身就是最大，直接倒序即可 &gt; 执行用时： 4 ms，在所有 Go 提交中击败了 14.39% 的用户 内存消耗：2.3 MB，在所有 Go 提交中击败了 18.50% 的用户</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">func</span> nextPermutation(nums []<span class="dt">int</span>)  {</a>
-<a class="sourceLine" id="cb4-2" title="2">    <span class="kw">for</span> i := <span class="bu">len</span>(nums) - <span class="dv">1</span>; i &gt;= <span class="dv">0</span>; i-- {</a>
-<a class="sourceLine" id="cb4-3" title="3">        <span class="kw">for</span> j := <span class="bu">len</span>(nums) - <span class="dv">1</span>; j &gt; i; j-- {</a>
-<a class="sourceLine" id="cb4-4" title="4">            <span class="kw">if</span> nums[j] &gt; nums[i] {</a>
-<a class="sourceLine" id="cb4-5" title="5">                nums[i], nums[j] = nums[j], nums[i]</a>
-<a class="sourceLine" id="cb4-6" title="6">                sort.Ints(nums[i+<span class="dv">1</span>:])</a>
-<a class="sourceLine" id="cb4-7" title="7">                <span class="kw">return</span></a>
-<a class="sourceLine" id="cb4-8" title="8">            }</a>
-<a class="sourceLine" id="cb4-9" title="9">        }</a>
-<a class="sourceLine" id="cb4-10" title="10">    }</a>
-<a class="sourceLine" id="cb4-11" title="11">    <span class="co">//最大，直接排序即可</span></a>
-<a class="sourceLine" id="cb4-12" title="12">    sort.Ints(nums)</a>
-<a class="sourceLine" id="cb4-13" title="13">}</a></code></pre></div>]]></description>
-    <pubDate>Mon, 15 Aug 2022 16:23:05 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ [题目说明](https://leetcode.cn/problems/4sum/)]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/array/0018.4sum</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0018.4sum</guid>
-    <description><![CDATA[<h2 id="题目说明"><a href="https://leetcode.cn/problems/4sum/">题目说明</a></h2>
-<p>给你一个由 n 个整数组成的数组nums ，和一个目标值 target 。请你找出并返回满足下述全部条件且不重复的四元组[nums[a], nums[b], nums[c], nums[d]（若两个四元组元素一一对应，则认为两个四元组重复）：</p>
-<p>0 &lt;= a, b, c, d &lt; n a、b、c 和 d 互不相同 nums[a] + nums[b] + nums[c] + nums[d] == target 你可以按 任意顺序 返回答案 。</p>
-<p>示例 1：</p>
-<pre class="text"><code>输入：nums = [1,0,-1,0,-2,2], target = 0
-输出：[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：nums = [2,2,2,2,2], target = 8
-输出：[[2,2,2,2]]</code></pre>
-<h2 id="解题思路">解题思路</h2>
-<ul>
-<li>本质上和第三题思路一致：排序+双指针，只是说，需要再加一层，然后操作双指针来取出结果
-<ol type="1">
-<li>最外层循环注意减少耗时的第一个数与target的比较，不再是0，负数的话，多个负数之和越来越小。</li>
-<li>此外层依旧需要对最开始的数进行去重，防止出现重复结果，不过注意初始值的下标：<code>j&gt;i+1</code>。 &gt; 执行用时： 8 ms，在所有Go 提交中击败了 77.31% 的用户内存消耗：2.6 MB，在所有 Go提交中击败了 75.89% 的用户</li>
-</ol></li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">func</span> fourSum(nums []<span class="dt">int</span>, target <span class="dt">int</span>) [][]<span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb3-2" title="2">    sort.Ints(nums)</a>
-<a class="sourceLine" id="cb3-3" title="3">    <span class="kw">var</span> ret [][]<span class="dt">int</span></a>
-<a class="sourceLine" id="cb3-4" title="4">    <span class="kw">for</span> i := <span class="dv">0</span>; i &lt; <span class="bu">len</span>(nums)-<span class="dv">3</span>; i++ {</a>
-<a class="sourceLine" id="cb3-5" title="5">        <span class="co">//去除此种状态，不能跟第三题一样，不是与0相比，多个负数相加会得到更小的值</span></a>
-<a class="sourceLine" id="cb3-6" title="6">        <span class="co">//if i == 0 &amp;&amp; nums[i] &gt; target {</span></a>
-<a class="sourceLine" id="cb3-7" title="7">        <span class="co">//  break</span></a>
-<a class="sourceLine" id="cb3-8" title="8">        <span class="co">//}</span></a>
-<a class="sourceLine" id="cb3-9" title="9">        <span class="co">//起始值去重</span></a>
-<a class="sourceLine" id="cb3-10" title="10">        <span class="kw">if</span> i &gt; <span class="dv">0</span> &amp;&amp; nums[i] == nums[i<span class="dv">-1</span>] {</a>
-<a class="sourceLine" id="cb3-11" title="11">            <span class="kw">continue</span></a>
-<a class="sourceLine" id="cb3-12" title="12">        }</a>
-<a class="sourceLine" id="cb3-13" title="13">        <span class="kw">for</span> j := i + <span class="dv">1</span>; j &lt; <span class="bu">len</span>(nums)-<span class="dv">2</span>; j++ {</a>
-<a class="sourceLine" id="cb3-14" title="14">            <span class="co">//起始值去重</span></a>
-<a class="sourceLine" id="cb3-15" title="15">            <span class="kw">if</span> j &gt; i+<span class="dv">1</span> &amp;&amp; nums[j] == nums[j<span class="dv">-1</span>] {</a>
-<a class="sourceLine" id="cb3-16" title="16">                <span class="kw">continue</span></a>
-<a class="sourceLine" id="cb3-17" title="17">            }</a>
-<a class="sourceLine" id="cb3-18" title="18">            l, r := j+<span class="dv">1</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
-<a class="sourceLine" id="cb3-19" title="19">            <span class="kw">for</span> l &lt; r {</a>
-<a class="sourceLine" id="cb3-20" title="20">                sum := nums[i] + nums[j] + nums[l] + nums[r]</a>
-<a class="sourceLine" id="cb3-21" title="21">                <span class="kw">if</span> sum == target {</a>
-<a class="sourceLine" id="cb3-22" title="22">                    ret = <span class="bu">append</span>(ret, []<span class="dt">int</span>{nums[i], nums[j], nums[l], nums[r]})</a>
-<a class="sourceLine" id="cb3-23" title="23">                    <span class="kw">for</span> l &lt; r &amp;&amp; nums[l] == nums[l+<span class="dv">1</span>] {</a>
-<a class="sourceLine" id="cb3-24" title="24">                        l++</a>
-<a class="sourceLine" id="cb3-25" title="25">                    }</a>
-<a class="sourceLine" id="cb3-26" title="26">                    <span class="kw">for</span> l &lt; r &amp;&amp; nums[r] == nums[r<span class="dv">-1</span>] {</a>
-<a class="sourceLine" id="cb3-27" title="27">                        r--</a>
-<a class="sourceLine" id="cb3-28" title="28">                    }</a>
-<a class="sourceLine" id="cb3-29" title="29">                    l++</a>
-<a class="sourceLine" id="cb3-30" title="30">                    r--</a>
-<a class="sourceLine" id="cb3-31" title="31">                } <span class="kw">else</span> <span class="kw">if</span> sum &gt; target {</a>
-<a class="sourceLine" id="cb3-32" title="32">                    r--</a>
-<a class="sourceLine" id="cb3-33" title="33">                } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb3-34" title="34">                    l++</a>
-<a class="sourceLine" id="cb3-35" title="35">                }</a>
-<a class="sourceLine" id="cb3-36" title="36">            }</a>
-<a class="sourceLine" id="cb3-37" title="37">        }</a>
-<a class="sourceLine" id="cb3-38" title="38">    }</a>
-<a class="sourceLine" id="cb3-39" title="39">    <span class="kw">return</span> ret</a>
-<a class="sourceLine" id="cb3-40" title="40">}</a></code></pre></div>]]></description>
-    <pubDate>Fri, 12 Aug 2022 14:10:53 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[说明]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/README</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/README</guid>
-    <description><![CDATA[<h1 id="说明">说明</h1>
-<p>leetcode刷题记录, 个人博客 <a href="//www.zggsong.cn">zggsong.cn</a>, wiki <a href="//wiki.zggsong.cn">wiki.zggsong.cn</a></p>]]></description>
-    <pubDate>Thu, 11 Aug 2022 15:37:24 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ [题目说明](https://leetcode.cn/problems/reformat-the-string/)]]></title>
+    <title><![CDATA[ 重新格式化字符串]]></title>
     <link>https://scanas.ml/leetcode-doc/#/docs/string/1417.reformat-the-string</link>
     <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/string/1417.reformat-the-string</guid>
-    <description><![CDATA[<h2 id="题目说明"><a href="https://leetcode.cn/problems/reformat-the-string/">题目说明</a></h2>
+    <description><![CDATA[<h2 id="重新格式化字符串">重新格式化字符串</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/reformat-the-string/">https://leetcode.cn/problems/reformat-the-string/</a> ## 题目说明</p>
 <p>给你一个混合了数字和字母的字符串 s，其中的字母均为小写英文字母。</p>
 <p>请你将该字符串重新格式化，使得任意两个相邻字符的类型都不同。也就是说，字母后面应该跟着数字，而数字后面应该跟着字母。</p>
 <p>请你返回 重新格式化后 的字符串；如果无法按要求重新格式化，则返回一个 空字符串 。</p>
@@ -311,278 +95,60 @@
 <a class="sourceLine" id="cb9-22" title="22">    }</a>
 <a class="sourceLine" id="cb9-23" title="23">    <span class="kw">return</span> <span class="st">&quot;&quot;</span></a>
 <a class="sourceLine" id="cb9-24" title="24">}</a></code></pre></div>]]></description>
-    <pubDate>Thu, 11 Aug 2022 15:27:37 +0800</pubDate>
+    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
   </item>
    
   <item>
-    <title><![CDATA[ [题目说明](https://leetcode.cn/problems/3sum-closest/)]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/array/0016.3sum-closest</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0016.3sum-closest</guid>
-    <description><![CDATA[<h2 id="题目说明"><a href="https://leetcode.cn/problems/3sum-closest/">题目说明</a></h2>
-<p>给你一个长度为 n 的整数数组nums和 一个目标值target。请你从 nums 中选出三个整数，使它们的和与target最接近。</p>
-<p>返回这三个数的和。</p>
-<p>假定每组输入只存在恰好一个解。</p>
+    <title><![CDATA[ 数组中的字符串匹配]]></title>
+    <link>https://scanas.ml/leetcode-doc/#/docs/string/1408.string-matching-in-an-array</link>
+    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/string/1408.string-matching-in-an-array</guid>
+    <description><![CDATA[<h2 id="数组中的字符串匹配">数组中的字符串匹配</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/string-matching-in-an-array/">https://leetcode.cn/problems/string-matching-in-an-array/</a> ## 题目说明</p>
+<p>给你一个字符串数组 words ，数组中的每个字符串都可以看作是一个单词。请你按 任意 顺序返回 words 中是其他单词的子字符串的所有单词。</p>
+<p>如果你可以删除 words[j]最左侧和/或最右侧的若干字符得到 word[i] ，那么字符串 words[i] 就是 words[j] 的一个子字符串。</p>
 <p>示例 1：</p>
-<pre class="text"><code>输入：nums = [-1,2,1,-4], target = 1
-输出：2
-解释：与 target 最接近的和是 2 (-1 + 2 + 1 = 2) 。</code></pre>
+<pre class="text"><code>输入：words = [&quot;mass&quot;,&quot;as&quot;,&quot;hero&quot;,&quot;superhero&quot;]
+输出：[&quot;as&quot;,&quot;hero&quot;]
+解释：&quot;as&quot; 是 &quot;mass&quot; 的子字符串，&quot;hero&quot; 是 &quot;superhero&quot; 的子字符串。
+[&quot;hero&quot;,&quot;as&quot;] 也是有效的答案。</code></pre>
 <p>示例 2：</p>
-<pre class="text"><code>输入：nums = [0,0,0], target = 1
-输出：0</code></pre>
-<ul>
-<li>提示：
-<ul>
-<li>3 &lt;= nums.length &lt;= 1000</li>
-<li>1000 &lt;= nums[i] &lt;= 1000</li>
-<li>104 &lt;= target &lt;= 104</li>
-</ul></li>
-</ul>
-<h2 id="解题思路">解题思路</h2>
-<ol type="1">
-<li>类似于<a href="docs/array/0015.3sum.md">15题. 三数之和</a>，只是相应的把求解变成了求距离最近的三数之和，相应的排序，方便后续操作指针，初始化前三数之和以及与最小差值（方便看，写了一个简单的整数取绝对值的函数，返回绝对值和入参是否为正整数），随后三个指针初始化 p:=0, l:=p+1, r:=len(nums-1)，内层循环判断新的差值是否比已知最小差值更小，如果是则刷新sum和min，同理去除三元组重复值，减少计算时间，外层通过判断计算新差值的正负来移动l，r指针，完成数组遍历</li>
-</ol>
-<blockquote>
-<p>执行用时： 56 ms, 在所有 Go 提交中击败了 56.98%的用户内存消耗：5.6 MB, 在所有 Go 提交中击败了 59.89%的用户</p>
-</blockquote>
-<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">func</span> threeSumClosest(nums []<span class="dt">int</span>, target <span class="dt">int</span>) <span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb3-2" title="2">    sort.Ints(nums)</a>
-<a class="sourceLine" id="cb3-3" title="3">    sum := nums[<span class="dv">0</span>] + nums[<span class="dv">1</span>] + nums[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb3-4" title="4">    min, _ := intAbs(sum - target)</a>
-<a class="sourceLine" id="cb3-5" title="5">    <span class="kw">for</span> point := <span class="dv">0</span>; point &lt; <span class="bu">len</span>(nums)-<span class="dv">2</span>; point++ {</a>
-<a class="sourceLine" id="cb3-6" title="6">        left, right := point+<span class="dv">1</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
-<a class="sourceLine" id="cb3-7" title="7">        <span class="kw">for</span> left &lt; right {</a>
-<a class="sourceLine" id="cb3-8" title="8">            tmp, t := intAbs(nums[point] + nums[left] + nums[right] - target)</a>
-<a class="sourceLine" id="cb3-9" title="9">            <span class="kw">if</span> tmp &lt; min {</a>
-<a class="sourceLine" id="cb3-10" title="10">                min = tmp</a>
-<a class="sourceLine" id="cb3-11" title="11">                sum = nums[point] + nums[left] + nums[right]</a>
-<a class="sourceLine" id="cb3-12" title="12">                <span class="kw">for</span> left &lt; right &amp;&amp; nums[left] == nums[left+<span class="dv">1</span>] {</a>
-<a class="sourceLine" id="cb3-13" title="13">                    left++</a>
-<a class="sourceLine" id="cb3-14" title="14">                }</a>
-<a class="sourceLine" id="cb3-15" title="15">                <span class="kw">for</span> left &lt; right &amp;&amp; nums[right] == nums[right<span class="dv">-1</span>] {</a>
-<a class="sourceLine" id="cb3-16" title="16">                    right--</a>
-<a class="sourceLine" id="cb3-17" title="17">                }</a>
-<a class="sourceLine" id="cb3-18" title="18">            }</a>
-<a class="sourceLine" id="cb3-19" title="19">            <span class="kw">if</span> t {</a>
-<a class="sourceLine" id="cb3-20" title="20">                right--</a>
-<a class="sourceLine" id="cb3-21" title="21">            } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb3-22" title="22">                left++</a>
-<a class="sourceLine" id="cb3-23" title="23">            }</a>
-<a class="sourceLine" id="cb3-24" title="24">        }</a>
-<a class="sourceLine" id="cb3-25" title="25">    }</a>
-<a class="sourceLine" id="cb3-26" title="26">    <span class="kw">return</span> sum</a>
-<a class="sourceLine" id="cb3-27" title="27">}</a>
-<a class="sourceLine" id="cb3-28" title="28"><span class="co">//</span></a>
-<a class="sourceLine" id="cb3-29" title="29"><span class="co">//  intAbs</span></a>
-<a class="sourceLine" id="cb3-30" title="30"><span class="co">//  @Description: 取int绝对值</span></a>
-<a class="sourceLine" id="cb3-31" title="31"><span class="co">//  @param num  参数</span></a>
-<a class="sourceLine" id="cb3-32" title="32"><span class="co">//  @return int 取绝对值目标值</span></a>
-<a class="sourceLine" id="cb3-33" title="33"><span class="co">//  @return bool 入参是否为正整数</span></a>
-<a class="sourceLine" id="cb3-34" title="34"><span class="co">//</span></a>
-<a class="sourceLine" id="cb3-35" title="35"><span class="kw">func</span> intAbs(num <span class="dt">int</span>) (<span class="dt">int</span>, <span class="dt">bool</span>) {</a>
-<a class="sourceLine" id="cb3-36" title="36">    <span class="kw">if</span> num &lt; <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb3-37" title="37">        <span class="kw">return</span> -num, <span class="ot">false</span></a>
-<a class="sourceLine" id="cb3-38" title="38">    }</a>
-<a class="sourceLine" id="cb3-39" title="39">    <span class="kw">return</span> num, <span class="ot">true</span></a>
-<a class="sourceLine" id="cb3-40" title="40">}</a></code></pre></div>
-<ol start="2" type="1">
-<li>优化</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">func</span> threeSumClosest(nums []<span class="dt">int</span>, target <span class="dt">int</span>) <span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb4-2" title="2">    sort.Ints(nums)</a>
-<a class="sourceLine" id="cb4-3" title="3">    closerSum := nums[<span class="dv">0</span>] + nums[<span class="dv">1</span>] + nums[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb4-4" title="4">    <span class="kw">for</span> point := <span class="dv">0</span>; point &lt; <span class="bu">len</span>(nums)-<span class="dv">2</span>; point++ {</a>
-<a class="sourceLine" id="cb4-5" title="5">        left, right := point+<span class="dv">1</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-6" title="6">        <span class="kw">for</span> left &lt; right {</a>
-<a class="sourceLine" id="cb4-7" title="7">            threeSum := nums[point] + nums[left] + nums[right]</a>
-<a class="sourceLine" id="cb4-8" title="8">            <span class="kw">if</span> intAbs(threeSum-target) &lt; intAbs(closerSum-target) {</a>
-<a class="sourceLine" id="cb4-9" title="9">                closerSum = threeSum</a>
-<a class="sourceLine" id="cb4-10" title="10">                <span class="kw">for</span> left &lt; right &amp;&amp; nums[left] == nums[left+<span class="dv">1</span>] {</a>
-<a class="sourceLine" id="cb4-11" title="11">                    left++</a>
-<a class="sourceLine" id="cb4-12" title="12">                }</a>
-<a class="sourceLine" id="cb4-13" title="13">                <span class="kw">for</span> left &lt; right &amp;&amp; nums[right] == nums[right<span class="dv">-1</span>] {</a>
-<a class="sourceLine" id="cb4-14" title="14">                    right--</a>
-<a class="sourceLine" id="cb4-15" title="15">                }</a>
-<a class="sourceLine" id="cb4-16" title="16">            }</a>
-<a class="sourceLine" id="cb4-17" title="17">            <span class="kw">if</span> threeSum &gt; target {</a>
-<a class="sourceLine" id="cb4-18" title="18">                right--</a>
-<a class="sourceLine" id="cb4-19" title="19">            } <span class="kw">else</span> <span class="kw">if</span> threeSum &lt; target {</a>
-<a class="sourceLine" id="cb4-20" title="20">                left++</a>
-<a class="sourceLine" id="cb4-21" title="21">            } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb4-22" title="22">                <span class="kw">return</span> target</a>
-<a class="sourceLine" id="cb4-23" title="23">            }</a>
-<a class="sourceLine" id="cb4-24" title="24">        }</a>
-<a class="sourceLine" id="cb4-25" title="25">    }</a>
-<a class="sourceLine" id="cb4-26" title="26">    <span class="kw">return</span> closerSum</a>
-<a class="sourceLine" id="cb4-27" title="27">}</a>
-<a class="sourceLine" id="cb4-28" title="28"></a>
-<a class="sourceLine" id="cb4-29" title="29"><span class="co">//</span></a>
-<a class="sourceLine" id="cb4-30" title="30"><span class="co">//  intAbs</span></a>
-<a class="sourceLine" id="cb4-31" title="31"><span class="co">//  @Description: 取int绝对值</span></a>
-<a class="sourceLine" id="cb4-32" title="32"><span class="co">//  @param num  参数</span></a>
-<a class="sourceLine" id="cb4-33" title="33"><span class="co">//  @return int 取绝对值目标值</span></a>
-<a class="sourceLine" id="cb4-34" title="34"><span class="co">//</span></a>
-<a class="sourceLine" id="cb4-35" title="35"><span class="kw">func</span> intAbs(num <span class="dt">int</span>) <span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb4-36" title="36">    <span class="kw">if</span> num &lt; <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb4-37" title="37">        <span class="kw">return</span> -num</a>
-<a class="sourceLine" id="cb4-38" title="38">    }</a>
-<a class="sourceLine" id="cb4-39" title="39">    <span class="kw">return</span> num</a>
-<a class="sourceLine" id="cb4-40" title="40">}</a></code></pre></div>]]></description>
-    <pubDate>Thu, 11 Aug 2022 11:35:16 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ [题目说明](https://leetcode.cn/problems/3sum/)]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/array/0015.3sum</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0015.3sum</guid>
-    <description><![CDATA[<h2 id="题目说明"><a href="https://leetcode.cn/problems/3sum/">题目说明</a></h2>
-<p>给你一个包含 n 个整数的数组nums，判断nums中是否存在三个元素 a，b，c ，使得a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。 注意：答案中不可以包含重复的三元组。</p>
-<p>示例 1：</p>
-<pre class="text"><code>输入：nums = [-1,0,1,2,-1,-4]
-输出：[[-1,-1,2],[-1,0,1]]</code></pre>
+<pre class="text"><code>输入：words = [&quot;leetcode&quot;,&quot;et&quot;,&quot;code&quot;]
+输出：[&quot;et&quot;,&quot;code&quot;]
+解释：&quot;et&quot; 和 &quot;code&quot; 都是 &quot;leetcode&quot; 的子字符串。</code></pre>
 <p>示例 2：</p>
-<pre class="text"><code>输入：nums = []
-输出：[]</code></pre>
+<pre class="text"><code>输入：words = [&quot;leetcode&quot;,&quot;et&quot;,&quot;code&quot;]
+输出：[&quot;et&quot;,&quot;code&quot;]
+解释：&quot;et&quot; 和 &quot;code&quot; 都是 &quot;leetcode&quot; 的子字符串。</code></pre>
 <p>示例 3：</p>
-<pre class="text"><code>输入：nums = [0]
+<pre class="text"><code>输入：words = [&quot;blue&quot;,&quot;green&quot;,&quot;bu&quot;]
 输出：[]</code></pre>
 <h2 id="解题思路">解题思路</h2>
 <ol type="1">
-<li>先进行排序（一开始自己写排序，写的冒号排序耗时比较久，标准库里写的快排，耗时-4ms），随后定义三个指针，两个循环下上层循环一个指针p ，下层循环左l 右r 两个指针。p指针始于最左侧，l = p + 1，r = len(nums)，下层循环，如果满足条件后分别对左右两指针进行向右向左查找（排过序），如果有相同则分别向右向左移动（此时还是已添加至三元组的值），最后再分别移动一位，保证下一次判断可以进行。检查完毕上层循环p指针加一，检查是否和前指针指向的值相等，相等则跳过此循环，p指针再加一，满足条件，继续下层循环，如此往复此题得解。拙见，感觉还是比较暴力。</li>
+<li>(self) 暴力解法，如果有包含的则直接添加 –内存消耗：2.2 MB, 在所有 Go 提交中击败了51.61%的用户</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">func</span> threeSum(nums []<span class="dt">int</span>) [][]<span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb4-2" title="2">    <span class="co">//排序</span></a>
-<a class="sourceLine" id="cb4-3" title="3">    sort.Ints(nums)</a>
-<a class="sourceLine" id="cb4-4" title="4">    <span class="kw">var</span> ret [][]<span class="dt">int</span></a>
-<a class="sourceLine" id="cb4-5" title="5">    <span class="kw">for</span> point := <span class="dv">0</span>; point &lt; <span class="bu">len</span>(nums)-<span class="dv">2</span>; point++ {</a>
-<a class="sourceLine" id="cb4-6" title="6">        <span class="co">//排序后首位大于零则没有满足要求的三元组</span></a>
-<a class="sourceLine" id="cb4-7" title="7">        <span class="kw">if</span> point == <span class="dv">0</span> &amp;&amp; nums[point] &gt; <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb4-8" title="8">            <span class="kw">break</span></a>
-<a class="sourceLine" id="cb4-9" title="9">        }</a>
-<a class="sourceLine" id="cb4-10" title="10">        <span class="co">//每次最左边数去重</span></a>
-<a class="sourceLine" id="cb4-11" title="11">        <span class="kw">if</span> point &gt; <span class="dv">0</span> &amp;&amp; nums[point] == nums[point<span class="dv">-1</span>] {</a>
-<a class="sourceLine" id="cb4-12" title="12">            <span class="kw">continue</span></a>
-<a class="sourceLine" id="cb4-13" title="13">        }</a>
-<a class="sourceLine" id="cb4-14" title="14">        left, right := point+<span class="dv">1</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-15" title="15">        <span class="kw">for</span> left &lt; right {</a>
-<a class="sourceLine" id="cb4-16" title="16">            sum := nums[point] + nums[left] + nums[right]</a>
-<a class="sourceLine" id="cb4-17" title="17">            <span class="kw">if</span> sum == <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb4-18" title="18">                ret = <span class="bu">append</span>(ret, []<span class="dt">int</span>{nums[point], nums[left], nums[right]})</a>
-<a class="sourceLine" id="cb4-19" title="19">                <span class="co">//针对左右指针得数进行去重，保证三元组每个组合唯一</span></a>
-<a class="sourceLine" id="cb4-20" title="20">                <span class="kw">for</span> left &lt; right &amp;&amp; nums[left] == nums[left+<span class="dv">1</span>] {</a>
-<a class="sourceLine" id="cb4-21" title="21">                    left++</a>
-<a class="sourceLine" id="cb4-22" title="22">                }</a>
-<a class="sourceLine" id="cb4-23" title="23">                <span class="kw">for</span> left &lt; right &amp;&amp; nums[right] == nums[right<span class="dv">-1</span>] {</a>
-<a class="sourceLine" id="cb4-24" title="24">                    right--</a>
-<a class="sourceLine" id="cb4-25" title="25">                }</a>
-<a class="sourceLine" id="cb4-26" title="26">                left++</a>
-<a class="sourceLine" id="cb4-27" title="27">                right--</a>
-<a class="sourceLine" id="cb4-28" title="28">            } <span class="kw">else</span> <span class="kw">if</span> sum &gt; <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb4-29" title="29">                right--</a>
-<a class="sourceLine" id="cb4-30" title="30">            } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb4-31" title="31">                left++</a>
-<a class="sourceLine" id="cb4-32" title="32">            }</a>
-<a class="sourceLine" id="cb4-33" title="33">        }</a>
-<a class="sourceLine" id="cb4-34" title="34">    }</a>
-<a class="sourceLine" id="cb4-35" title="35">    <span class="kw">return</span> ret</a>
-<a class="sourceLine" id="cb4-36" title="36">}</a></code></pre></div>
-<hr />
-<h2 id="解题过程">解题过程</h2>
-<ul>
-<li>8月10日 错误，内存不足，我称之为灌肠思路，暴力解法，能拿到结果，首先三元组，长度小于三则直接返回空，然后对数组进行冒号排序，如果最小值都大于0那么肯定也没有返回空，随后进行双（三？）指针，取出符合要求的三元组，但是为了全部遍历完，这样就存在重复值，最后在做一遍去重，方法是将二维数组的第一层序列化为[]byte，转成string作为key存入map，根据map中key的唯一性，即可去除重复向，最后再将map的key转成数组存入二维数组中。思路应该没啥大问题，只是针对去重内存消耗过大</li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb5-1" title="1"><span class="co">//小于三返回空</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw">if</span> <span class="bu">len</span>(nums) &lt; <span class="dv">3</span> {</a>
-<a class="sourceLine" id="cb5-3" title="3">    <span class="kw">return</span> <span class="ot">nil</span></a>
-<a class="sourceLine" id="cb5-4" title="4">}</a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="co">//排序</span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; <span class="bu">len</span>(nums)-<span class="dv">1</span>; i++ {</a>
-<a class="sourceLine" id="cb5-7" title="7">    <span class="kw">for</span> j := <span class="dv">0</span>; j &lt; <span class="bu">len</span>(nums)-i<span class="dv">-1</span>; j++ {</a>
-<a class="sourceLine" id="cb5-8" title="8">        <span class="kw">if</span> nums[j] &gt; nums[j+<span class="dv">1</span>] {</a>
-<a class="sourceLine" id="cb5-9" title="9">            nums[j], nums[j+<span class="dv">1</span>] = nums[j+<span class="dv">1</span>], nums[j]</a>
-<a class="sourceLine" id="cb5-10" title="10">        }</a>
-<a class="sourceLine" id="cb5-11" title="11">    }</a>
-<a class="sourceLine" id="cb5-12" title="12">}</a>
-<a class="sourceLine" id="cb5-13" title="13">fmt.Println(nums)</a>
-<a class="sourceLine" id="cb5-14" title="14"><span class="co">//最小大于0返回空</span></a>
-<a class="sourceLine" id="cb5-15" title="15"><span class="kw">if</span> nums[<span class="dv">0</span>] &gt; <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb5-16" title="16">    <span class="kw">return</span> <span class="ot">nil</span></a>
-<a class="sourceLine" id="cb5-17" title="17">}</a>
-<a class="sourceLine" id="cb5-18" title="18"><span class="co">//符合存入二维数组</span></a>
-<a class="sourceLine" id="cb5-19" title="19"><span class="kw">var</span> ret [][]<span class="dt">int</span></a>
-<a class="sourceLine" id="cb5-20" title="20">point, left, right := <span class="dv">0</span>, <span class="dv">1</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
-<a class="sourceLine" id="cb5-21" title="21"><span class="kw">for</span> point &lt; <span class="bu">len</span>(nums)-<span class="dv">2</span> {</a>
-<a class="sourceLine" id="cb5-22" title="22">    <span class="kw">for</span> left &lt; right {</a>
-<a class="sourceLine" id="cb5-23" title="23">        sum := nums[point] + nums[left] + nums[right]</a>
-<a class="sourceLine" id="cb5-24" title="24">        <span class="kw">if</span> sum == <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb5-25" title="25">            ret = <span class="bu">append</span>(ret, []<span class="dt">int</span>{nums[point], nums[left], nums[right]})</a>
-<a class="sourceLine" id="cb5-26" title="26">            left++</a>
-<a class="sourceLine" id="cb5-27" title="27">        } <span class="kw">else</span> <span class="kw">if</span> sum &gt; <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb5-28" title="28">            right--</a>
-<a class="sourceLine" id="cb5-29" title="29">        } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb5-30" title="30">            left++</a>
-<a class="sourceLine" id="cb5-31" title="31">        }</a>
-<a class="sourceLine" id="cb5-32" title="32">    }</a>
-<a class="sourceLine" id="cb5-33" title="33">    point++</a>
-<a class="sourceLine" id="cb5-34" title="34">    left = point + <span class="dv">1</span></a>
-<a class="sourceLine" id="cb5-35" title="35">    right = <span class="bu">len</span>(nums) - <span class="dv">1</span></a>
-<a class="sourceLine" id="cb5-36" title="36">}</a>
-<a class="sourceLine" id="cb5-37" title="37"><span class="co">//上面得出结果有重复，需要去重，通过map去重</span></a>
-<a class="sourceLine" id="cb5-38" title="38">m := <span class="bu">make</span>(<span class="kw">map</span>[<span class="dt">string</span>]<span class="kw">struct</span>{})</a>
-<a class="sourceLine" id="cb5-39" title="39"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; <span class="bu">len</span>(ret); i++ {</a>
-<a class="sourceLine" id="cb5-40" title="40">    marshal, _ := json.Marshal(ret[i])</a>
-<a class="sourceLine" id="cb5-41" title="41">    <span class="co">// go 序列化后是 byte[]，需要转成 string</span></a>
-<a class="sourceLine" id="cb5-42" title="42">    m[<span class="dt">string</span>(marshal)] = <span class="kw">struct</span>{}{}</a>
-<a class="sourceLine" id="cb5-43" title="43">}</a>
-<a class="sourceLine" id="cb5-44" title="44">ans := [][]<span class="dt">int</span>{}</a>
-<a class="sourceLine" id="cb5-45" title="45"><span class="kw">for</span> key, _ := <span class="kw">range</span> m {</a>
-<a class="sourceLine" id="cb5-46" title="46">    <span class="kw">var</span> item []<span class="dt">int</span></a>
-<a class="sourceLine" id="cb5-47" title="47">    json.Unmarshal([]<span class="dt">byte</span>(key), &amp;item)</a>
-<a class="sourceLine" id="cb5-48" title="48">    ans = <span class="bu">append</span>(ans, item)</a>
-<a class="sourceLine" id="cb5-49" title="49">}</a>
-<a class="sourceLine" id="cb5-50" title="50"><span class="kw">return</span> ans</a></code></pre></div>
-<ul>
-<li>优化暴力解法（排序+双指针）: 首先优化在开始存入的时候去除首位定位指针的重复值的情况，随后在符合条件(sum==0)的情况下，如果左右指针重复值则分别向右向左移动，到重复值的最后一个，最后再做left++ right–操作，保证下一循环判断进行，避免重复值重复添加三元组，也避免了更多内存消耗。 &gt; 执行用时： 28 ms, 在所有 Go 提交中击败了 90.31%的用户内存消耗：7.3 MB, 在所有 Go 提交中击败了 57.54%的用户</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb6-1" title="1"><span class="co">//排序</span></a>
-<a class="sourceLine" id="cb6-2" title="2">sort.Ints(nums) <span class="co">//使用标准库(底层使用快排)方法缩短时间</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co">//符合存入二维数组</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="kw">var</span> ret [][]<span class="dt">int</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="kw">for</span> point := <span class="dv">0</span>; point &lt; <span class="bu">len</span>(nums)-<span class="dv">2</span>; point++ {</a>
-<a class="sourceLine" id="cb6-6" title="6">    <span class="kw">if</span> point == <span class="dv">0</span> &amp;&amp; nums[point] &gt; <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb6-7" title="7">        <span class="kw">break</span></a>
-<a class="sourceLine" id="cb6-8" title="8">    }</a>
-<a class="sourceLine" id="cb6-9" title="9">    <span class="kw">if</span> point &gt; <span class="dv">0</span> &amp;&amp; nums[point] == nums[point<span class="dv">-1</span>] {</a>
-<a class="sourceLine" id="cb6-10" title="10">        <span class="kw">continue</span></a>
-<a class="sourceLine" id="cb6-11" title="11">    }</a>
-<a class="sourceLine" id="cb6-12" title="12">    left, right := point+<span class="dv">1</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
-<a class="sourceLine" id="cb6-13" title="13">    <span class="kw">for</span> left &lt; right {</a>
-<a class="sourceLine" id="cb6-14" title="14">        sum := nums[point] + nums[left] + nums[right]</a>
-<a class="sourceLine" id="cb6-15" title="15">        <span class="kw">if</span> sum == <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb6-16" title="16">            ret = <span class="bu">append</span>(ret, []<span class="dt">int</span>{nums[point], nums[left], nums[right]})</a>
-<a class="sourceLine" id="cb6-17" title="17">            <span class="kw">for</span> left &lt; right &amp;&amp; nums[left] == nums[left+<span class="dv">1</span>] {</a>
-<a class="sourceLine" id="cb6-18" title="18">                left++</a>
-<a class="sourceLine" id="cb6-19" title="19">            }</a>
-<a class="sourceLine" id="cb6-20" title="20">            <span class="kw">for</span> left &lt; right &amp;&amp; nums[right] == nums[right<span class="dv">-1</span>] {</a>
-<a class="sourceLine" id="cb6-21" title="21">                right--</a>
-<a class="sourceLine" id="cb6-22" title="22">            }</a>
-<a class="sourceLine" id="cb6-23" title="23">            left++</a>
-<a class="sourceLine" id="cb6-24" title="24">            right--</a>
-<a class="sourceLine" id="cb6-25" title="25">        } <span class="kw">else</span> <span class="kw">if</span> sum &gt; <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb6-26" title="26">            right--</a>
-<a class="sourceLine" id="cb6-27" title="27">        } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb6-28" title="28">            left++</a>
-<a class="sourceLine" id="cb6-29" title="29">        }</a>
-<a class="sourceLine" id="cb6-30" title="30">    }</a>
-<a class="sourceLine" id="cb6-31" title="31">}</a>
-<a class="sourceLine" id="cb6-32" title="32"><span class="kw">return</span> ret</a></code></pre></div>]]></description>
-    <pubDate>Wed, 10 Aug 2022 13:51:40 +0800</pubDate>
+<div class="sourceCode" id="cb5"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">var</span> ret []<span class="dt">string</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">for</span> k1, v1 := <span class="kw">range</span> words {</a>
+<a class="sourceLine" id="cb5-3" title="3">    <span class="kw">for</span> k2, v2 := <span class="kw">range</span> words {</a>
+<a class="sourceLine" id="cb5-4" title="4">        <span class="kw">if</span> k1 != k2 &amp;&amp; strings.Contains(v2, v1) {</a>
+<a class="sourceLine" id="cb5-5" title="5">            ret = <span class="bu">append</span>(ret, v1)</a>
+<a class="sourceLine" id="cb5-6" title="6">            <span class="kw">break</span></a>
+<a class="sourceLine" id="cb5-7" title="7">        }</a>
+<a class="sourceLine" id="cb5-8" title="8">    }</a>
+<a class="sourceLine" id="cb5-9" title="9">}</a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="kw">return</span> ret</a></code></pre></div>
+<ol start="2" type="1">
+<li>(other) 未想到更好的做法，提示–&gt; 研究下KMP算法在这题的应用</li>
+</ol>]]></description>
+    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
   </item>
    
   <item>
-    <title><![CDATA[ [题目说明](https://leetcode.cn/problems/add-two-numbers/)]]></title>
+    <title><![CDATA[ 两数相加]]></title>
     <link>https://scanas.ml/leetcode-doc/#/docs/linkedList/0002.add-two-numbers</link>
     <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/linkedList/0002.add-two-numbers</guid>
-    <description><![CDATA[<h2 id="题目说明"><a href="https://leetcode.cn/problems/add-two-numbers/">题目说明</a></h2>
+    <description><![CDATA[<h2 id="两数相加">两数相加</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/add-two-numbers/">https://leetcode.cn/problems/add-two-numbers/</a></p>
+<h2 id="题目说明">题目说明</h2>
 <p>给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。</p>
 <p>请你将两个数相加，并以相同形式返回一个表示和的链表。</p>
 <p>你可以假设除了数字 0 之外，这两个数都不会以 0开头。</p>
@@ -616,46 +182,371 @@
 <a class="sourceLine" id="cb4-15" title="15">    list = list.Next</a>
 <a class="sourceLine" id="cb4-16" title="16">}</a>
 <a class="sourceLine" id="cb4-17" title="17"><span class="kw">return</span> ret.Next</a></code></pre></div>]]></description>
-    <pubDate>Mon, 8 Aug 2022 22:35:17 +0800</pubDate>
+    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
   </item>
    
   <item>
-    <title><![CDATA[ [题目说明](https://leetcode.cn/problems/two-sum/)]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/array/0001.two-sum</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0001.two-sum</guid>
-    <description><![CDATA[<h2 id="题目说明"><a href="https://leetcode.cn/problems/two-sum/">题目说明</a></h2>
-<p>给定一个整数数组 nums和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那两个整数，并返回它们的数组下标。</p>
-<p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。</p>
+    <title><![CDATA[ 二分查找]]></title>
+    <link>https://scanas.ml/leetcode-doc/#/docs/array/704.binary-search</link>
+    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/704.binary-search</guid>
+    <description><![CDATA[<h2 id="二分查找">二分查找</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/binary-search/">https://leetcode.cn/problems/binary-search/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>给定一个n个元素有序的（升序）整型数组nums 和一个目标值target ，写一个函数搜索nums中的 target，如果目标值存在返回下标，否则返回 -1。</p>
 <p>示例 1：</p>
-<pre class="text"><code>输入：nums = [2,7,11,15], target = 9
-输出：[0,1]
-解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。</code></pre>
+<pre class="text"><code>输入: nums = [-1,0,3,5,9,12], target = 9
+输出: 4
+解释: 9 出现在 nums 中并且下标为 4</code></pre>
 <p>示例 2：</p>
-<pre class="text"><code>输入：nums = [3,2,4], target = 6
-输出：[1,2]</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：nums = [3,2,4], target = 6
-输出：[1,2]</code></pre>
-<p>示例 3：</p>
-<pre class="text"><code>输入：nums = [3,3], target = 6
-输出：[0,1]</code></pre>
+<pre class="text"><code>输入: nums = [-1,0,3,5,9,12], target = 2
+输出: -1
+解释: 2 不存在 nums 中因此返回 -1</code></pre>
 <p>提示：</p>
-<p>2 &lt;= nums.length &lt;= 104 -109 &lt;= nums[i] &lt;= 109 -109 &lt;= target &lt;= 109 只会存在一个有效答案 进阶：你可以想出一个时间复杂度小于 O(n2) 的算法吗？</p>
+<ul>
+<li>你可以假设 nums 中的所有元素是不重复的。</li>
+<li>n 将在 [1, 10000]之间。</li>
+<li>nums 的每个元素都将在 [-9999, 9999]之间。</li>
+</ul>
+<h2 id="解题思路">解题思路</h2>
+<ul>
+<li><p>二分法主要关注循环条件，以及循环里判断后，针对中间值的处理过程，闭区间与开区间需要区分</p></li>
+<li>左闭右闭</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">func</span> search(nums []<span class="dt">int</span>, target <span class="dt">int</span>) <span class="dt">int</span> {</a>
+<a class="sourceLine" id="cb3-2" title="2">    begin, end, mid := <span class="dv">0</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span>, (<span class="bu">len</span>(nums)-<span class="dv">1</span>)/<span class="dv">2</span></a>
+<a class="sourceLine" id="cb3-3" title="3">    <span class="co">//左闭右闭</span></a>
+<a class="sourceLine" id="cb3-4" title="4">    <span class="kw">for</span> begin &lt;= end {</a>
+<a class="sourceLine" id="cb3-5" title="5">        <span class="kw">if</span> target &lt; nums[mid] {</a>
+<a class="sourceLine" id="cb3-6" title="6">            end = mid - <span class="dv">1</span></a>
+<a class="sourceLine" id="cb3-7" title="7">        } <span class="kw">else</span> <span class="kw">if</span> target &gt; nums[mid] {</a>
+<a class="sourceLine" id="cb3-8" title="8">            begin = mid + <span class="dv">1</span></a>
+<a class="sourceLine" id="cb3-9" title="9">        } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb3-10" title="10">            <span class="kw">return</span> mid</a>
+<a class="sourceLine" id="cb3-11" title="11">        }</a>
+<a class="sourceLine" id="cb3-12" title="12">        mid = (begin + end) / <span class="dv">2</span></a>
+<a class="sourceLine" id="cb3-13" title="13">        <span class="co">//begin和end为int，避免越界可以写成</span></a>
+<a class="sourceLine" id="cb3-14" title="14">        <span class="co">//mid = begin + (end - begin) / 2</span></a>
+<a class="sourceLine" id="cb3-15" title="15">    }</a>
+<a class="sourceLine" id="cb3-16" title="16">    <span class="kw">return</span> <span class="dv">-1</span></a>
+<a class="sourceLine" id="cb3-17" title="17">}</a></code></pre></div>
+<ul>
+<li>左闭右开</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">func</span> search(nums []<span class="dt">int</span>, target <span class="dt">int</span>) <span class="dt">int</span> {</a>
+<a class="sourceLine" id="cb4-2" title="2">    left, right := <span class="dv">0</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-3" title="3">    <span class="kw">for</span> left &lt; right {</a>
+<a class="sourceLine" id="cb4-4" title="4">        mid := left + (right-left)/<span class="dv">2</span></a>
+<a class="sourceLine" id="cb4-5" title="5">        <span class="kw">if</span> nums[mid] &gt; target {</a>
+<a class="sourceLine" id="cb4-6" title="6">            right = mid</a>
+<a class="sourceLine" id="cb4-7" title="7">        } <span class="kw">else</span> <span class="kw">if</span> nums[mid] &lt; target {</a>
+<a class="sourceLine" id="cb4-8" title="8">            left = mid + <span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-9" title="9">        } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb4-10" title="10">            <span class="kw">return</span> mid</a>
+<a class="sourceLine" id="cb4-11" title="11">        }</a>
+<a class="sourceLine" id="cb4-12" title="12">    }</a>
+<a class="sourceLine" id="cb4-13" title="13">    <span class="kw">return</span> <span class="dv">-1</span></a>
+<a class="sourceLine" id="cb4-14" title="14">}</a></code></pre></div>]]></description>
+    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[ 非递增顺序的最小子序列]]></title>
+    <link>https://scanas.ml/leetcode-doc/#/docs/array/1403.minimum-subsequence-in-non-increasing-order</link>
+    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/1403.minimum-subsequence-in-non-increasing-order</guid>
+    <description><![CDATA[<h2 id="非递增顺序的最小子序列">非递增顺序的最小子序列</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/minimum-subsequence-in-non-increasing-order/">https://leetcode.cn/problems/minimum-subsequence-in-non-increasing-order/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>给你一个数组 nums，请你从中抽取一个子序列，满足该子序列的元素之和 严格 大于未包含在该子序列中的各元素之和。</p>
+<p>如果存在多个解决方案，只需返回 长度最小 的子序列。如果仍然有多个解决方案，则返回 元素之和最大 的子序列。</p>
+<p>与子数组不同的地方在于，「数组的子序列」不强调元素在原数组中的连续性，也就是说，它可以通过从数组中分离一些（也可能不分离）元素得到。</p>
+<p>注意，题目数据保证满足所有约束条件的解决方案是 唯一 的。同时，返回的答案应当按 非递增顺序 排列。</p>
+<p>示例 1：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">输入：<span class="ex">nums</span> = [4,3,10,9,8]</a>
+<a class="sourceLine" id="cb1-2" title="2">输出：[<span class="ex">10</span>,9] </a>
+<a class="sourceLine" id="cb1-3" title="3">解释：子序列 [<span class="ex">10</span>,9] 和 [10,8] 是最小的、满足元素之和大于其他各元素之和的子序列。但是 [10,9] 的元素之和最大。 </a></code></pre></div>
+<p>示例 2：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">输入：<span class="ex">nums</span> = [4,4,7,6,7]</a>
+<a class="sourceLine" id="cb2-2" title="2">输出：[<span class="ex">7</span>,7,6] </a>
+<a class="sourceLine" id="cb2-3" title="3">解释：子序列 [<span class="ex">7</span>,7] 的和为 14 ，不严格大于剩下的其他元素之和（14 = 4 + 4 + 6）。因此，[7,6,7] 是满足题意的最小子序列。注意，元素按非递增顺序返回。</a></code></pre></div>
+<p>示例 3：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1">输入：<span class="ex">nums</span> = [6]</a>
+<a class="sourceLine" id="cb3-2" title="2">输出：[<span class="ex">6</span>]</a></code></pre></div>
 <h2 id="解题思路">解题思路</h2>
 <ol type="1">
-<li>(self) 开辟一个新空间存已经遍历过的值，后面的再去与前面的值进行比较，是否满足和为target，否则继续存，而因为map的时间复杂度为O(1)，所以比使用数组进行查询更好O(n)</li>
+<li>(self) 题目要求多种解决方案长度最短，和最大，那对应的就直接可以转换成数组倒序后，第一个前面的和大于后面的和，但是这种方法用了多重循环，时间复杂度较高 （一根筋做法）</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">func</span> twoSum(nums []<span class="dt">int</span>, target <span class="dt">int</span>) []<span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb5-2" title="2">    ret := <span class="bu">make</span>(<span class="kw">map</span>[<span class="dt">int</span>]<span class="dt">int</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3">    <span class="kw">for</span> i := <span class="dv">0</span>; i &lt; <span class="bu">len</span>(nums); i++ {</a>
-<a class="sourceLine" id="cb5-4" title="4">        <span class="kw">if</span> key, ok := ret[target - nums[i]]; ok {</a>
-<a class="sourceLine" id="cb5-5" title="5">            <span class="kw">return</span> []<span class="dt">int</span>{key, i}</a>
-<a class="sourceLine" id="cb5-6" title="6">        }</a>
-<a class="sourceLine" id="cb5-7" title="7">        ret[nums[i]] = i</a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; <span class="bu">len</span>(nums)-<span class="dv">1</span>; i++ {</a>
+<a class="sourceLine" id="cb4-2" title="2">  <span class="kw">for</span> j := <span class="dv">0</span>; j &lt; <span class="bu">len</span>(nums)-i<span class="dv">-1</span>; j++ {</a>
+<a class="sourceLine" id="cb4-3" title="3">     <span class="kw">if</span> nums[j] &lt; nums[j+<span class="dv">1</span>] {</a>
+<a class="sourceLine" id="cb4-4" title="4">        nums[j], nums[j+<span class="dv">1</span>] = nums[j+<span class="dv">1</span>], nums[j]</a>
+<a class="sourceLine" id="cb4-5" title="5">     }</a>
+<a class="sourceLine" id="cb4-6" title="6">  }</a>
+<a class="sourceLine" id="cb4-7" title="7">}</a>
+<a class="sourceLine" id="cb4-8" title="8">sum1, sum2, sep := <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; <span class="bu">len</span>(nums); i++ {</a>
+<a class="sourceLine" id="cb4-10" title="10">   <span class="kw">for</span> j := <span class="dv">0</span>; j &lt;= i; j++ {</a>
+<a class="sourceLine" id="cb4-11" title="11">       sum1 += nums[j]</a>
+<a class="sourceLine" id="cb4-12" title="12">   }</a>
+<a class="sourceLine" id="cb4-13" title="13">   <span class="kw">for</span> k := sep + <span class="dv">1</span>; k &lt; <span class="bu">len</span>(nums); k++ {</a>
+<a class="sourceLine" id="cb4-14" title="14">    sum2 += nums[k]</a>
+<a class="sourceLine" id="cb4-15" title="15">   }</a>
+<a class="sourceLine" id="cb4-16" title="16">   sep++</a>
+<a class="sourceLine" id="cb4-17" title="17">   <span class="kw">if</span> sum1 &gt; sum2 {</a>
+<a class="sourceLine" id="cb4-18" title="18">       <span class="kw">return</span> nums[:sep]</a>
+<a class="sourceLine" id="cb4-19" title="19">   }</a>
+<a class="sourceLine" id="cb4-20" title="20">   sum1, sum2 = <span class="dv">0</span>, <span class="dv">0</span></a>
+<a class="sourceLine" id="cb4-21" title="21">}</a>
+<a class="sourceLine" id="cb4-22" title="22"><span class="kw">return</span> <span class="ot">nil</span></a></code></pre></div>]]></description>
+    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[ 只出现一次的数字]]></title>
+    <link>https://scanas.ml/leetcode-doc/#/docs/array/0136.single-number</link>
+    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0136.single-number</guid>
+    <description><![CDATA[<h2 id="只出现一次的数字">只出现一次的数字</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/single-number/">https://leetcode.cn/problems/single-number/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p>
+<p>说明： 你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？</p>
+<p>示例 1：</p>
+<pre class="text"><code>输入: [2,2,1]
+输出: 1</code></pre>
+<p>示例 2：</p>
+<pre class="text"><code>输入: [4,1,2,1,2]
+输出: 4</code></pre>
+<h2 id="解题思路"><a href="https://books.halfrost.com/leetcode/ChapterFour/0100~0199/0136.Single-Number/">解题思路</a></h2>
+<pre class="text"><code>题目要求不能使用辅助空间，并且时间复杂度只能是线性的。
+题目为什么要强调有一个数字出现一次，其他的出现两次？
+我们想到了异或运算的性质：任何一个数字异或它自己都等于0。
+也就是说，如果我们从头到尾依次异或数组中的每一个数字，那么最终的结果刚好是那个只出现一次的数字，因为那些出现两次的数字全部在异或中抵消掉了。
+于是最终做法是从头到尾依次异或数组中的每一个数字，那么最终得到的结果就是两个只出现一次的数字的异或结果。因为其他数字都出现了两次，在异或中全部抵消掉了。利用的性质是 x^x = 0。</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1">ret := <span class="dv">0</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; <span class="bu">len</span>(nums); i++ {</a>
+<a class="sourceLine" id="cb4-3" title="3">    ret = ret ^ nums[i]</a>
+<a class="sourceLine" id="cb4-4" title="4">}</a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="kw">return</span> ret</a></code></pre></div>]]></description>
+    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[ 买卖股票的最佳时机]]></title>
+    <link>https://scanas.ml/leetcode-doc/#/docs/array/0121.best-time-to-buy-and-sell-stock</link>
+    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0121.best-time-to-buy-and-sell-stock</guid>
+    <description><![CDATA[<h2 id="买卖股票的最佳时机">买卖股票的最佳时机</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/">https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>给定一个数组 prices ，它的第i 个元素prices[i] 表示一支给定股票第 i 天的价格。</p>
+<p>你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子 卖出该股票。设计一个算法来计算你所能获取的最大利润。</p>
+<p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。</p>
+<p>示例 1：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">输入：[<span class="ex">7</span>,1,5,3,6,4]</a>
+<a class="sourceLine" id="cb1-2" title="2">输出：<span class="ex">5</span></a>
+<a class="sourceLine" id="cb1-3" title="3">解释：在第 <span class="ex">2</span> 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。</a>
+<a class="sourceLine" id="cb1-4" title="4">     注意利润不能是 <span class="ex">7-1</span> = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。</a></code></pre></div>
+<p>示例 2：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">输入：<span class="ex">prices</span> = [7,6,4,3,1]</a>
+<a class="sourceLine" id="cb2-2" title="2">输出：<span class="ex">0</span></a>
+<a class="sourceLine" id="cb2-3" title="3">解释：在这种情况下, 没有交易完成, 所以最大利润为 <span class="ex">0</span>。</a></code></pre></div>
+<h2 id="解题思路">解题思路</h2>
+<p>3，7，1，2，4，7 1. <a href="https://www.zhihu.com/question/23995189">动态规划问题</a> 动态规划 前i天的最大收益 = max{前i-1天的最大收益，第i天的价格-前i-1天中的最小价格}_O(n^2) ——leetcodeuser-liupc</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1">min := prices[<span class="dv">0</span>]</a>
+<a class="sourceLine" id="cb3-2" title="2">max := <span class="dv">0</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="kw">for</span> i := <span class="dv">1</span>; i &lt; <span class="bu">len</span>(prices); i++ {</a>
+<a class="sourceLine" id="cb3-4" title="4">    <span class="kw">if</span> prices[i]-min &gt; max {</a>
+<a class="sourceLine" id="cb3-5" title="5">        max = prices[i] - min</a>
+<a class="sourceLine" id="cb3-6" title="6">    }</a>
+<a class="sourceLine" id="cb3-7" title="7">    <span class="kw">if</span> prices[i] &lt; min {</a>
+<a class="sourceLine" id="cb3-8" title="8">        min = prices[i]</a>
+<a class="sourceLine" id="cb3-9" title="9">    }</a>
+<a class="sourceLine" id="cb3-10" title="10">}</a>
+<a class="sourceLine" id="cb3-11" title="11"><span class="kw">return</span> max</a></code></pre></div>
+<ol start="2" type="1">
+<li><a href="https://books.halfrost.com/leetcode/ChapterFour/0100~0199/0121.Best-Time-to-Buy-and-Sell-Stock/">(other)</a> <a href="https://blog.csdn.net/lucky52529/article/details/89155694">单调栈法</a></li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">if</span> <span class="bu">len</span>(prices) == <span class="dv">0</span> {</a>
+<a class="sourceLine" id="cb4-2" title="2">    <span class="kw">return</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb4-3" title="3">}</a>
+<a class="sourceLine" id="cb4-4" title="4">stack, res := []<span class="dt">int</span>{prices[<span class="dv">0</span>]}, <span class="dv">0</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="kw">for</span> i := <span class="dv">1</span>; i &lt; <span class="bu">len</span>(prices); i++ {</a>
+<a class="sourceLine" id="cb4-6" title="6">    <span class="kw">if</span> prices[i] &gt; stack[<span class="bu">len</span>(stack)-<span class="dv">1</span>] {</a>
+<a class="sourceLine" id="cb4-7" title="7">        stack = <span class="bu">append</span>(stack, prices[i])</a>
+<a class="sourceLine" id="cb4-8" title="8">    } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb4-9" title="9">        index := <span class="bu">len</span>(stack) - <span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-10" title="10">        <span class="kw">for</span> ; index &gt;= <span class="dv">0</span>; index-- {</a>
+<a class="sourceLine" id="cb4-11" title="11">            <span class="kw">if</span> stack[index] &lt; prices[i] {</a>
+<a class="sourceLine" id="cb4-12" title="12">                <span class="kw">break</span></a>
+<a class="sourceLine" id="cb4-13" title="13">            }</a>
+<a class="sourceLine" id="cb4-14" title="14">        }</a>
+<a class="sourceLine" id="cb4-15" title="15">        stack = stack[:index+<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb4-16" title="16">        stack = <span class="bu">append</span>(stack, prices[i])</a>
+<a class="sourceLine" id="cb4-17" title="17">    }</a>
+<a class="sourceLine" id="cb4-18" title="18">    <span class="kw">if</span> res &lt; stack[<span class="bu">len</span>(stack)-<span class="dv">1</span>]-stack[<span class="dv">0</span>] {</a>
+<a class="sourceLine" id="cb4-19" title="19">        res = stack[<span class="bu">len</span>(stack)-<span class="dv">1</span>] - stack[<span class="dv">0</span>]</a>
+<a class="sourceLine" id="cb4-20" title="20">    }</a>
+<a class="sourceLine" id="cb4-21" title="21">}</a>
+<a class="sourceLine" id="cb4-22" title="22"><span class="kw">return</span> res</a></code></pre></div>]]></description>
+    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[ 杨辉三角II]]></title>
+    <link>https://scanas.ml/leetcode-doc/#/docs/array/0119.pascals-triangle-ii</link>
+    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0119.pascals-triangle-ii</guid>
+    <description><![CDATA[<h2 id="杨辉三角ii">杨辉三角II</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/pascals-triangle-ii/">https://leetcode.cn/problems/pascals-triangle-ii/</a> ## 题目说明</p>
+<p>给定一个非负索引 rowIndex，返回「杨辉三角」的第 rowIndex 行。<br />
+在「杨辉三角」中，每个数是它左上方和右上方的数的和。 <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif" alt="杨辉三角" /></p>
+<p>示例 1：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">输入: <span class="ex">rowIndex</span> = 3</a>
+<a class="sourceLine" id="cb1-2" title="2">输出: [<span class="ex">1</span>,3,3,1]</a></code></pre></div>
+<p>示例 2：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">输入: <span class="ex">rowIndex</span> = 0</a>
+<a class="sourceLine" id="cb2-2" title="2">输出: [<span class="ex">1</span>]</a></code></pre></div>
+<p>示例 3：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1">输入: <span class="ex">rowIndex</span> = 1</a>
+<a class="sourceLine" id="cb3-2" title="2">输出: [<span class="ex">1</span>,1]</a></code></pre></div>
+<h2 id="解题思路">解题思路</h2>
+<ol type="1">
+<li>(self) 偷懒做法，直接利用上一题的结果取最后一行，必然会造成内存浪费，但不失为一种方法</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1">ret := <span class="bu">make</span>([][]<span class="dt">int</span>, numRows)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; numRows; i++ {</a>
+<a class="sourceLine" id="cb4-3" title="3">    ret[i] = <span class="bu">make</span>([]<span class="dt">int</span>, i+<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-4" title="4">    <span class="kw">for</span> j := <span class="dv">0</span>; j &lt;= i; j++ {</a>
+<a class="sourceLine" id="cb4-5" title="5">        <span class="kw">if</span> i == j || j &lt; <span class="dv">1</span> {</a>
+<a class="sourceLine" id="cb4-6" title="6">        ret[i][j] = <span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-7" title="7">        <span class="kw">continue</span></a>
+<a class="sourceLine" id="cb4-8" title="8">    }</a>
+<a class="sourceLine" id="cb4-9" title="9">    ret[i][j] = ret[i<span class="dv">-1</span>][j] + ret[i<span class="dv">-1</span>][j<span class="dv">-1</span>]</a>
+<a class="sourceLine" id="cb4-10" title="10">    }</a>
+<a class="sourceLine" id="cb4-11" title="11">}</a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="kw">return</span> ret</a></code></pre></div>
+<ol start="2" type="1">
+<li><a href="https://books.halfrost.com/leetcode/ChapterFour/0100~0199/0119.Pascals-Triangle-II/">(other)</a>-<a href="https://zhuanlan.zhihu.com/p/257895125">解释杨辉三角排列组合</a><br />
+<strong>根据杨辉三角的数学特性得出的公式直接计算，递推公式为：<code>ret[i] = ret[i-1] * (rowIndex - i + 1) / i</code></strong></li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb5-1" title="1">ret := <span class="bu">make</span>([]<span class="dt">int</span>, rowIndex+<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2">ret[<span class="dv">0</span>] = <span class="dv">1</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="kw">for</span> i := <span class="dv">1</span>; i &lt;= rowIndex; i++ {</a>
+<a class="sourceLine" id="cb5-4" title="4">    ret[i] = ret[i<span class="dv">-1</span>] * (rowIndex - i + <span class="dv">1</span>) / i</a>
+<a class="sourceLine" id="cb5-5" title="5">}</a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="kw">return</span> ret</a></code></pre></div>]]></description>
+    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[ 杨辉三角]]></title>
+    <link>https://scanas.ml/leetcode-doc/#/docs/array/0118.pascals-triangle</link>
+    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0118.pascals-triangle</guid>
+    <description><![CDATA[<h2 id="杨辉三角">杨辉三角</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/pascals-triangle/">https://leetcode.cn/problems/pascals-triangle/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>给定一个非负整数 numRows，生成「杨辉三角」的前 numRows 行。 在「杨辉三角」中，每个数是它左上方和右上方的数的和。</p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif" alt="杨辉三角" /><figcaption>杨辉三角</figcaption>
+</figure>
+<p>示例 1：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">输入: <span class="ex">numRows</span> = 5</a>
+<a class="sourceLine" id="cb1-2" title="2">输出: [[<span class="ex">1</span>],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]输入: numRows = 5</a>
+<a class="sourceLine" id="cb1-3" title="3">输出: [[<span class="ex">1</span>],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]</a></code></pre></div>
+<p>示例 2：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">输入: <span class="ex">numRows</span> = 1</a>
+<a class="sourceLine" id="cb2-2" title="2">输出: [[<span class="ex">1</span>]]</a></code></pre></div>
+<h2 id="解题思路">解题思路</h2>
+<ol type="1">
+<li>(self) 看杨辉三角特点，二维数组的列的第一个和最后一个都必然是1，然后其余的值都可以通过<code>ret[i][j] = ret[i-1][j] + ret[i-1][j-1]</code>的方式来计算<code>[2,1]=[1,0]+[1,1]</code></li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1">ret := <span class="bu">make</span>([][]<span class="dt">int</span>, numRows)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; numRows; i++ {</a>
+<a class="sourceLine" id="cb3-3" title="3">    ret[i] = <span class="bu">make</span>([]<span class="dt">int</span>, i+<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb3-4" title="4">    <span class="kw">for</span> j := <span class="dv">0</span>; j &lt;= i; j++ {</a>
+<a class="sourceLine" id="cb3-5" title="5">        <span class="kw">if</span> i == j || j &lt; <span class="dv">1</span> {</a>
+<a class="sourceLine" id="cb3-6" title="6">        ret[i][j] = <span class="dv">1</span></a>
+<a class="sourceLine" id="cb3-7" title="7">        <span class="kw">continue</span></a>
+<a class="sourceLine" id="cb3-8" title="8">    }</a>
+<a class="sourceLine" id="cb3-9" title="9">    ret[i][j] = ret[i<span class="dv">-1</span>][j] + ret[i<span class="dv">-1</span>][j<span class="dv">-1</span>]</a>
+<a class="sourceLine" id="cb3-10" title="10">    }</a>
+<a class="sourceLine" id="cb3-11" title="11">}</a>
+<a class="sourceLine" id="cb3-12" title="12"><span class="kw">return</span> ret</a></code></pre></div>
+<ol start="2" type="1">
+<li><a href="https://books.halfrost.com/leetcode/ChapterFour/0100~0199/0118.Pascals-Triangle/">(other)</a> 本质与上述相同，仅声明的是切空切片</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1">ret := [][]<span class="dt">int</span>{}</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; numRows; i++ {</a>
+<a class="sourceLine" id="cb4-3" title="3">    row := []<span class="dt">int</span>{}</a>
+<a class="sourceLine" id="cb4-4" title="4">    <span class="kw">for</span> j := <span class="dv">0</span>; j &lt; i+<span class="dv">1</span>; j++ {</a>
+<a class="sourceLine" id="cb4-5" title="5">        <span class="kw">if</span> j == <span class="dv">0</span> || i == j {</a>
+<a class="sourceLine" id="cb4-6" title="6">            row = <span class="bu">append</span>(row, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-7" title="7">            <span class="kw">continue</span></a>
+<a class="sourceLine" id="cb4-8" title="8">        }</a>
+<a class="sourceLine" id="cb4-9" title="9">        row = <span class="bu">append</span>(row, ret[i<span class="dv">-1</span>][j<span class="dv">-1</span>]+ret[i<span class="dv">-1</span>][j])</a>
+<a class="sourceLine" id="cb4-10" title="10">    }</a>
+<a class="sourceLine" id="cb4-11" title="11">    ret = <span class="bu">append</span>(ret, row)</a>
+<a class="sourceLine" id="cb4-12" title="12">}</a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="kw">return</span> ret</a></code></pre></div>]]></description>
+    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[ 合并两个有序数组]]></title>
+    <link>https://scanas.ml/leetcode-doc/#/docs/array/0088.merge-sorted-array</link>
+    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0088.merge-sorted-array</guid>
+    <description><![CDATA[<h2 id="合并两个有序数组">合并两个有序数组</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/merge-sorted-array/">https://leetcode.cn/problems/merge-sorted-array/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>给你两个按 非递减顺序 排列的整数数组nums1 和 nums2，另有两个整数 m 和 n ，分别表示 nums1 和 nums2 中的元素数目。 请你 合并 nums2 到 nums1 中，使合并后的数组同样按 非递减顺序 排列。 注意：最终，合并后数组不应由函数返回，而是存储在数组 nums1 中。为了应对这种情况，nums1 的初始长度为 m + n，其中前 m 个元素表示应合并的元素，后 n 个元素为 0 ，应忽略。nums2 的长度为 n 。</p>
+<p>示例 1：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">输入：<span class="ex">nums1</span> = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3</a>
+<a class="sourceLine" id="cb1-2" title="2">输出：[<span class="ex">1</span>,2,2,3,5,6]</a>
+<a class="sourceLine" id="cb1-3" title="3">解释：需要合并 [<span class="ex">1</span>,2,3] 和 [2,5,6] 。</a>
+<a class="sourceLine" id="cb1-4" title="4">合并结果是 [<span class="ex">1</span>,2,2,3,5,6] ，其中斜体加粗标注的为 nums1 中的元素。</a></code></pre></div>
+<p>示例 2：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">输入：<span class="ex">nums1</span> = [1], m = 1, nums2 = [], n = 0</a>
+<a class="sourceLine" id="cb2-2" title="2">输出：[<span class="ex">1</span>]</a>
+<a class="sourceLine" id="cb2-3" title="3">解释：需要合并 [<span class="ex">1</span>] 和 [] 。</a>
+<a class="sourceLine" id="cb2-4" title="4">合并结果是 [<span class="ex">1</span>] 。</a></code></pre></div>
+<p>示例 3：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1">输入：<span class="ex">nums1</span> = [0], m = 0, nums2 = [1], n = 1</a>
+<a class="sourceLine" id="cb3-2" title="2">输出：[<span class="ex">1</span>]</a>
+<a class="sourceLine" id="cb3-3" title="3">解释：需要合并的数组是 [] 和 [<span class="ex">1</span>] 。</a>
+<a class="sourceLine" id="cb3-4" title="4">合并结果是 [<span class="ex">1</span>] 。</a>
+<a class="sourceLine" id="cb3-5" title="5">注意，因为 <span class="ex">m</span> = 0 ，所以 nums1 中没有元素。nums1 中仅存的 0 仅仅是为了确保合并结果可以顺利存放到 nums1 中。</a></code></pre></div>
+<h2 id="解题思路">解题思路</h2>
+<ol type="1">
+<li>nums2数组直接插入nums1数组，随后使用冒号排序即可 O(n^2)</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1">x := <span class="dv">0</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">for</span> i := m; i &lt; m+n; i++ {</a>
+<a class="sourceLine" id="cb4-3" title="3">    nums1[i] = nums2[x]</a>
+<a class="sourceLine" id="cb4-4" title="4">    x++</a>
+<a class="sourceLine" id="cb4-5" title="5">}</a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; m+n<span class="dv">-1</span>; i++ {</a>
+<a class="sourceLine" id="cb4-7" title="7">    <span class="kw">for</span> j := <span class="dv">0</span>; j &lt; m+n-i<span class="dv">-1</span>; j++ {</a>
+<a class="sourceLine" id="cb4-8" title="8">        <span class="kw">if</span> nums1[j] &gt; nums1[j+<span class="dv">1</span>] {</a>
+<a class="sourceLine" id="cb4-9" title="9">            t := nums1[j]</a>
+<a class="sourceLine" id="cb4-10" title="10">            nums1[j] = nums1[j+<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb4-11" title="11">            nums1[j+<span class="dv">1</span>] = t</a>
+<a class="sourceLine" id="cb4-12" title="12">        }</a>
+<a class="sourceLine" id="cb4-13" title="13">    }</a>
+<a class="sourceLine" id="cb4-14" title="14">}</a></code></pre></div>
+<ol start="2" type="1">
+<li>倒序遍历两个数组，取出较大值按从后往前的顺序填入nums1数组 O(m+n)</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">for</span> i := m + n; m &gt; <span class="dv">0</span> &amp;&amp; n &gt; <span class="dv">0</span>; i-- {</a>
+<a class="sourceLine" id="cb5-2" title="2">    <span class="kw">if</span> nums1[m<span class="dv">-1</span>] &lt;= nums2[n<span class="dv">-1</span>] {</a>
+<a class="sourceLine" id="cb5-3" title="3">        nums1[i<span class="dv">-1</span>] = nums2[n<span class="dv">-1</span>]</a>
+<a class="sourceLine" id="cb5-4" title="4">        n--</a>
+<a class="sourceLine" id="cb5-5" title="5">    } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb5-6" title="6">        nums1[i<span class="dv">-1</span>] = nums1[m<span class="dv">-1</span>]</a>
+<a class="sourceLine" id="cb5-7" title="7">        m--</a>
 <a class="sourceLine" id="cb5-8" title="8">    }</a>
-<a class="sourceLine" id="cb5-9" title="9">    <span class="kw">return</span> <span class="ot">nil</span></a>
-<a class="sourceLine" id="cb5-10" title="10">}</a></code></pre></div>]]></description>
-    <pubDate>Sun, 7 Aug 2022 18:34:58 +0800</pubDate>
+<a class="sourceLine" id="cb5-9" title="9">}</a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="co">//如果只读完了nums1(大数)，需要后续补上nums2(小数)</span></a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="kw">for</span> ; n &gt; <span class="dv">0</span>; n-- {</a>
+<a class="sourceLine" id="cb5-12" title="12">    nums1[n<span class="dv">-1</span>] = nums2[n<span class="dv">-1</span>]</a>
+<a class="sourceLine" id="cb5-13" title="13">}</a></code></pre></div>]]></description>
+    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
   </item>
   
 </channel>
