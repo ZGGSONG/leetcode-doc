@@ -6,6 +6,8 @@ if [ "${1}" == "" ]; then
 else
   msg="${1}"
 fi
+git pull
+
 git add .
 
 git commit -m "${msg}"

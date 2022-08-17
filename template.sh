@@ -70,7 +70,11 @@ echo -e "\033[42;37m已添加至侧边栏目录 \033[0m"
 
 ENTITLE=`echo $FILENAME | tr '.' ' ' | awk '{print$2}'`
 
-echo "## [题目说明](https://leetcode.cn/problems/${ENTITLE}/)
+echo "## ${CNNAME}
+
+LeetCode: [https://leetcode.cn/problems/${ENTITLE}/](https://leetcode.cn/problems/${ENTITLE}/)
+
+## 题目说明
 
 
 
