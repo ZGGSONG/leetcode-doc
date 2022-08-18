@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
 <channel>
   <title>LeetCode刷题记录</title>
-  <atom:link href="https://scanas.ml/leetcode-doc/feed.xml" rel="self" type="application/rss+xml" />
-  <link>https://scanas.ml/leetcode-doc</link>
+  <atom:link href="https://pages.zsong.ml/leetcode-doc/feed.xml" rel="self" type="application/rss+xml" />
+  <link>https://pages.zsong.ml/leetcode-doc</link>
   <description>LeetCode刷题记录</description>
    
   <item>
     <title><![CDATA[说明]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/README</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/README</guid>
+    <link>https://pages.zsong.ml/leetcode-doc/#/README</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/README</guid>
     <description><![CDATA[<h1 id="说明">说明</h1>
 <p>leetcode刷题记录, RSS <a href="//pages.zsong.ml/leetcode-doc/feed.xml">pages.zsong.ml/leetcode-doc/feed.xml</a>, 个人博客 <a href="//www.zggsong.cn">zggsong.cn</a>, wiki <a href="//wiki.zggsong.cn">wiki.zggsong.cn</a></p>]]></description>
     <pubDate>Wed, 17 Aug 2022 18:51:02 +0800</pubDate>
@@ -16,8 +16,8 @@
    
   <item>
     <title><![CDATA[ 重新格式化字符串]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/string/1417.reformat-the-string</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/string/1417.reformat-the-string</guid>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/string/1417.reformat-the-string</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/string/1417.reformat-the-string</guid>
     <description><![CDATA[<h2 id="重新格式化字符串">重新格式化字符串</h2>
 <p>LeetCode: <a href="https://leetcode.cn/problems/reformat-the-string/">https://leetcode.cn/problems/reformat-the-string/</a></p>
 <h2 id="题目说明">题目说明</h2>
@@ -110,8 +110,8 @@
    
   <item>
     <title><![CDATA[ 数组中的字符串匹配]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/string/1408.string-matching-in-an-array</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/string/1408.string-matching-in-an-array</guid>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/string/1408.string-matching-in-an-array</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/string/1408.string-matching-in-an-array</guid>
     <description><![CDATA[<h2 id="数组中的字符串匹配">数组中的字符串匹配</h2>
 <p>LeetCode: <a href="https://leetcode.cn/problems/string-matching-in-an-array/">https://leetcode.cn/problems/string-matching-in-an-array/</a></p>
 <h2 id="题目说明">题目说明</h2>
@@ -155,8 +155,8 @@
    
   <item>
     <title><![CDATA[ 杨辉三角II]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/array/0119.pascals-triangle-ii</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0119.pascals-triangle-ii</guid>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0119.pascals-triangle-ii</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0119.pascals-triangle-ii</guid>
     <description><![CDATA[<h2 id="杨辉三角ii">杨辉三角II</h2>
 <p>LeetCode: <a href="https://leetcode.cn/problems/pascals-triangle-ii/">https://leetcode.cn/problems/pascals-triangle-ii/</a></p>
 <h2 id="题目说明">题目说明</h2>
@@ -202,8 +202,8 @@
    
   <item>
     <title><![CDATA[ 两数相加]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/linkedList/0002.add-two-numbers</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/linkedList/0002.add-two-numbers</guid>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/linkedList/0002.add-two-numbers</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/linkedList/0002.add-two-numbers</guid>
     <description><![CDATA[<h2 id="两数相加">两数相加</h2>
 <p>LeetCode: <a href="https://leetcode.cn/problems/add-two-numbers/">https://leetcode.cn/problems/add-two-numbers/</a></p>
 <h2 id="题目说明">题目说明</h2>
@@ -245,8 +245,8 @@
    
   <item>
     <title><![CDATA[ 二分查找]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/array/704.binary-search</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/704.binary-search</guid>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/704.binary-search</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/704.binary-search</guid>
     <description><![CDATA[<h2 id="二分查找">二分查找</h2>
 <p>LeetCode: <a href="https://leetcode.cn/problems/binary-search/">https://leetcode.cn/problems/binary-search/</a></p>
 <h2 id="题目说明">题目说明</h2>
@@ -309,8 +309,8 @@
    
   <item>
     <title><![CDATA[ 非递增顺序的最小子序列]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/array/1403.minimum-subsequence-in-non-increasing-order</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/1403.minimum-subsequence-in-non-increasing-order</guid>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/1403.minimum-subsequence-in-non-increasing-order</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/1403.minimum-subsequence-in-non-increasing-order</guid>
     <description><![CDATA[<h2 id="非递增顺序的最小子序列">非递增顺序的最小子序列</h2>
 <p>LeetCode: <a href="https://leetcode.cn/problems/minimum-subsequence-in-non-increasing-order/">https://leetcode.cn/problems/minimum-subsequence-in-non-increasing-order/</a></p>
 <h2 id="题目说明">题目说明</h2>
@@ -360,8 +360,8 @@
    
   <item>
     <title><![CDATA[ 只出现一次的数字]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/array/0136.single-number</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0136.single-number</guid>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0136.single-number</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0136.single-number</guid>
     <description><![CDATA[<h2 id="只出现一次的数字">只出现一次的数字</h2>
 <p>LeetCode: <a href="https://leetcode.cn/problems/single-number/">https://leetcode.cn/problems/single-number/</a></p>
 <h2 id="题目说明">题目说明</h2>
@@ -389,8 +389,8 @@
    
   <item>
     <title><![CDATA[ 买卖股票的最佳时机]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/array/0121.best-time-to-buy-and-sell-stock</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0121.best-time-to-buy-and-sell-stock</guid>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0121.best-time-to-buy-and-sell-stock</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0121.best-time-to-buy-and-sell-stock</guid>
     <description><![CDATA[<h2 id="买卖股票的最佳时机">买卖股票的最佳时机</h2>
 <p>LeetCode: <a href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/">https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/</a></p>
 <h2 id="题目说明">题目说明</h2>
@@ -449,8 +449,8 @@
    
   <item>
     <title><![CDATA[ 杨辉三角]]></title>
-    <link>https://scanas.ml/leetcode-doc/#/docs/array/0118.pascals-triangle</link>
-    <guid isPermaLink="false">https://scanas.ml/leetcode-doc/#/docs/array/0118.pascals-triangle</guid>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0118.pascals-triangle</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0118.pascals-triangle</guid>
     <description><![CDATA[<h2 id="杨辉三角">杨辉三角</h2>
 <p>LeetCode: <a href="https://leetcode.cn/problems/pascals-triangle/">https://leetcode.cn/problems/pascals-triangle/</a></p>
 <h2 id="题目说明">题目说明</h2>
