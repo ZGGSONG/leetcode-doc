@@ -6,6 +6,147 @@
   <description>LeetCode刷题记录</description>
    
   <item>
+    <title><![CDATA[ 在排序数组中查找元素的第一个和最后一个位置]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0034.find-first-and-last-position-of-element-in-sorted-array</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0034.find-first-and-last-position-of-element-in-sorted-array</guid>
+    <description><![CDATA[<h2 id="在排序数组中查找元素的第一个和最后一个位置">在排序数组中查找元素的第一个和最后一个位置</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/">https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。请你找出给定目标值在数组中的开始位置和结束位置。</p>
+<p>如果数组中不存在目标值 target，返回[-1, -1]。</p>
+<p>你必须设计并实现时间复杂度为O(log n)的算法解决此问题。</p>
+<p>示例 1：</p>
+<pre class="text"><code>输入：nums = [5,7,7,8,8,10], target = 8
+输出：[3,4]</code></pre>
+<p>示例 2：</p>
+<pre class="text"><code>输入：nums = [5,7,7,8,8,10], target = 6
+输出：[-1,-1]</code></pre>
+<p>示例 3：</p>
+<pre><code>输入：nums = [], target = 0
+输出：[-1,-1]</code></pre>
+<h2 id="解题思路">解题思路</h2>
+<ul>
+<li>分为三种情况：1. 数组范围外，2. 数组范围内且存在，3. 数组范围内且不存在。先判断是否在数组外，如果在随后使用二分法，根据题意使用左闭右闭的方式(即<code>left&lt;=right</code>)，在mid==target的条件下往左查找开始位置，往右查找结束位置，注意数组边界；如果始终不满足mid==target条件，则返回[-1,-1] &gt; 执行用时： 4 ms，在所有Go提交中击败了 96.19% 的用户 内存消耗： 3.8 MB， 在所有 Go 提交中击败了 57.76% 的用户</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">func</span> searchRange(nums []<span class="dt">int</span>, target <span class="dt">int</span>) []<span class="dt">int</span> {</a>
+<a class="sourceLine" id="cb4-2" title="2">    <span class="co">//1. 在数组外</span></a>
+<a class="sourceLine" id="cb4-3" title="3">    <span class="kw">if</span> <span class="bu">len</span>(nums) == <span class="dv">0</span> || nums[<span class="dv">0</span>] &gt; target || nums[<span class="bu">len</span>(nums)-<span class="dv">1</span>] &lt; target {</a>
+<a class="sourceLine" id="cb4-4" title="4">        <span class="kw">return</span> []<span class="dt">int</span>{-<span class="dv">1</span>, <span class="dv">-1</span>}</a>
+<a class="sourceLine" id="cb4-5" title="5">    }</a>
+<a class="sourceLine" id="cb4-6" title="6">    <span class="co">//2. 在数组内</span></a>
+<a class="sourceLine" id="cb4-7" title="7">    left, right := <span class="dv">0</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-8" title="8">    <span class="kw">var</span> ret []<span class="dt">int</span></a>
+<a class="sourceLine" id="cb4-9" title="9">    <span class="kw">for</span> left &lt;= right {</a>
+<a class="sourceLine" id="cb4-10" title="10">        mid := left + (right-left)/<span class="dv">2</span></a>
+<a class="sourceLine" id="cb4-11" title="11">        <span class="kw">if</span> nums[mid] &lt; target {</a>
+<a class="sourceLine" id="cb4-12" title="12">            left = mid + <span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-13" title="13">        } <span class="kw">else</span> <span class="kw">if</span> nums[mid] &gt; target {</a>
+<a class="sourceLine" id="cb4-14" title="14">            right = mid - <span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-15" title="15">        } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb4-16" title="16">            <span class="co">//2.1 在数组范围内且存在</span></a>
+<a class="sourceLine" id="cb4-17" title="17">            mid2 := mid</a>
+<a class="sourceLine" id="cb4-18" title="18">            <span class="kw">for</span> mid<span class="dv">-1</span> &gt;= <span class="dv">0</span> &amp;&amp; nums[mid<span class="dv">-1</span>] == target {</a>
+<a class="sourceLine" id="cb4-19" title="19">                mid--</a>
+<a class="sourceLine" id="cb4-20" title="20">            }</a>
+<a class="sourceLine" id="cb4-21" title="21">            ret = <span class="bu">append</span>(ret, mid)</a>
+<a class="sourceLine" id="cb4-22" title="22">            <span class="kw">for</span> mid2+<span class="dv">1</span> &lt;= <span class="bu">len</span>(nums)-<span class="dv">1</span> &amp;&amp; nums[mid2+<span class="dv">1</span>] == target {</a>
+<a class="sourceLine" id="cb4-23" title="23">                mid2++</a>
+<a class="sourceLine" id="cb4-24" title="24">            }</a>
+<a class="sourceLine" id="cb4-25" title="25">            ret = <span class="bu">append</span>(ret, mid2)</a>
+<a class="sourceLine" id="cb4-26" title="26">            <span class="kw">return</span> ret</a>
+<a class="sourceLine" id="cb4-27" title="27">        }</a>
+<a class="sourceLine" id="cb4-28" title="28">    }</a>
+<a class="sourceLine" id="cb4-29" title="29">    <span class="co">//2.2 在数组范围内且不存在</span></a>
+<a class="sourceLine" id="cb4-30" title="30">    <span class="kw">return</span> []<span class="dt">int</span>{-<span class="dv">1</span>, <span class="dv">-1</span>}</a>
+<a class="sourceLine" id="cb4-31" title="31">}</a></code></pre></div>
+<ul>
+<li>来自<a href="https://books.halfrost.com/leetcode/ChapterFour/0001~0099/0034.Find-First-and-Last-Position-of-Element-in-Sorted-Array/">LeetCodeCookBook</a> 也是从三种情况入手，不过处理方式是分别处理开始位置和结束位置</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">func</span> searchRange(nums []<span class="dt">int</span>, target <span class="dt">int</span>) []<span class="dt">int</span> {</a>
+<a class="sourceLine" id="cb5-2" title="2">    <span class="kw">return</span> []<span class="dt">int</span>{searchFirstEqualElement(nums, target), searchLastEqualElement(nums, target)}</a>
+<a class="sourceLine" id="cb5-3" title="3"></a>
+<a class="sourceLine" id="cb5-4" title="4">}</a>
+<a class="sourceLine" id="cb5-5" title="5"></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co">// 二分查找第一个与 target 相等的元素，时间复杂度 O(logn)</span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="kw">func</span> searchFirstEqualElement(nums []<span class="dt">int</span>, target <span class="dt">int</span>) <span class="dt">int</span> {</a>
+<a class="sourceLine" id="cb5-8" title="8">    low, high := <span class="dv">0</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
+<a class="sourceLine" id="cb5-9" title="9">    <span class="kw">for</span> low &lt;= high {</a>
+<a class="sourceLine" id="cb5-10" title="10">        mid := low + ((high - low) &gt;&gt; <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb5-11" title="11">        <span class="kw">if</span> nums[mid] &gt; target {</a>
+<a class="sourceLine" id="cb5-12" title="12">            high = mid - <span class="dv">1</span></a>
+<a class="sourceLine" id="cb5-13" title="13">        } <span class="kw">else</span> <span class="kw">if</span> nums[mid] &lt; target {</a>
+<a class="sourceLine" id="cb5-14" title="14">            low = mid + <span class="dv">1</span></a>
+<a class="sourceLine" id="cb5-15" title="15">        } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb5-16" title="16">            <span class="kw">if</span> (mid == <span class="dv">0</span>) || (nums[mid<span class="dv">-1</span>] != target) { <span class="co">// 找到第一个与 target 相等的元素</span></a>
+<a class="sourceLine" id="cb5-17" title="17">                <span class="kw">return</span> mid</a>
+<a class="sourceLine" id="cb5-18" title="18">            }</a>
+<a class="sourceLine" id="cb5-19" title="19">            high = mid - <span class="dv">1</span></a>
+<a class="sourceLine" id="cb5-20" title="20">        }</a>
+<a class="sourceLine" id="cb5-21" title="21">    }</a>
+<a class="sourceLine" id="cb5-22" title="22">    <span class="kw">return</span> <span class="dv">-1</span></a>
+<a class="sourceLine" id="cb5-23" title="23">}</a>
+<a class="sourceLine" id="cb5-24" title="24"></a>
+<a class="sourceLine" id="cb5-25" title="25"><span class="co">// 二分查找最后一个与 target 相等的元素，时间复杂度 O(logn)</span></a>
+<a class="sourceLine" id="cb5-26" title="26"><span class="kw">func</span> searchLastEqualElement(nums []<span class="dt">int</span>, target <span class="dt">int</span>) <span class="dt">int</span> {</a>
+<a class="sourceLine" id="cb5-27" title="27">    low, high := <span class="dv">0</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
+<a class="sourceLine" id="cb5-28" title="28">    <span class="kw">for</span> low &lt;= high {</a>
+<a class="sourceLine" id="cb5-29" title="29">        mid := low + ((high - low) &gt;&gt; <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb5-30" title="30">        <span class="kw">if</span> nums[mid] &gt; target {</a>
+<a class="sourceLine" id="cb5-31" title="31">            high = mid - <span class="dv">1</span></a>
+<a class="sourceLine" id="cb5-32" title="32">        } <span class="kw">else</span> <span class="kw">if</span> nums[mid] &lt; target {</a>
+<a class="sourceLine" id="cb5-33" title="33">            low = mid + <span class="dv">1</span></a>
+<a class="sourceLine" id="cb5-34" title="34">        } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb5-35" title="35">            <span class="kw">if</span> (mid == <span class="bu">len</span>(nums)-<span class="dv">1</span>) || (nums[mid+<span class="dv">1</span>] != target) { <span class="co">// 找到最后一个与 target 相等的元素</span></a>
+<a class="sourceLine" id="cb5-36" title="36">                <span class="kw">return</span> mid</a>
+<a class="sourceLine" id="cb5-37" title="37">            }</a>
+<a class="sourceLine" id="cb5-38" title="38">            low = mid + <span class="dv">1</span></a>
+<a class="sourceLine" id="cb5-39" title="39">        }</a>
+<a class="sourceLine" id="cb5-40" title="40">    }</a>
+<a class="sourceLine" id="cb5-41" title="41">    <span class="kw">return</span> <span class="dv">-1</span></a>
+<a class="sourceLine" id="cb5-42" title="42">}</a></code></pre></div>]]></description>
+    <pubDate>Tue, 23 Aug 2022 19:52:22 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[开始]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/_sidebar</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/_sidebar</guid>
+    <description><![CDATA[<ul>
+<li>开始
+<ul>
+<li><a href="README.md">说明</a></li>
+</ul></li>
+<li>数组
+<ul>
+<li><a href="docs/array/0001.two-sum.md">1. 两数之和 (简单)</a></li>
+<li><a href="docs/array/0011.container-with-most-water.md">11. 盛最多水的容器 (中等)</a></li>
+<li><a href="docs/array/0015.3sum.md">15. 三数之和 (中等)</a></li>
+<li><a href="docs/array/0016.3sum-closest.md">16. 最接近的三数之和 (中等)</a></li>
+<li><a href="docs/array/0018.4sum.md">18. 四数之和 (中等)</a></li>
+<li><a href="docs/array/0031.next-permutation.md">31. 下一个排列 (中等)</a></li>
+<li><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a></li>
+<li><a href="docs/array/0088.merge-sorted-array.md">88. 合并两个有序数组 (简单)</a></li>
+<li><a href="docs/array/0118.pascals-triangle.md">118. 杨辉三角 (简单)</a></li>
+<li><a href="docs/array/0119.pascals-triangle-ii.md">119. 杨辉三角 II (简单)</a></li>
+<li><a href="docs/array/0121.best-time-to-buy-and-sell-stock.md">121. 买卖股票的最佳时机 (简单)</a></li>
+<li><a href="docs/array/0136.single-number.md">136. 只出现一次的数字 (简单)</a></li>
+<li><a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></li>
+<li><a href="docs/array/1403.minimum-subsequence-in-non-increasing-order.md">1403. 非递增顺序的最小子序列 (简单)</a></li>
+</ul></li>
+<li>字符串
+<ul>
+<li><a href="docs/string/1408.string-matching-in-an-array.md">1408. 数组中的字符串匹配 (简单)</a></li>
+<li><a href="docs/string/1417.reformat-the-string.md">1417. 重新格式化字符串 (简单)</a></li>
+</ul></li>
+<li>链表
+<ul>
+<li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
+</ul></li>
+</ul>]]></description>
+    <pubDate>Tue, 23 Aug 2022 19:52:22 +0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[说明]]></title>
     <link>https://pages.zsong.ml/leetcode-doc/#/README</link>
     <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/README</guid>
@@ -384,119 +525,6 @@
 <a class="sourceLine" id="cb4-3" title="3">    ret = ret ^ nums[i]</a>
 <a class="sourceLine" id="cb4-4" title="4">}</a>
 <a class="sourceLine" id="cb4-5" title="5"><span class="kw">return</span> ret</a></code></pre></div>]]></description>
-    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ 买卖股票的最佳时机]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0121.best-time-to-buy-and-sell-stock</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0121.best-time-to-buy-and-sell-stock</guid>
-    <description><![CDATA[<h2 id="买卖股票的最佳时机">买卖股票的最佳时机</h2>
-<p>LeetCode: <a href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/">https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/</a></p>
-<h2 id="题目说明">题目说明</h2>
-<p>给定一个数组 prices ，它的第i 个元素prices[i] 表示一支给定股票第 i 天的价格。</p>
-<p>你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子 卖出该股票。设计一个算法来计算你所能获取的最大利润。</p>
-<p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。</p>
-<p>示例 1：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">输入：[<span class="ex">7</span>,1,5,3,6,4]</a>
-<a class="sourceLine" id="cb1-2" title="2">输出：<span class="ex">5</span></a>
-<a class="sourceLine" id="cb1-3" title="3">解释：在第 <span class="ex">2</span> 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。</a>
-<a class="sourceLine" id="cb1-4" title="4">     注意利润不能是 <span class="ex">7-1</span> = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。</a></code></pre></div>
-<p>示例 2：</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">输入：<span class="ex">prices</span> = [7,6,4,3,1]</a>
-<a class="sourceLine" id="cb2-2" title="2">输出：<span class="ex">0</span></a>
-<a class="sourceLine" id="cb2-3" title="3">解释：在这种情况下, 没有交易完成, 所以最大利润为 <span class="ex">0</span>。</a></code></pre></div>
-<h2 id="解题思路">解题思路</h2>
-<p>3，7，1，2，4，7 1. <a href="https://www.zhihu.com/question/23995189">动态规划问题</a> 动态规划 前i天的最大收益 = max{前i-1天的最大收益，第i天的价格-前i-1天中的最小价格}_O(n^2) ——leetcodeuser-liupc</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1">min := prices[<span class="dv">0</span>]</a>
-<a class="sourceLine" id="cb3-2" title="2">max := <span class="dv">0</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw">for</span> i := <span class="dv">1</span>; i &lt; <span class="bu">len</span>(prices); i++ {</a>
-<a class="sourceLine" id="cb3-4" title="4">    <span class="kw">if</span> prices[i]-min &gt; max {</a>
-<a class="sourceLine" id="cb3-5" title="5">        max = prices[i] - min</a>
-<a class="sourceLine" id="cb3-6" title="6">    }</a>
-<a class="sourceLine" id="cb3-7" title="7">    <span class="kw">if</span> prices[i] &lt; min {</a>
-<a class="sourceLine" id="cb3-8" title="8">        min = prices[i]</a>
-<a class="sourceLine" id="cb3-9" title="9">    }</a>
-<a class="sourceLine" id="cb3-10" title="10">}</a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="kw">return</span> max</a></code></pre></div>
-<ol start="2" type="1">
-<li><a href="https://books.halfrost.com/leetcode/ChapterFour/0100~0199/0121.Best-Time-to-Buy-and-Sell-Stock/">(other)</a> <a href="https://blog.csdn.net/lucky52529/article/details/89155694">单调栈法</a></li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">if</span> <span class="bu">len</span>(prices) == <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb4-2" title="2">    <span class="kw">return</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb4-3" title="3">}</a>
-<a class="sourceLine" id="cb4-4" title="4">stack, res := []<span class="dt">int</span>{prices[<span class="dv">0</span>]}, <span class="dv">0</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="kw">for</span> i := <span class="dv">1</span>; i &lt; <span class="bu">len</span>(prices); i++ {</a>
-<a class="sourceLine" id="cb4-6" title="6">    <span class="kw">if</span> prices[i] &gt; stack[<span class="bu">len</span>(stack)-<span class="dv">1</span>] {</a>
-<a class="sourceLine" id="cb4-7" title="7">        stack = <span class="bu">append</span>(stack, prices[i])</a>
-<a class="sourceLine" id="cb4-8" title="8">    } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb4-9" title="9">        index := <span class="bu">len</span>(stack) - <span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-10" title="10">        <span class="kw">for</span> ; index &gt;= <span class="dv">0</span>; index-- {</a>
-<a class="sourceLine" id="cb4-11" title="11">            <span class="kw">if</span> stack[index] &lt; prices[i] {</a>
-<a class="sourceLine" id="cb4-12" title="12">                <span class="kw">break</span></a>
-<a class="sourceLine" id="cb4-13" title="13">            }</a>
-<a class="sourceLine" id="cb4-14" title="14">        }</a>
-<a class="sourceLine" id="cb4-15" title="15">        stack = stack[:index+<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb4-16" title="16">        stack = <span class="bu">append</span>(stack, prices[i])</a>
-<a class="sourceLine" id="cb4-17" title="17">    }</a>
-<a class="sourceLine" id="cb4-18" title="18">    <span class="kw">if</span> res &lt; stack[<span class="bu">len</span>(stack)-<span class="dv">1</span>]-stack[<span class="dv">0</span>] {</a>
-<a class="sourceLine" id="cb4-19" title="19">        res = stack[<span class="bu">len</span>(stack)-<span class="dv">1</span>] - stack[<span class="dv">0</span>]</a>
-<a class="sourceLine" id="cb4-20" title="20">    }</a>
-<a class="sourceLine" id="cb4-21" title="21">}</a>
-<a class="sourceLine" id="cb4-22" title="22"><span class="kw">return</span> res</a></code></pre></div>]]></description>
-    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ 杨辉三角]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0118.pascals-triangle</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0118.pascals-triangle</guid>
-    <description><![CDATA[<h2 id="杨辉三角">杨辉三角</h2>
-<p>LeetCode: <a href="https://leetcode.cn/problems/pascals-triangle/">https://leetcode.cn/problems/pascals-triangle/</a></p>
-<h2 id="题目说明">题目说明</h2>
-<p>给定一个非负整数 numRows，生成「杨辉三角」的前 numRows 行。 在「杨辉三角」中，每个数是它左上方和右上方的数的和。</p>
-<figure>
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif" alt="杨辉三角" /><figcaption>杨辉三角</figcaption>
-</figure>
-<p>示例 1：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">输入: <span class="ex">numRows</span> = 5</a>
-<a class="sourceLine" id="cb1-2" title="2">输出: [[<span class="ex">1</span>],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]输入: numRows = 5</a>
-<a class="sourceLine" id="cb1-3" title="3">输出: [[<span class="ex">1</span>],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]</a></code></pre></div>
-<p>示例 2：</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">输入: <span class="ex">numRows</span> = 1</a>
-<a class="sourceLine" id="cb2-2" title="2">输出: [[<span class="ex">1</span>]]</a></code></pre></div>
-<h2 id="解题思路">解题思路</h2>
-<ol type="1">
-<li>(self) 看杨辉三角特点，二维数组的列的第一个和最后一个都必然是1，然后其余的值都可以通过<code>ret[i][j] = ret[i-1][j] + ret[i-1][j-1]</code>的方式来计算<code>[2,1]=[1,0]+[1,1]</code></li>
-</ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1">ret := <span class="bu">make</span>([][]<span class="dt">int</span>, numRows)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; numRows; i++ {</a>
-<a class="sourceLine" id="cb3-3" title="3">    ret[i] = <span class="bu">make</span>([]<span class="dt">int</span>, i+<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb3-4" title="4">    <span class="kw">for</span> j := <span class="dv">0</span>; j &lt;= i; j++ {</a>
-<a class="sourceLine" id="cb3-5" title="5">        <span class="kw">if</span> i == j || j &lt; <span class="dv">1</span> {</a>
-<a class="sourceLine" id="cb3-6" title="6">        ret[i][j] = <span class="dv">1</span></a>
-<a class="sourceLine" id="cb3-7" title="7">        <span class="kw">continue</span></a>
-<a class="sourceLine" id="cb3-8" title="8">    }</a>
-<a class="sourceLine" id="cb3-9" title="9">    ret[i][j] = ret[i<span class="dv">-1</span>][j] + ret[i<span class="dv">-1</span>][j<span class="dv">-1</span>]</a>
-<a class="sourceLine" id="cb3-10" title="10">    }</a>
-<a class="sourceLine" id="cb3-11" title="11">}</a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="kw">return</span> ret</a></code></pre></div>
-<ol start="2" type="1">
-<li><a href="https://books.halfrost.com/leetcode/ChapterFour/0100~0199/0118.Pascals-Triangle/">(other)</a> 本质与上述相同，仅声明的是切空切片</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1">ret := [][]<span class="dt">int</span>{}</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; numRows; i++ {</a>
-<a class="sourceLine" id="cb4-3" title="3">    row := []<span class="dt">int</span>{}</a>
-<a class="sourceLine" id="cb4-4" title="4">    <span class="kw">for</span> j := <span class="dv">0</span>; j &lt; i+<span class="dv">1</span>; j++ {</a>
-<a class="sourceLine" id="cb4-5" title="5">        <span class="kw">if</span> j == <span class="dv">0</span> || i == j {</a>
-<a class="sourceLine" id="cb4-6" title="6">            row = <span class="bu">append</span>(row, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-7" title="7">            <span class="kw">continue</span></a>
-<a class="sourceLine" id="cb4-8" title="8">        }</a>
-<a class="sourceLine" id="cb4-9" title="9">        row = <span class="bu">append</span>(row, ret[i<span class="dv">-1</span>][j<span class="dv">-1</span>]+ret[i<span class="dv">-1</span>][j])</a>
-<a class="sourceLine" id="cb4-10" title="10">    }</a>
-<a class="sourceLine" id="cb4-11" title="11">    ret = <span class="bu">append</span>(ret, row)</a>
-<a class="sourceLine" id="cb4-12" title="12">}</a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="kw">return</span> ret</a></code></pre></div>]]></description>
     <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
   </item>
   
