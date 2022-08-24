@@ -6,6 +6,18 @@
   <description>LeetCode刷题记录</description>
    
   <item>
+    <title><![CDATA[说明]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/README</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/README</guid>
+    <description><![CDATA[<h1 id="说明">说明</h1>
+<p>LeetCode刷题记录 using Golang by zggsong</p>
+<p>blog <a href="//www.zggsong.cn">www.zggsong.cn</a></p>
+<p>wiki <a href="//wiki.zggsong.cn">wiki.zggsong.cn</a></p>
+<p>RSS <a href="//pages.zsong.ml/leetcode-doc/feed.xml">pages.zsong.ml/leetcode-doc/feed.xml</a></p>]]></description>
+    <pubDate>Wed, 24 Aug 2022 14:46:32 +0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[ 移除元素]]></title>
     <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0027.remove-element</link>
     <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0027.remove-element</guid>
@@ -268,15 +280,6 @@ for (int i = 0; i &lt; len; i++) {
 <a class="sourceLine" id="cb5-41" title="41">    <span class="kw">return</span> <span class="dv">-1</span></a>
 <a class="sourceLine" id="cb5-42" title="42">}</a></code></pre></div>]]></description>
     <pubDate>Tue, 23 Aug 2022 19:52:22 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[说明]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/README</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/README</guid>
-    <description><![CDATA[<h1 id="说明">说明</h1>
-<p>leetcode刷题记录, RSS <a href="//pages.zsong.ml/leetcode-doc/feed.xml">pages.zsong.ml/leetcode-doc/feed.xml</a>, 个人博客 <a href="//www.zggsong.cn">zggsong.cn</a>, wiki <a href="//wiki.zggsong.cn">wiki.zggsong.cn</a></p>]]></description>
-    <pubDate>Wed, 17 Aug 2022 18:51:02 +0800</pubDate>
   </item>
    
   <item>
