@@ -6,6 +6,100 @@
   <description>LeetCode刷题记录</description>
    
   <item>
+    <title><![CDATA[ 移除元素]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0027.remove-element</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0027.remove-element</guid>
+    <description><![CDATA[<h2 id="移除元素">移除元素</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/remove-element/">https://leetcode.cn/problems/remove-element/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>给你一个数组 nums和一个值 val，你需要 原地 移除所有数值等于val的元素，并返回移除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。</p>
+<p>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
+<p>说明:</p>
+<p>为什么返回数值是整数，但输出的答案是数组呢?</p>
+<p>请注意，输入数组是以「引用」方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。</p>
+<p>你可以想象内部操作如下:</p>
+<pre class="text"><code>// nums 是以“引用”方式传递的。也就是说，不对实参作任何拷贝
+int len = removeElement(nums, val);
+
+// 在函数里修改输入数组对于调用者是可见的。
+// 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。
+for (int i = 0; i &lt; len; i++) {
+    print(nums[i]);
+}</code></pre>
+<p>示例 1：</p>
+<pre class="text"><code>输入：nums = [3,2,2,3], val = 3
+输出：2, nums = [2,2]
+解释：函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。你不需要考虑数组中超出新长度后面的元素。例如，函数返回的新长度为 2 ，而 nums = [2,2,3,3] 或 nums = [2,2,0,0]，也会被视作正确答案。</code></pre>
+<p>示例 2：</p>
+<pre class="text"><code>输入：nums = [0,1,2,2,3,0,4,2], val = 2
+输出：5, nums = [0,1,4,0,3]
+解释：函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。注意这五个元素可为任意顺序。你不需要考虑数组中超出新长度后面的元素。</code></pre>
+<h2 id="解题思路">解题思路</h2>
+<blockquote>
+<p><a href="https://programmercarl.com/0027.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.html#%E6%80%9D%E8%B7%AF">代码随想录-双指针</a></p>
+</blockquote>
+<ul>
+<li>双指针：首先明白，去除元素本质上就是移动元素。快慢指针方式，快指针寻找就数组元素，慢指针更新新数组，如果快指针指向元素不等于需要去除元素，则将快指针元素赋给慢指针指向元素，慢指针右移，否则快指针右移，慢指针不动，如此往复即可得到满足条件新数组，长度则为慢指针指向元素下标值</li>
+</ul>
+<blockquote>
+<p>执行用时： 4 ms，在所有 Go提交中击败了 100.00% 的用户 内存消耗： 2 MB，在所有 Go 提交中击败了 99.91% 的用户</p>
+</blockquote>
+<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">func</span> removeElement(nums []<span class="dt">int</span>, val <span class="dt">int</span>) <span class="dt">int</span> {</a>
+<a class="sourceLine" id="cb4-2" title="2">    <span class="kw">var</span> slowIndex <span class="dt">int</span></a>
+<a class="sourceLine" id="cb4-3" title="3">    <span class="kw">for</span> fastIndex := <span class="dv">0</span>; fastIndex &lt; <span class="bu">len</span>(nums); fastIndex++ {</a>
+<a class="sourceLine" id="cb4-4" title="4">        <span class="kw">if</span> nums[fastIndex] != val {</a>
+<a class="sourceLine" id="cb4-5" title="5">            nums[slowIndex] = nums[fastIndex]</a>
+<a class="sourceLine" id="cb4-6" title="6">            slowIndex++</a>
+<a class="sourceLine" id="cb4-7" title="7">        }</a>
+<a class="sourceLine" id="cb4-8" title="8">    }</a>
+<a class="sourceLine" id="cb4-9" title="9">    <span class="kw">return</span> slowIndex</a>
+<a class="sourceLine" id="cb4-10" title="10">}</a></code></pre></div>]]></description>
+    <pubDate>Wed, 24 Aug 2022 14:38:28 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[开始]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/_sidebar</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/_sidebar</guid>
+    <description><![CDATA[<ul>
+<li>开始
+<ul>
+<li><a href="README.md">说明</a></li>
+</ul></li>
+<li>数组
+<ul>
+<li><a href="docs/array/0001.two-sum.md">1. 两数之和 (简单)</a></li>
+<li><a href="docs/array/0011.container-with-most-water.md">11. 盛最多水的容器 (中等)</a></li>
+<li><a href="docs/array/0015.3sum.md">15. 三数之和 (中等)</a></li>
+<li><a href="docs/array/0016.3sum-closest.md">16. 最接近的三数之和 (中等)</a></li>
+<li><a href="docs/array/0018.4sum.md">18. 四数之和 (中等)</a></li>
+<li><a href="docs/array/0027.remove-element.md">27. 移除元素 (简单)</a></li>
+<li><a href="docs/array/0031.next-permutation.md">31. 下一个排列 (中等)</a></li>
+<li><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a></li>
+<li><a href="docs/array/0069.sqrtx.md">69. x的平方根 (简单)</a></li>
+<li><a href="docs/array/0088.merge-sorted-array.md">88. 合并两个有序数组 (简单)</a></li>
+<li><a href="docs/array/0118.pascals-triangle.md">118. 杨辉三角 (简单)</a></li>
+<li><a href="docs/array/0119.pascals-triangle-ii.md">119. 杨辉三角 II (简单)</a></li>
+<li><a href="docs/array/0121.best-time-to-buy-and-sell-stock.md">121. 买卖股票的最佳时机 (简单)</a></li>
+<li><a href="docs/array/0136.single-number.md">136. 只出现一次的数字 (简单)</a></li>
+<li><a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></li>
+<li><a href="docs/array/1403.minimum-subsequence-in-non-increasing-order.md">1403. 非递增顺序的最小子序列 (简单)</a></li>
+</ul></li>
+<li>字符串
+<ul>
+<li><a href="docs/string/1408.string-matching-in-an-array.md">1408. 数组中的字符串匹配 (简单)</a></li>
+<li><a href="docs/string/1417.reformat-the-string.md">1417. 重新格式化字符串 (简单)</a></li>
+</ul></li>
+<li>链表
+<ul>
+<li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
+</ul></li>
+</ul>]]></description>
+    <pubDate>Wed, 24 Aug 2022 14:38:28 +0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[ x的平方根]]></title>
     <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0069.sqrtx</link>
     <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0069.sqrtx</guid>
@@ -71,46 +165,6 @@
 <a class="sourceLine" id="cb5-5" title="5">    }</a>
 <a class="sourceLine" id="cb5-6" title="6">    <span class="kw">return</span> r</a>
 <a class="sourceLine" id="cb5-7" title="7">}</a></code></pre></div>]]></description>
-    <pubDate>Wed, 24 Aug 2022 11:38:38 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[开始]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/_sidebar</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/_sidebar</guid>
-    <description><![CDATA[<ul>
-<li>开始
-<ul>
-<li><a href="README.md">说明</a></li>
-</ul></li>
-<li>数组
-<ul>
-<li><a href="docs/array/0001.two-sum.md">1. 两数之和 (简单)</a></li>
-<li><a href="docs/array/0011.container-with-most-water.md">11. 盛最多水的容器 (中等)</a></li>
-<li><a href="docs/array/0015.3sum.md">15. 三数之和 (中等)</a></li>
-<li><a href="docs/array/0016.3sum-closest.md">16. 最接近的三数之和 (中等)</a></li>
-<li><a href="docs/array/0018.4sum.md">18. 四数之和 (中等)</a></li>
-<li><a href="docs/array/0031.next-permutation.md">31. 下一个排列 (中等)</a></li>
-<li><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a></li>
-<li><a href="docs/array/0069.sqrtx.md">69. x的平方根 (简单)</a></li>
-<li><a href="docs/array/0088.merge-sorted-array.md">88. 合并两个有序数组 (简单)</a></li>
-<li><a href="docs/array/0118.pascals-triangle.md">118. 杨辉三角 (简单)</a></li>
-<li><a href="docs/array/0119.pascals-triangle-ii.md">119. 杨辉三角 II (简单)</a></li>
-<li><a href="docs/array/0121.best-time-to-buy-and-sell-stock.md">121. 买卖股票的最佳时机 (简单)</a></li>
-<li><a href="docs/array/0136.single-number.md">136. 只出现一次的数字 (简单)</a></li>
-<li><a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></li>
-<li><a href="docs/array/1403.minimum-subsequence-in-non-increasing-order.md">1403. 非递增顺序的最小子序列 (简单)</a></li>
-</ul></li>
-<li>字符串
-<ul>
-<li><a href="docs/string/1408.string-matching-in-an-array.md">1408. 数组中的字符串匹配 (简单)</a></li>
-<li><a href="docs/string/1417.reformat-the-string.md">1417. 重新格式化字符串 (简单)</a></li>
-</ul></li>
-<li>链表
-<ul>
-<li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
-</ul></li>
-</ul>]]></description>
     <pubDate>Wed, 24 Aug 2022 11:38:38 +0800</pubDate>
   </item>
    
@@ -515,57 +569,6 @@
 <a class="sourceLine" id="cb4-12" title="12">    }</a>
 <a class="sourceLine" id="cb4-13" title="13">    <span class="kw">return</span> <span class="dv">-1</span></a>
 <a class="sourceLine" id="cb4-14" title="14">}</a></code></pre></div>]]></description>
-    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ 非递增顺序的最小子序列]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/1403.minimum-subsequence-in-non-increasing-order</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/1403.minimum-subsequence-in-non-increasing-order</guid>
-    <description><![CDATA[<h2 id="非递增顺序的最小子序列">非递增顺序的最小子序列</h2>
-<p>LeetCode: <a href="https://leetcode.cn/problems/minimum-subsequence-in-non-increasing-order/">https://leetcode.cn/problems/minimum-subsequence-in-non-increasing-order/</a></p>
-<h2 id="题目说明">题目说明</h2>
-<p>给你一个数组 nums，请你从中抽取一个子序列，满足该子序列的元素之和 严格 大于未包含在该子序列中的各元素之和。</p>
-<p>如果存在多个解决方案，只需返回 长度最小 的子序列。如果仍然有多个解决方案，则返回 元素之和最大 的子序列。</p>
-<p>与子数组不同的地方在于，「数组的子序列」不强调元素在原数组中的连续性，也就是说，它可以通过从数组中分离一些（也可能不分离）元素得到。</p>
-<p>注意，题目数据保证满足所有约束条件的解决方案是 唯一 的。同时，返回的答案应当按 非递增顺序 排列。</p>
-<p>示例 1：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">输入：<span class="ex">nums</span> = [4,3,10,9,8]</a>
-<a class="sourceLine" id="cb1-2" title="2">输出：[<span class="ex">10</span>,9] </a>
-<a class="sourceLine" id="cb1-3" title="3">解释：子序列 [<span class="ex">10</span>,9] 和 [10,8] 是最小的、满足元素之和大于其他各元素之和的子序列。但是 [10,9] 的元素之和最大。 </a></code></pre></div>
-<p>示例 2：</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">输入：<span class="ex">nums</span> = [4,4,7,6,7]</a>
-<a class="sourceLine" id="cb2-2" title="2">输出：[<span class="ex">7</span>,7,6] </a>
-<a class="sourceLine" id="cb2-3" title="3">解释：子序列 [<span class="ex">7</span>,7] 的和为 14 ，不严格大于剩下的其他元素之和（14 = 4 + 4 + 6）。因此，[7,6,7] 是满足题意的最小子序列。注意，元素按非递增顺序返回。</a></code></pre></div>
-<p>示例 3：</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1">输入：<span class="ex">nums</span> = [6]</a>
-<a class="sourceLine" id="cb3-2" title="2">输出：[<span class="ex">6</span>]</a></code></pre></div>
-<h2 id="解题思路">解题思路</h2>
-<ol type="1">
-<li>(self) 题目要求多种解决方案长度最短，和最大，那对应的就直接可以转换成数组倒序后，第一个前面的和大于后面的和，但是这种方法用了多重循环，时间复杂度较高 （一根筋做法）</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; <span class="bu">len</span>(nums)-<span class="dv">1</span>; i++ {</a>
-<a class="sourceLine" id="cb4-2" title="2">  <span class="kw">for</span> j := <span class="dv">0</span>; j &lt; <span class="bu">len</span>(nums)-i<span class="dv">-1</span>; j++ {</a>
-<a class="sourceLine" id="cb4-3" title="3">     <span class="kw">if</span> nums[j] &lt; nums[j+<span class="dv">1</span>] {</a>
-<a class="sourceLine" id="cb4-4" title="4">        nums[j], nums[j+<span class="dv">1</span>] = nums[j+<span class="dv">1</span>], nums[j]</a>
-<a class="sourceLine" id="cb4-5" title="5">     }</a>
-<a class="sourceLine" id="cb4-6" title="6">  }</a>
-<a class="sourceLine" id="cb4-7" title="7">}</a>
-<a class="sourceLine" id="cb4-8" title="8">sum1, sum2, sep := <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; <span class="bu">len</span>(nums); i++ {</a>
-<a class="sourceLine" id="cb4-10" title="10">   <span class="kw">for</span> j := <span class="dv">0</span>; j &lt;= i; j++ {</a>
-<a class="sourceLine" id="cb4-11" title="11">       sum1 += nums[j]</a>
-<a class="sourceLine" id="cb4-12" title="12">   }</a>
-<a class="sourceLine" id="cb4-13" title="13">   <span class="kw">for</span> k := sep + <span class="dv">1</span>; k &lt; <span class="bu">len</span>(nums); k++ {</a>
-<a class="sourceLine" id="cb4-14" title="14">    sum2 += nums[k]</a>
-<a class="sourceLine" id="cb4-15" title="15">   }</a>
-<a class="sourceLine" id="cb4-16" title="16">   sep++</a>
-<a class="sourceLine" id="cb4-17" title="17">   <span class="kw">if</span> sum1 &gt; sum2 {</a>
-<a class="sourceLine" id="cb4-18" title="18">       <span class="kw">return</span> nums[:sep]</a>
-<a class="sourceLine" id="cb4-19" title="19">   }</a>
-<a class="sourceLine" id="cb4-20" title="20">   sum1, sum2 = <span class="dv">0</span>, <span class="dv">0</span></a>
-<a class="sourceLine" id="cb4-21" title="21">}</a>
-<a class="sourceLine" id="cb4-22" title="22"><span class="kw">return</span> <span class="ot">nil</span></a></code></pre></div>]]></description>
     <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
   </item>
   
