@@ -6,6 +6,143 @@
   <description>LeetCode刷题记录</description>
    
   <item>
+    <title><![CDATA[ 双指针法]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/methods/double-pointer</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/methods/double-pointer</guid>
+    <description><![CDATA[<h2 id="双指针法">双指针法</h2>
+<p>顾名思义，双指针即用两个不同速度或不同方向的指针对数组或对象进行访问，通过两个不同指针的碰撞从而达到特定的目的。</p>
+<p><a href="https://programmercarl.com/0027.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.html#%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95">Carl随想录链接</a></p>
+<h2 id="用途">用途</h2>
+<p>在时间或空间条件有限的情况下使用单向遍历需要消耗大量的时间或者根本无法解决问题，这时候就需要我们使用双指针，通过指针的碰撞判断是否达到条件，从而解决问题。</p>
+<p>双指针分为快慢指针和左右指针，左右指针通常在数组有序的情况下使用，快慢指针通常在单向遍历需要消耗大量时间，或者有特定要求限制的情况下使用。</p>
+<h2 id="题目">题目</h2>
+<p><a href="docs/array/0026.remove-duplicates-from-sorted-array.md">26. 删除有序数组中的重复项 (简单)</a><br />
+<a href="docs/array/0027.remove-element.md">27. 移除元素 (简单)</a><br />
+<a href="docs/array/0283.move-zeroes.md">283. 移动零 (简单)</a></p>]]></description>
+    <pubDate>Thu, 25 Aug 2022 17:05:27 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[ 二分查找]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/methods/binary-search</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/methods/binary-search</guid>
+    <description><![CDATA[<h2 id="二分查找">二分查找</h2>
+<p>二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法。但是，折半查找要求线性表必须采用顺序存储结构，而且表中元素按关键字有序排列。 首先，假设表中元素是按升序排列，将表中间位置记录的关键字与查找关键字比较，如果两者相等，则查找成功；否则利用中间位置记录将表分成前、后两个子表，如果中间位置记录的关键字大于查找关键字，则进一步查找前一子表，否则进一步查找后一子表。重复以上过程，直到找到满足条件的记录，使查找成功，或直到子表不存在为止，此时查找不成功。</p>
+<p><a href="https://programmercarl.com/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html#%E4%BA%8C%E5%88%86%E6%B3%95%E7%AC%AC%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95">Carl随想录链接</a></p>
+<h2 id="题目">题目</h2>
+<p><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a><br />
+<a href="docs/array/0069.sqrtx.md">69. x的平方根 (简单)</a><br />
+<a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></p>]]></description>
+    <pubDate>Thu, 25 Aug 2022 17:05:27 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[开始]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/_sidebar</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/_sidebar</guid>
+    <description><![CDATA[<ul>
+<li>开始
+<ul>
+<li><a href="README.md">说明</a></li>
+</ul></li>
+<li>方法
+<ul>
+<li><a href="docs/methods/binary-search.md">二分查找</a></li>
+<li><a href="docs/methods/double-pointer.md">双指针法</a></li>
+</ul></li>
+<li>数组
+<ul>
+<li><a href="docs/array/0001.two-sum.md">1. 两数之和 (简单)</a></li>
+<li><a href="docs/array/0011.container-with-most-water.md">11. 盛最多水的容器 (中等)</a></li>
+<li><a href="docs/array/0015.3sum.md">15. 三数之和 (中等)</a></li>
+<li><a href="docs/array/0016.3sum-closest.md">16. 最接近的三数之和 (中等)</a></li>
+<li><a href="docs/array/0018.4sum.md">18. 四数之和 (中等)</a></li>
+<li><a href="docs/array/0026.remove-duplicates-from-sorted-array.md">26. 删除有序数组中的重复项 (简单)</a></li>
+<li><a href="docs/array/0027.remove-element.md">27. 移除元素 (简单)</a></li>
+<li><a href="docs/array/0031.next-permutation.md">31. 下一个排列 (中等)</a></li>
+<li><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a></li>
+<li><a href="docs/array/0069.sqrtx.md">69. x的平方根 (简单)</a></li>
+<li><a href="docs/array/0088.merge-sorted-array.md">88. 合并两个有序数组 (简单)</a></li>
+<li><a href="docs/array/0118.pascals-triangle.md">118. 杨辉三角 (简单)</a></li>
+<li><a href="docs/array/0119.pascals-triangle-ii.md">119. 杨辉三角 II (简单)</a></li>
+<li><a href="docs/array/0121.best-time-to-buy-and-sell-stock.md">121. 买卖股票的最佳时机 (简单)</a></li>
+<li><a href="docs/array/0136.single-number.md">136. 只出现一次的数字 (简单)</a></li>
+<li><a href="docs/array/0283.move-zeroes.md">283. 移动零 (简单)</a></li>
+<li><a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></li>
+<li><a href="docs/array/1403.minimum-subsequence-in-non-increasing-order.md">1403. 非递增顺序的最小子序列 (简单)</a></li>
+</ul></li>
+<li>字符串
+<ul>
+<li><a href="docs/string/1408.string-matching-in-an-array.md">1408. 数组中的字符串匹配 (简单)</a></li>
+<li><a href="docs/string/1417.reformat-the-string.md">1417. 重新格式化字符串 (简单)</a></li>
+</ul></li>
+<li>链表
+<ul>
+<li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
+</ul></li>
+</ul>]]></description>
+    <pubDate>Thu, 25 Aug 2022 17:05:27 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[ 移动零]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0283.move-zeroes</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0283.move-zeroes</guid>
+    <description><![CDATA[<h2 id="移动零">移动零</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/move-zeroes/">https://leetcode.cn/problems/move-zeroes/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
+<p>请注意 ，必须在不复制数组的情况下原地对数组进行操作。</p>
+<p>示例 1：</p>
+<pre class="text"><code>输入: nums = [0,1,0,3,12]
+输出: [1,3,12,0,0]</code></pre>
+<p>示例 2：</p>
+<pre class="text"><code>输入: nums = [0]
+输出: [0]</code></pre>
+<h2 id="解题思路">解题思路</h2>
+<ul>
+<li>双指针，找到第一个0，快慢指针均指向他，随后循环找到第一个不为零得数，替换快慢指针元素，随后慢指针后移，快指针++，如此往复 &gt; 执行用时： 28 ms，在所有 Go 提交中击败了 15.79% 的用户 内存消耗： 6.5 MB，在所有Go 提交中击败了 13.51% 的用户</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="co">//双指针</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw">func</span> moveZeroes(nums []<span class="dt">int</span>) {</a>
+<a class="sourceLine" id="cb3-3" title="3">    <span class="kw">var</span> slowIndex <span class="dt">int</span></a>
+<a class="sourceLine" id="cb3-4" title="4">    <span class="co">//是否找到第一个0</span></a>
+<a class="sourceLine" id="cb3-5" title="5">    <span class="kw">var</span> flag <span class="dt">bool</span></a>
+<a class="sourceLine" id="cb3-6" title="6">    <span class="kw">for</span> fastIndex := <span class="dv">0</span>; fastIndex &lt; <span class="bu">len</span>(nums); fastIndex++ {</a>
+<a class="sourceLine" id="cb3-7" title="7">        <span class="co">//先找到第一个0</span></a>
+<a class="sourceLine" id="cb3-8" title="8">        <span class="kw">if</span> nums[fastIndex] == <span class="dv">0</span> &amp;&amp; !flag {</a>
+<a class="sourceLine" id="cb3-9" title="9">            slowIndex = fastIndex</a>
+<a class="sourceLine" id="cb3-10" title="10">            flag = <span class="ot">true</span></a>
+<a class="sourceLine" id="cb3-11" title="11">        }</a>
+<a class="sourceLine" id="cb3-12" title="12">        <span class="co">//找到之后跟后面非0得数进行对调</span></a>
+<a class="sourceLine" id="cb3-13" title="13">        <span class="kw">if</span> nums[fastIndex] != <span class="dv">0</span> &amp;&amp; flag {</a>
+<a class="sourceLine" id="cb3-14" title="14">            nums[slowIndex], nums[fastIndex] = nums[fastIndex], nums[slowIndex]</a>
+<a class="sourceLine" id="cb3-15" title="15">            slowIndex++</a>
+<a class="sourceLine" id="cb3-16" title="16">        }</a>
+<a class="sourceLine" id="cb3-17" title="17">    }</a>
+<a class="sourceLine" id="cb3-18" title="18">}</a></code></pre></div>
+<blockquote>
+<p>执行用时：28 ms，在所有 Go 提交中击败了 15.79% 的用户 内存消耗： 6.5 MB，在所有 Go 提交中击败了 97.59%的用户</p>
+</blockquote>
+<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">func</span> moveZeroes(nums []<span class="dt">int</span>) {</a>
+<a class="sourceLine" id="cb4-2" title="2">    <span class="kw">var</span> slowIndex <span class="dt">int</span></a>
+<a class="sourceLine" id="cb4-3" title="3">    <span class="kw">for</span> k, v := <span class="kw">range</span> nums {</a>
+<a class="sourceLine" id="cb4-4" title="4">        <span class="kw">if</span> v == <span class="dv">0</span> {</a>
+<a class="sourceLine" id="cb4-5" title="5">            slowIndex = k</a>
+<a class="sourceLine" id="cb4-6" title="6">            <span class="kw">break</span></a>
+<a class="sourceLine" id="cb4-7" title="7">        }</a>
+<a class="sourceLine" id="cb4-8" title="8">    }</a>
+<a class="sourceLine" id="cb4-9" title="9">    <span class="kw">for</span> fastIndex := slowIndex; fastIndex &lt; <span class="bu">len</span>(nums); fastIndex++ {</a>
+<a class="sourceLine" id="cb4-10" title="10">        <span class="kw">if</span> nums[fastIndex] != <span class="dv">0</span> {</a>
+<a class="sourceLine" id="cb4-11" title="11">            nums[slowIndex], nums[fastIndex] = nums[fastIndex], nums[slowIndex]</a>
+<a class="sourceLine" id="cb4-12" title="12">            slowIndex++</a>
+<a class="sourceLine" id="cb4-13" title="13">        }</a>
+<a class="sourceLine" id="cb4-14" title="14">    }</a>
+<a class="sourceLine" id="cb4-15" title="15">}</a></code></pre></div>]]></description>
+    <pubDate>Thu, 25 Aug 2022 17:05:02 +0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[ 删除有序数组中的重复项]]></title>
     <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0026.remove-duplicates-from-sorted-array</link>
     <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0026.remove-duplicates-from-sorted-array</guid>
@@ -38,48 +175,6 @@
 <a class="sourceLine" id="cb3-8" title="8">    }</a>
 <a class="sourceLine" id="cb3-9" title="9">    <span class="kw">return</span> slowIndex + <span class="dv">1</span></a>
 <a class="sourceLine" id="cb3-10" title="10">}</a></code></pre></div>]]></description>
-    <pubDate>Thu, 25 Aug 2022 16:27:40 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[开始]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/_sidebar</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/_sidebar</guid>
-    <description><![CDATA[<ul>
-<li>开始
-<ul>
-<li><a href="README.md">说明</a></li>
-</ul></li>
-<li>数组
-<ul>
-<li><a href="docs/array/0001.two-sum.md">1. 两数之和 (简单)</a></li>
-<li><a href="docs/array/0011.container-with-most-water.md">11. 盛最多水的容器 (中等)</a></li>
-<li><a href="docs/array/0015.3sum.md">15. 三数之和 (中等)</a></li>
-<li><a href="docs/array/0016.3sum-closest.md">16. 最接近的三数之和 (中等)</a></li>
-<li><a href="docs/array/0018.4sum.md">18. 四数之和 (中等)</a></li>
-<li><a href="docs/array/0026.remove-duplicates-from-sorted-array.md">26. 删除有序数组中的重复项 (简单)</a></li>
-<li><a href="docs/array/0027.remove-element.md">27. 移除元素 (简单)</a></li>
-<li><a href="docs/array/0031.next-permutation.md">31. 下一个排列 (中等)</a></li>
-<li><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a></li>
-<li><a href="docs/array/0069.sqrtx.md">69. x的平方根 (简单)</a></li>
-<li><a href="docs/array/0088.merge-sorted-array.md">88. 合并两个有序数组 (简单)</a></li>
-<li><a href="docs/array/0118.pascals-triangle.md">118. 杨辉三角 (简单)</a></li>
-<li><a href="docs/array/0119.pascals-triangle-ii.md">119. 杨辉三角 II (简单)</a></li>
-<li><a href="docs/array/0121.best-time-to-buy-and-sell-stock.md">121. 买卖股票的最佳时机 (简单)</a></li>
-<li><a href="docs/array/0136.single-number.md">136. 只出现一次的数字 (简单)</a></li>
-<li><a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></li>
-<li><a href="docs/array/1403.minimum-subsequence-in-non-increasing-order.md">1403. 非递增顺序的最小子序列 (简单)</a></li>
-</ul></li>
-<li>字符串
-<ul>
-<li><a href="docs/string/1408.string-matching-in-an-array.md">1408. 数组中的字符串匹配 (简单)</a></li>
-<li><a href="docs/string/1417.reformat-the-string.md">1417. 重新格式化字符串 (简单)</a></li>
-</ul></li>
-<li>链表
-<ul>
-<li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
-</ul></li>
-</ul>]]></description>
     <pubDate>Thu, 25 Aug 2022 16:27:40 +0800</pubDate>
   </item>
    
@@ -411,141 +506,6 @@ for (int i = 0; i &lt; len; i++) {
 <a class="sourceLine" id="cb9-23" title="23">    <span class="kw">return</span> <span class="st">&quot;&quot;</span></a>
 <a class="sourceLine" id="cb9-24" title="24">}</a></code></pre></div>]]></description>
     <pubDate>Wed, 17 Aug 2022 17:09:26 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ 数组中的字符串匹配]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/string/1408.string-matching-in-an-array</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/string/1408.string-matching-in-an-array</guid>
-    <description><![CDATA[<h2 id="数组中的字符串匹配">数组中的字符串匹配</h2>
-<p>LeetCode: <a href="https://leetcode.cn/problems/string-matching-in-an-array/">https://leetcode.cn/problems/string-matching-in-an-array/</a></p>
-<h2 id="题目说明">题目说明</h2>
-<p>给你一个字符串数组 words ，数组中的每个字符串都可以看作是一个单词。请你按 任意 顺序返回 words 中是其他单词的子字符串的所有单词。</p>
-<p>如果你可以删除 words[j]最左侧和/或最右侧的若干字符得到 word[i] ，那么字符串 words[i] 就是 words[j] 的一个子字符串。</p>
-<p>示例 1：</p>
-<pre class="text"><code>输入：words = [&quot;mass&quot;,&quot;as&quot;,&quot;hero&quot;,&quot;superhero&quot;]
-输出：[&quot;as&quot;,&quot;hero&quot;]
-解释：&quot;as&quot; 是 &quot;mass&quot; 的子字符串，&quot;hero&quot; 是 &quot;superhero&quot; 的子字符串。
-[&quot;hero&quot;,&quot;as&quot;] 也是有效的答案。</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：words = [&quot;leetcode&quot;,&quot;et&quot;,&quot;code&quot;]
-输出：[&quot;et&quot;,&quot;code&quot;]
-解释：&quot;et&quot; 和 &quot;code&quot; 都是 &quot;leetcode&quot; 的子字符串。</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：words = [&quot;leetcode&quot;,&quot;et&quot;,&quot;code&quot;]
-输出：[&quot;et&quot;,&quot;code&quot;]
-解释：&quot;et&quot; 和 &quot;code&quot; 都是 &quot;leetcode&quot; 的子字符串。</code></pre>
-<p>示例 3：</p>
-<pre class="text"><code>输入：words = [&quot;blue&quot;,&quot;green&quot;,&quot;bu&quot;]
-输出：[]</code></pre>
-<h2 id="解题思路">解题思路</h2>
-<ol type="1">
-<li>(self) 暴力解法，如果有包含的则直接添加 –内存消耗：2.2 MB, 在所有 Go 提交中击败了51.61%的用户</li>
-</ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">var</span> ret []<span class="dt">string</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw">for</span> k1, v1 := <span class="kw">range</span> words {</a>
-<a class="sourceLine" id="cb5-3" title="3">    <span class="kw">for</span> k2, v2 := <span class="kw">range</span> words {</a>
-<a class="sourceLine" id="cb5-4" title="4">        <span class="kw">if</span> k1 != k2 &amp;&amp; strings.Contains(v2, v1) {</a>
-<a class="sourceLine" id="cb5-5" title="5">            ret = <span class="bu">append</span>(ret, v1)</a>
-<a class="sourceLine" id="cb5-6" title="6">            <span class="kw">break</span></a>
-<a class="sourceLine" id="cb5-7" title="7">        }</a>
-<a class="sourceLine" id="cb5-8" title="8">    }</a>
-<a class="sourceLine" id="cb5-9" title="9">}</a>
-<a class="sourceLine" id="cb5-10" title="10"><span class="kw">return</span> ret</a></code></pre></div>
-<ol start="2" type="1">
-<li>(other) 未想到更好的做法，提示–&gt; 研究下KMP算法在这题的应用</li>
-</ol>]]></description>
-    <pubDate>Wed, 17 Aug 2022 17:09:26 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ 杨辉三角II]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0119.pascals-triangle-ii</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0119.pascals-triangle-ii</guid>
-    <description><![CDATA[<h2 id="杨辉三角ii">杨辉三角II</h2>
-<p>LeetCode: <a href="https://leetcode.cn/problems/pascals-triangle-ii/">https://leetcode.cn/problems/pascals-triangle-ii/</a></p>
-<h2 id="题目说明">题目说明</h2>
-<p>给定一个非负索引 rowIndex，返回「杨辉三角」的第 rowIndex 行。<br />
-在「杨辉三角」中，每个数是它左上方和右上方的数的和。 <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif" alt="杨辉三角" /></p>
-<p>示例 1：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">输入: <span class="ex">rowIndex</span> = 3</a>
-<a class="sourceLine" id="cb1-2" title="2">输出: [<span class="ex">1</span>,3,3,1]</a></code></pre></div>
-<p>示例 2：</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">输入: <span class="ex">rowIndex</span> = 0</a>
-<a class="sourceLine" id="cb2-2" title="2">输出: [<span class="ex">1</span>]</a></code></pre></div>
-<p>示例 3：</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1">输入: <span class="ex">rowIndex</span> = 1</a>
-<a class="sourceLine" id="cb3-2" title="2">输出: [<span class="ex">1</span>,1]</a></code></pre></div>
-<h2 id="解题思路">解题思路</h2>
-<ol type="1">
-<li>(self) 偷懒做法，直接利用上一题的结果取最后一行，必然会造成内存浪费，但不失为一种方法</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1">ret := <span class="bu">make</span>([][]<span class="dt">int</span>, numRows)</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw">for</span> i := <span class="dv">0</span>; i &lt; numRows; i++ {</a>
-<a class="sourceLine" id="cb4-3" title="3">    ret[i] = <span class="bu">make</span>([]<span class="dt">int</span>, i+<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-4" title="4">    <span class="kw">for</span> j := <span class="dv">0</span>; j &lt;= i; j++ {</a>
-<a class="sourceLine" id="cb4-5" title="5">        <span class="kw">if</span> i == j || j &lt; <span class="dv">1</span> {</a>
-<a class="sourceLine" id="cb4-6" title="6">        ret[i][j] = <span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-7" title="7">        <span class="kw">continue</span></a>
-<a class="sourceLine" id="cb4-8" title="8">    }</a>
-<a class="sourceLine" id="cb4-9" title="9">    ret[i][j] = ret[i<span class="dv">-1</span>][j] + ret[i<span class="dv">-1</span>][j<span class="dv">-1</span>]</a>
-<a class="sourceLine" id="cb4-10" title="10">    }</a>
-<a class="sourceLine" id="cb4-11" title="11">}</a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="kw">return</span> ret</a></code></pre></div>
-<ol start="2" type="1">
-<li><a href="https://books.halfrost.com/leetcode/ChapterFour/0100~0199/0119.Pascals-Triangle-II/">(other)</a>-<a href="https://zhuanlan.zhihu.com/p/257895125">解释杨辉三角排列组合</a><br />
-<strong>根据杨辉三角的数学特性得出的公式直接计算，递推公式为：<code>ret[i] = ret[i-1] * (rowIndex - i + 1) / i</code></strong></li>
-</ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb5-1" title="1">ret := <span class="bu">make</span>([]<span class="dt">int</span>, rowIndex+<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb5-2" title="2">ret[<span class="dv">0</span>] = <span class="dv">1</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="kw">for</span> i := <span class="dv">1</span>; i &lt;= rowIndex; i++ {</a>
-<a class="sourceLine" id="cb5-4" title="4">    ret[i] = ret[i<span class="dv">-1</span>] * (rowIndex - i + <span class="dv">1</span>) / i</a>
-<a class="sourceLine" id="cb5-5" title="5">}</a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="kw">return</span> ret</a></code></pre></div>]]></description>
-    <pubDate>Wed, 17 Aug 2022 17:09:26 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ 两数相加]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/linkedList/0002.add-two-numbers</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/linkedList/0002.add-two-numbers</guid>
-    <description><![CDATA[<h2 id="两数相加">两数相加</h2>
-<p>LeetCode: <a href="https://leetcode.cn/problems/add-two-numbers/">https://leetcode.cn/problems/add-two-numbers/</a></p>
-<h2 id="题目说明">题目说明</h2>
-<p>给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。</p>
-<p>请你将两个数相加，并以相同形式返回一个表示和的链表。</p>
-<p>你可以假设除了数字 0 之外，这两个数都不会以 0开头。</p>
-<p>示例 1：</p>
-<pre class="text"><code>输入：l1 = [2,4,3], l2 = [5,6,4]
-输出：[7,0,8]
-解释：342 + 465 = 807.</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：l1 = [0], l2 = [0]
-输出：[0]</code></pre>
-<p>示例 3：</p>
-<pre class="text"><code>输入：l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
-输出：[8,9,9,9,0,0,0,1]</code></pre>
-<p>每个链表中的节点数在范围 [1, 100] 内 0 &lt;= Node.val &lt;= 9 题目数据保证列表表示的数字不含前导零</p>
-<h2 id="解题思路">解题思路</h2>
-<p>O(n) 直接按照链表格式，先定义一个头节点，暂存值为0，每个链表取一个节点出来将Value与暂存值累加，然后取余数保存到自己定义链表的下一个节点的Value，取10的商保存为暂存值，随后将当前节点作为源节点的子节点，如此循环往复，直到两个链表为空和暂存值都为零时，则说明计算完成，返回头节点的下一个节点即可得到所求链表</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1">list := &amp;ListNode{<span class="dv">0</span>, <span class="ot">nil</span>}</a>
-<a class="sourceLine" id="cb4-2" title="2">ret := list</a>
-<a class="sourceLine" id="cb4-3" title="3">tmp := <span class="dv">0</span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="kw">for</span> l1 != <span class="ot">nil</span> || l2 != <span class="ot">nil</span> || tmp != <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb4-5" title="5">    <span class="kw">if</span> l1 != <span class="ot">nil</span> {</a>
-<a class="sourceLine" id="cb4-6" title="6">        tmp += l1.Val</a>
-<a class="sourceLine" id="cb4-7" title="7">        l1 = l1.Next</a>
-<a class="sourceLine" id="cb4-8" title="8">    }</a>
-<a class="sourceLine" id="cb4-9" title="9">    <span class="kw">if</span> l2 != <span class="ot">nil</span> {</a>
-<a class="sourceLine" id="cb4-10" title="10">        tmp += l2.Val</a>
-<a class="sourceLine" id="cb4-11" title="11">        l2 = l2.Next</a>
-<a class="sourceLine" id="cb4-12" title="12">    }</a>
-<a class="sourceLine" id="cb4-13" title="13">    list.Next = &amp;ListNode{tmp % <span class="dv">10</span>, <span class="ot">nil</span>}</a>
-<a class="sourceLine" id="cb4-14" title="14">    tmp = tmp / <span class="dv">10</span></a>
-<a class="sourceLine" id="cb4-15" title="15">    list = list.Next</a>
-<a class="sourceLine" id="cb4-16" title="16">}</a>
-<a class="sourceLine" id="cb4-17" title="17"><span class="kw">return</span> ret.Next</a></code></pre></div>]]></description>
-    <pubDate>Wed, 17 Aug 2022 17:00:10 +0800</pubDate>
   </item>
   
 </channel>
