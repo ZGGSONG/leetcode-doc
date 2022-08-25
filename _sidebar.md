@@ -6,6 +6,7 @@
   * [15. 三数之和 (中等)](docs/array/0015.3sum.md)
   * [16. 最接近的三数之和 (中等)](docs/array/0016.3sum-closest.md)
   * [18. 四数之和 (中等)](docs/array/0018.4sum.md)
+  * [26. 删除有序数组中的重复项 (简单)](docs/array/0026.remove-duplicates-from-sorted-array.md)
   * [27. 移除元素 (简单)](docs/array/0027.remove-element.md)
   * [31. 下一个排列 (中等)](docs/array/0031.next-permutation.md)
   * [34. 在排序数组中查找元素的第一个和最后一个位置 (中等)](docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md)
