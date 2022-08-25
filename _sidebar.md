@@ -1,5 +1,8 @@
 * 开始
   * [说明](README.md)
+* 方法
+  * [二分查找](docs/methods/binary-search.md)
+  * [双指针法](docs/methods/double-pointer.md)
 * 数组
   * [1. 两数之和 (简单)](docs/array/0001.two-sum.md)
   * [11. 盛最多水的容器 (中等)](docs/array/0011.container-with-most-water.md)
@@ -16,6 +19,7 @@
   * [119. 杨辉三角 II (简单)](docs/array/0119.pascals-triangle-ii.md)
   * [121. 买卖股票的最佳时机 (简单)](docs/array/0121.best-time-to-buy-and-sell-stock.md)
   * [136. 只出现一次的数字 (简单)](docs/array/0136.single-number.md)
+  * [283. 移动零 (简单)](docs/array/0283.move-zeroes.md)
   * [704. 二分查找 (简单)](docs/array/704.binary-search.md)
   * [1403. 非递增顺序的最小子序列 (简单)](docs/array/1403.minimum-subsequence-in-non-increasing-order.md)
 * 字符串
