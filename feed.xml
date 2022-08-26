@@ -18,22 +18,68 @@
 <h2 id="题目">题目</h2>
 <p><a href="docs/array/0026.remove-duplicates-from-sorted-array.md">26. 删除有序数组中的重复项 (简单)</a><br />
 <a href="docs/array/0027.remove-element.md">27. 移除元素 (简单)</a><br />
-<a href="docs/array/0283.move-zeroes.md">283. 移动零 (简单)</a></p>]]></description>
-    <pubDate>Thu, 25 Aug 2022 17:05:27 +0800</pubDate>
+<a href="docs/array/0283.move-zeroes.md">283. 移动零 (简单)</a><br />
+<a href="docs/array/0977.squares-of-a-sorted-array.md">977. 有序数组的平方 (简单)</a></p>]]></description>
+    <pubDate>Fri, 26 Aug 2022 11:08:06 +0800</pubDate>
   </item>
    
   <item>
-    <title><![CDATA[ 二分查找]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/methods/binary-search</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/methods/binary-search</guid>
-    <description><![CDATA[<h2 id="二分查找">二分查找</h2>
-<p>二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法。但是，折半查找要求线性表必须采用顺序存储结构，而且表中元素按关键字有序排列。 首先，假设表中元素是按升序排列，将表中间位置记录的关键字与查找关键字比较，如果两者相等，则查找成功；否则利用中间位置记录将表分成前、后两个子表，如果中间位置记录的关键字大于查找关键字，则进一步查找前一子表，否则进一步查找后一子表。重复以上过程，直到找到满足条件的记录，使查找成功，或直到子表不存在为止，此时查找不成功。</p>
-<p><a href="https://programmercarl.com/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html#%E4%BA%8C%E5%88%86%E6%B3%95%E7%AC%AC%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95">Carl随想录链接</a></p>
-<h2 id="题目">题目</h2>
-<p><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a><br />
-<a href="docs/array/0069.sqrtx.md">69. x的平方根 (简单)</a><br />
-<a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></p>]]></description>
-    <pubDate>Thu, 25 Aug 2022 17:05:27 +0800</pubDate>
+    <title><![CDATA[ 有序数组的平方]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0977.squares-of-a-sorted-array</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0977.squares-of-a-sorted-array</guid>
+    <description><![CDATA[<h2 id="有序数组的平方">有序数组的平方</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/squares-of-a-sorted-array/">https://leetcode.cn/problems/squares-of-a-sorted-array/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。</p>
+<p>示例 1：</p>
+<pre class="text"><code>输入：nums = [-4,-1,0,3,10]
+输出：[0,1,9,16,100]
+解释：平方后，数组变为 [16,1,0,9,100]
+排序后，数组变为 [0,1,9,16,100]</code></pre>
+<p>示例 2：</p>
+<pre class="text"><code>输入：nums = [-7,-3,2,3,11]
+输出：[4,9,9,49,121]</code></pre>
+<h2 id="解题思路">解题思路</h2>
+<ul>
+<li>暴力解法：先平方后排序 &gt; 执行用时： 632 ms，在所有 Go 提交中击败了 5.04% 的用户 内存消耗：6.6 MB，在所有 Go 提交中击败了 99.24%的用户</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">func</span> sortedSquares(nums []<span class="dt">int</span>) []<span class="dt">int</span> {</a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="co">//先平方</span></a>
+<a class="sourceLine" id="cb3-3" title="3">    <span class="kw">for</span> i, _ := <span class="kw">range</span> nums {</a>
+<a class="sourceLine" id="cb3-4" title="4">        nums[i] *= nums[i]</a>
+<a class="sourceLine" id="cb3-5" title="5">    }</a>
+<a class="sourceLine" id="cb3-6" title="6">    <span class="co">//冒号排序</span></a>
+<a class="sourceLine" id="cb3-7" title="7">    <span class="kw">for</span> i := <span class="dv">0</span>; i &lt; <span class="bu">len</span>(nums)-<span class="dv">1</span>; i++ {</a>
+<a class="sourceLine" id="cb3-8" title="8">        <span class="kw">for</span> j := <span class="dv">0</span>; j &lt; <span class="bu">len</span>(nums)-i<span class="dv">-1</span>; j++ {</a>
+<a class="sourceLine" id="cb3-9" title="9">            <span class="kw">if</span> nums[j] &gt; nums[j+<span class="dv">1</span>] {</a>
+<a class="sourceLine" id="cb3-10" title="10">                nums[j], nums[j+<span class="dv">1</span>] = nums[j+<span class="dv">1</span>], nums[j]</a>
+<a class="sourceLine" id="cb3-11" title="11">            }</a>
+<a class="sourceLine" id="cb3-12" title="12">        }</a>
+<a class="sourceLine" id="cb3-13" title="13">    }</a>
+<a class="sourceLine" id="cb3-14" title="14">    <span class="kw">return</span> nums</a>
+<a class="sourceLine" id="cb3-15" title="15">}</a></code></pre></div>
+<ul>
+<li>双指针法：由于是非递减序列，那就是两头大，中间小，双指针分别指向两端，比较指针元素平方后大小，大的添加至新数组尾部，相应的指针想中间移动，依次往前填充即可 &gt; 执行用时：24 ms，在所有 Go 提交中击败了 81.51% 的用户内存消耗：6.6 MB，在所有 Go提交中击败了 56.80%的用户</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">func</span> sortedSquares(nums []<span class="dt">int</span>) []<span class="dt">int</span> {</a>
+<a class="sourceLine" id="cb4-2" title="2">    <span class="kw">var</span> length = <span class="bu">len</span>(nums)</a>
+<a class="sourceLine" id="cb4-3" title="3">    <span class="kw">var</span> ret = <span class="bu">make</span>([]<span class="dt">int</span>, length)</a>
+<a class="sourceLine" id="cb4-4" title="4">    slowIndex, fastIndex, index := <span class="dv">0</span>, length<span class="dv">-1</span>, length<span class="dv">-1</span></a>
+<a class="sourceLine" id="cb4-5" title="5">    <span class="kw">for</span> slowIndex &lt;= fastIndex {</a>
+<a class="sourceLine" id="cb4-6" title="6">        slowSquare, fastSquare := nums[slowIndex]*nums[slowIndex], nums[fastIndex]*nums[fastIndex]</a>
+<a class="sourceLine" id="cb4-7" title="7">        <span class="kw">if</span> slowSquare &gt; fastSquare {</a>
+<a class="sourceLine" id="cb4-8" title="8">            ret[index] = slowSquare</a>
+<a class="sourceLine" id="cb4-9" title="9">            slowIndex++</a>
+<a class="sourceLine" id="cb4-10" title="10">        } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb4-11" title="11">            ret[index] = fastSquare</a>
+<a class="sourceLine" id="cb4-12" title="12">            fastIndex--</a>
+<a class="sourceLine" id="cb4-13" title="13"></a>
+<a class="sourceLine" id="cb4-14" title="14">        }</a>
+<a class="sourceLine" id="cb4-15" title="15">        index--</a>
+<a class="sourceLine" id="cb4-16" title="16">    }</a>
+<a class="sourceLine" id="cb4-17" title="17">    <span class="kw">return</span> ret</a>
+<a class="sourceLine" id="cb4-18" title="18">}</a></code></pre></div>]]></description>
+    <pubDate>Fri, 26 Aug 2022 11:08:06 +0800</pubDate>
   </item>
    
   <item>
@@ -69,6 +115,7 @@
 <li><a href="docs/array/0136.single-number.md">136. 只出现一次的数字 (简单)</a></li>
 <li><a href="docs/array/0283.move-zeroes.md">283. 移动零 (简单)</a></li>
 <li><a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></li>
+<li><a href="docs/array/0977.squares-of-a-sorted-array.md">977. 有序数组的平方 (简单)</a></li>
 <li><a href="docs/array/1403.minimum-subsequence-in-non-increasing-order.md">1403. 非递增顺序的最小子序列 (简单)</a></li>
 </ul></li>
 <li>字符串
@@ -81,6 +128,20 @@
 <li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
 </ul></li>
 </ul>]]></description>
+    <pubDate>Fri, 26 Aug 2022 11:08:06 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[ 二分查找]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/methods/binary-search</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/methods/binary-search</guid>
+    <description><![CDATA[<h2 id="二分查找">二分查找</h2>
+<p>二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法。但是，折半查找要求线性表必须采用顺序存储结构，而且表中元素按关键字有序排列。 首先，假设表中元素是按升序排列，将表中间位置记录的关键字与查找关键字比较，如果两者相等，则查找成功；否则利用中间位置记录将表分成前、后两个子表，如果中间位置记录的关键字大于查找关键字，则进一步查找前一子表，否则进一步查找后一子表。重复以上过程，直到找到满足条件的记录，使查找成功，或直到子表不存在为止，此时查找不成功。</p>
+<p><a href="https://programmercarl.com/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html#%E4%BA%8C%E5%88%86%E6%B3%95%E7%AC%AC%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95">Carl随想录链接</a></p>
+<h2 id="题目">题目</h2>
+<p><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a><br />
+<a href="docs/array/0069.sqrtx.md">69. x的平方根 (简单)</a><br />
+<a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></p>]]></description>
     <pubDate>Thu, 25 Aug 2022 17:05:27 +0800</pubDate>
   </item>
    
@@ -412,100 +473,6 @@ for (int i = 0; i &lt; len; i++) {
 <a class="sourceLine" id="cb5-41" title="41">    <span class="kw">return</span> <span class="dv">-1</span></a>
 <a class="sourceLine" id="cb5-42" title="42">}</a></code></pre></div>]]></description>
     <pubDate>Tue, 23 Aug 2022 19:52:22 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ 重新格式化字符串]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/string/1417.reformat-the-string</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/string/1417.reformat-the-string</guid>
-    <description><![CDATA[<h2 id="重新格式化字符串">重新格式化字符串</h2>
-<p>LeetCode: <a href="https://leetcode.cn/problems/reformat-the-string/">https://leetcode.cn/problems/reformat-the-string/</a></p>
-<h2 id="题目说明">题目说明</h2>
-<p>给你一个混合了数字和字母的字符串 s，其中的字母均为小写英文字母。</p>
-<p>请你将该字符串重新格式化，使得任意两个相邻字符的类型都不同。也就是说，字母后面应该跟着数字，而数字后面应该跟着字母。</p>
-<p>请你返回 重新格式化后 的字符串；如果无法按要求重新格式化，则返回一个 空字符串 。</p>
-<p>示例 1：</p>
-<pre class="text"><code>输入：s = &quot;a0b1c2&quot;
-输出：&quot;0a1b2c&quot;
-解释：&quot;0a1b2c&quot; 中任意两个相邻字符的类型都不同。 &quot;a0b1c2&quot;, &quot;0a1b2c&quot;, &quot;0c2a1b&quot; 也是满足题目要求的答案。</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：s = &quot;leetcode&quot;
-输出：&quot;&quot;
-解释：&quot;leetcode&quot; 中只有字母，所以无法满足重新格式化的条件。</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：s = &quot;leetcode&quot;
-输出：&quot;&quot;
-解释：&quot;leetcode&quot; 中只有字母，所以无法满足重新格式化的条件。</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：s = &quot;leetcode&quot;
-输出：&quot;&quot;
-解释：&quot;leetcode&quot; 中只有字母，所以无法满足重新格式化的条件。</code></pre>
-<p>示例 3：</p>
-<pre class="text"><code>输入：s = &quot;1229857369&quot;
-输出：&quot;&quot;
-解释：&quot;1229857369&quot; 中只有数字，所以无法满足重新格式化的条件。</code></pre>
-<p>示例 4：</p>
-<pre class="text"><code>输入：s = &quot;covid2019&quot;
-输出：&quot;c2o0v1i9d&quot;输入：s = &quot;covid2019&quot;
-输出：&quot;c2o0v1i9d&quot;</code></pre>
-<p>示例5：</p>
-<pre class="text"><code>输入：s = &quot;ab123&quot;
-输出：&quot;1a2b3&quot;</code></pre>
-<h2 id="解题思路">解题思路</h2>
-<ul>
-<li>数组暴力解法：分割成两个数组，字符数组，数字数组，然后去除不满足的情况（两个数组长度之差超过1的则为不满足）随后判断谁大，那个先添加到字符串中，直至添加完成 &gt; 执行用时： 4 ms，在所有Go提交中击败了 22.86％ 的用户 内存消耗： 6.6 MB，在所有 Go 提交中击败了 17.14% 的用户</li>
-</ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">func</span> reformat(s <span class="dt">string</span>) <span class="dt">string</span> {</a>
-<a class="sourceLine" id="cb8-2" title="2">    ret, c1, c2 := <span class="st">&quot;&quot;</span>, []<span class="dt">string</span>{}, []<span class="dt">string</span>{}</a>
-<a class="sourceLine" id="cb8-3" title="3">    <span class="kw">for</span> _, v := <span class="kw">range</span> s {</a>
-<a class="sourceLine" id="cb8-4" title="4">        <span class="kw">if</span> v &gt;= <span class="dv">48</span> &amp;&amp; v &lt;= <span class="dv">57</span> {</a>
-<a class="sourceLine" id="cb8-5" title="5">            c1 = <span class="bu">append</span>(c1, <span class="dt">string</span>(v))</a>
-<a class="sourceLine" id="cb8-6" title="6">            <span class="kw">continue</span></a>
-<a class="sourceLine" id="cb8-7" title="7">        }</a>
-<a class="sourceLine" id="cb8-8" title="8">        c2 = <span class="bu">append</span>(c2, <span class="dt">string</span>(v))</a>
-<a class="sourceLine" id="cb8-9" title="9">    }</a>
-<a class="sourceLine" id="cb8-10" title="10">    sub := <span class="bu">len</span>(c1) - <span class="bu">len</span>(c2)</a>
-<a class="sourceLine" id="cb8-11" title="11">    <span class="kw">if</span> sub &lt;= <span class="dv">1</span> &amp;&amp; sub &gt;= <span class="dv">-1</span> {</a>
-<a class="sourceLine" id="cb8-12" title="12">        <span class="kw">if</span> sub &lt; <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb8-13" title="13">            c1, c2 = c2, c1</a>
-<a class="sourceLine" id="cb8-14" title="14">        }</a>
-<a class="sourceLine" id="cb8-15" title="15">        <span class="kw">for</span> i := <span class="kw">range</span> c2 {</a>
-<a class="sourceLine" id="cb8-16" title="16">            ret += c1[i] + c2[i]</a>
-<a class="sourceLine" id="cb8-17" title="17">        }</a>
-<a class="sourceLine" id="cb8-18" title="18">        <span class="kw">if</span> sub != <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb8-19" title="19">            ret += c1[<span class="bu">len</span>(c1)-<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb8-20" title="20">        }</a>
-<a class="sourceLine" id="cb8-21" title="21">    }</a>
-<a class="sourceLine" id="cb8-22" title="22">    <span class="kw">return</span> ret</a>
-<a class="sourceLine" id="cb8-23" title="23">}</a></code></pre></div>
-<ul>
-<li>字符串暴力解法：方法同数组解法 &gt; 执行用时：8ms，在所有 Go 提交中击败了 14.29% 的用户 内存消耗：6.7 MB，在所有Go提交中击败了 11.43% 的用户</li>
-</ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">func</span> reformat(s <span class="dt">string</span>) <span class="dt">string</span> {</a>
-<a class="sourceLine" id="cb9-2" title="2">    s1, s2 := <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span></a>
-<a class="sourceLine" id="cb9-3" title="3">    <span class="kw">for</span> _, v := <span class="kw">range</span> s {</a>
-<a class="sourceLine" id="cb9-4" title="4">        <span class="kw">if</span> v &gt;= <span class="dv">48</span> &amp;&amp; v &lt;= <span class="dv">57</span> {</a>
-<a class="sourceLine" id="cb9-5" title="5">            s1 += <span class="dt">string</span>(v)</a>
-<a class="sourceLine" id="cb9-6" title="6">            <span class="kw">continue</span></a>
-<a class="sourceLine" id="cb9-7" title="7">        }</a>
-<a class="sourceLine" id="cb9-8" title="8">        s2 += <span class="dt">string</span>(v)</a>
-<a class="sourceLine" id="cb9-9" title="9">    }</a>
-<a class="sourceLine" id="cb9-10" title="10">    <span class="kw">if</span> <span class="bu">len</span>(s1)-<span class="bu">len</span>(s2) &lt;= <span class="dv">1</span> &amp;&amp; <span class="bu">len</span>(s1)-<span class="bu">len</span>(s2) &gt;= <span class="dv">-1</span> {</a>
-<a class="sourceLine" id="cb9-11" title="11">        <span class="kw">if</span> <span class="bu">len</span>(s1) &lt; <span class="bu">len</span>(s2) {</a>
-<a class="sourceLine" id="cb9-12" title="12">            s1, s2 = s2, s1</a>
-<a class="sourceLine" id="cb9-13" title="13">        }</a>
-<a class="sourceLine" id="cb9-14" title="14">        ret := <span class="st">&quot;&quot;</span></a>
-<a class="sourceLine" id="cb9-15" title="15">        <span class="kw">for</span> i, _ := <span class="kw">range</span> s2 {</a>
-<a class="sourceLine" id="cb9-16" title="16">            ret += <span class="dt">string</span>(s1[i]) + <span class="dt">string</span>(s2[i])</a>
-<a class="sourceLine" id="cb9-17" title="17">        }</a>
-<a class="sourceLine" id="cb9-18" title="18">        <span class="kw">if</span> <span class="bu">len</span>(s1) != <span class="bu">len</span>(s2) {</a>
-<a class="sourceLine" id="cb9-19" title="19">            ret += <span class="dt">string</span>(s1[<span class="bu">len</span>(s1)-<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb9-20" title="20">        }</a>
-<a class="sourceLine" id="cb9-21" title="21">        <span class="kw">return</span> ret</a>
-<a class="sourceLine" id="cb9-22" title="22">    }</a>
-<a class="sourceLine" id="cb9-23" title="23">    <span class="kw">return</span> <span class="st">&quot;&quot;</span></a>
-<a class="sourceLine" id="cb9-24" title="24">}</a></code></pre></div>]]></description>
-    <pubDate>Wed, 17 Aug 2022 17:09:26 +0800</pubDate>
   </item>
   
 </channel>
