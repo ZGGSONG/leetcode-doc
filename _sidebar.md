@@ -21,6 +21,7 @@
   * [136. 只出现一次的数字 (简单)](docs/array/0136.single-number.md)
   * [283. 移动零 (简单)](docs/array/0283.move-zeroes.md)
   * [704. 二分查找 (简单)](docs/array/704.binary-search.md)
+  * [977. 有序数组的平方 (简单)](docs/array/0977.squares-of-a-sorted-array.md)
   * [1403. 非递增顺序的最小子序列 (简单)](docs/array/1403.minimum-subsequence-in-non-increasing-order.md)
 * 字符串
   * [1408. 数组中的字符串匹配 (简单)](docs/string/1408.string-matching-in-an-array.md)

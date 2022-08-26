@@ -14,4 +14,5 @@
 
 [26. 删除有序数组中的重复项 (简单)](docs/array/0026.remove-duplicates-from-sorted-array.md)  
 [27. 移除元素 (简单)](docs/array/0027.remove-element.md)  
-[283. 移动零 (简单)](docs/array/0283.move-zeroes.md)
+[283. 移动零 (简单)](docs/array/0283.move-zeroes.md)  
+[977. 有序数组的平方 (简单)](docs/array/0977.squares-of-a-sorted-array.md)
