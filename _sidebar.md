@@ -19,6 +19,7 @@
   * [119. 杨辉三角 II (简单)](docs/array/0119.pascals-triangle-ii.md)
   * [121. 买卖股票的最佳时机 (简单)](docs/array/0121.best-time-to-buy-and-sell-stock.md)
   * [136. 只出现一次的数字 (简单)](docs/array/0136.single-number.md)
+  * [209. 长度最小的子数组 (中等)](docs/array/0209.minimum-size-subarray-sum.md)
   * [283. 移动零 (简单)](docs/array/0283.move-zeroes.md)
   * [704. 二分查找 (简单)](docs/array/704.binary-search.md)
   * [977. 有序数组的平方 (简单)](docs/array/0977.squares-of-a-sorted-array.md)
