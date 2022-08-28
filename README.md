@@ -1,6 +1,6 @@
 # 说明
 
-LeetCode刷题记录 using Golang by zggsong with [代码随想录](https://programmercarl.com/)
+LeetCode刷题记录 using Golang by [zggsong](//zggsong.cn) with [代码随想录](https://programmercarl.com/)
 
 blog [www.zggsong.cn](//www.zggsong.cn)  
 
