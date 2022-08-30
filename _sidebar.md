@@ -26,6 +26,7 @@
   * [977. 有序数组的平方 (简单)](docs/array/0977.squares-of-a-sorted-array.md)
   * [1403. 非递增顺序的最小子序列 (简单)](docs/array/1403.minimum-subsequence-in-non-increasing-order.md)
 * 字符串
+  * [76. 最小覆盖子串 (困难)](docs/string/0076.minimum-window-substring.md)
   * [1408. 数组中的字符串匹配 (简单)](docs/string/1408.string-matching-in-an-array.md)
   * [1417. 重新格式化字符串 (简单)](docs/string/1417.reformat-the-string.md)
 * 链表
