@@ -6,6 +6,128 @@
   <description>LeetCode刷题记录</description>
    
   <item>
+    <title><![CDATA[ 水果成篮]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0904.fruit-into-baskets</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0904.fruit-into-baskets</guid>
+    <description><![CDATA[<h2 id="水果成篮">水果成篮</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/fruit-into-baskets/">https://leetcode.cn/problems/fruit-into-baskets/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>你正在探访一家农场，农场从左到右种植了一排果树。这些树用一个整数数组 fruits 表示，其中 fruits[i] 是第 i 棵树上的水果 种类 。</p>
+<p>你想要尽可能多地收集水果。然而，农场的主人设定了一些严格的规矩，你必须按照要求采摘水果：</p>
+<p>你只有 两个 篮子，并且每个篮子只能装 单一类型 的水果。每个篮子能够装的水果总量没有限制。 你可以选择任意一棵树开始采摘，你必须从 每棵 树（包括开始采摘的树）上 恰好摘一个水果 。采摘的水果应当符合篮子中的水果类型。每采摘一次，你将会向右移动到下一棵树，并继续采摘。 一旦你走到某棵树前，但水果不符合篮子的水果类型，那么就必须停止采摘。 给你一个整数数组 fruits ，返回你可以收集的水果的 最大 数目。</p>
+<p>示例 1：</p>
+<pre class="text"><code>输入：fruits = [1,2,1]
+输出：3
+解释：可以采摘全部 3 棵树。</code></pre>
+<p>示例 2：</p>
+<pre class="text"><code>输入：fruits = [0,1,2,2]
+输出：3
+解释：可以采摘 [1,2,2] 这三棵树。
+如果从第一棵树开始采摘，则只能采摘 [0,1] 这两棵树。</code></pre>
+<p>示例3：</p>
+<pre class="text"><code>输入：fruits = [1,2,3,2,2]
+输出：4
+解释：可以采摘 [2,3,2,2] 这四棵树。
+如果从第一棵树开始采摘，则只能采摘 [1,2] 这两棵树。</code></pre>
+<p>示例4：</p>
+<pre class="text"><code>输入：fruits = [3,3,3,1,2,1,1,2,3,3,4]
+输出：5
+解释：可以采摘 [1,2,1,1,2] 这五棵树。</code></pre>
+<h2 id="解题思路">解题思路</h2>
+<ul>
+<li>解析题意：题目表达的是一个整数数组，按照一定的规则排列，从左往右读，只能读两种数字，每读完一次向右移，可以重复，一旦遇到第三个不同的数字，则立即停止读，最后得出只有两种数字的情况下最长的子数组的情况，并输出子数组长度</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">func</span> totalFruit(fruits []<span class="dt">int</span>) <span class="dt">int</span> {</a>
+<a class="sourceLine" id="cb5-2" title="2">    totalMap := <span class="bu">make</span>(<span class="kw">map</span>[<span class="dt">int</span>]<span class="dt">int</span>) <span class="co">//定义一个map存储符合条件的数</span></a>
+<a class="sourceLine" id="cb5-3" title="3">    slowIndex, fastIndex := <span class="dv">0</span>, <span class="dv">0</span>  <span class="co">//定义双指针指针</span></a>
+<a class="sourceLine" id="cb5-4" title="4">    ret := <span class="dv">0</span>                      <span class="co">//定义一个值来存储符合条件子数组的最大长度</span></a>
+<a class="sourceLine" id="cb5-5" title="5">    <span class="kw">for</span> ; fastIndex &lt; <span class="bu">len</span>(fruits); fastIndex++ {</a>
+<a class="sourceLine" id="cb5-6" title="6">        totalMap[fruits[fastIndex]]++ <span class="co">//向map中存储数</span></a>
+<a class="sourceLine" id="cb5-7" title="7">        <span class="kw">for</span> <span class="bu">len</span>(totalMap) &gt; <span class="dv">2</span> {       <span class="co">//当map中key的数量超过两个则可以计算子数组</span></a>
+<a class="sourceLine" id="cb5-8" title="8">            tmp := fastIndex - slowIndex <span class="co">//计算当前符合条件子数组长度</span></a>
+<a class="sourceLine" id="cb5-9" title="9">            <span class="kw">if</span> tmp &gt; ret {               <span class="co">//如果当前长度大于之前的最大长度，则更新最大长度</span></a>
+<a class="sourceLine" id="cb5-10" title="10">                ret = tmp</a>
+<a class="sourceLine" id="cb5-11" title="11">            }</a>
+<a class="sourceLine" id="cb5-12" title="12">            totalMap[fruits[slowIndex]]--</a>
+<a class="sourceLine" id="cb5-13" title="13">            <span class="kw">if</span> totalMap[fruits[slowIndex]] == <span class="dv">0</span> { <span class="co">//当map fruits[slowIndex]的value减1后等于零则删除这个键</span></a>
+<a class="sourceLine" id="cb5-14" title="14">                <span class="bu">delete</span>(totalMap, fruits[slowIndex])</a>
+<a class="sourceLine" id="cb5-15" title="15">            }</a>
+<a class="sourceLine" id="cb5-16" title="16">            slowIndex++ <span class="co">//慢指针向后移动</span></a>
+<a class="sourceLine" id="cb5-17" title="17">        }</a>
+<a class="sourceLine" id="cb5-18" title="18">    }</a>
+<a class="sourceLine" id="cb5-19" title="19">    tmp := fastIndex - slowIndex <span class="co">//快指针读完整个数组后再次判断快慢指针之间的长度是否大于最大长度</span></a>
+<a class="sourceLine" id="cb5-20" title="20">    <span class="kw">if</span> tmp &gt; ret {</a>
+<a class="sourceLine" id="cb5-21" title="21">        ret = tmp</a>
+<a class="sourceLine" id="cb5-22" title="22">    }</a>
+<a class="sourceLine" id="cb5-23" title="23">    <span class="kw">return</span> ret</a>
+<a class="sourceLine" id="cb5-24" title="24">}</a></code></pre></div>]]></description>
+    <pubDate>Tue, 30 Aug 2022 10:41:41 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[开始]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/_sidebar</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/_sidebar</guid>
+    <description><![CDATA[<ul>
+<li>开始
+<ul>
+<li><a href="README.md">说明</a></li>
+</ul></li>
+<li>方法
+<ul>
+<li><a href="docs/methods/binary-search.md">二分查找</a></li>
+<li><a href="docs/methods/double-pointer.md">双指针法</a></li>
+</ul></li>
+<li>数组
+<ul>
+<li><a href="docs/array/0001.two-sum.md">1. 两数之和 (简单)</a></li>
+<li><a href="docs/array/0011.container-with-most-water.md">11. 盛最多水的容器 (中等)</a></li>
+<li><a href="docs/array/0015.3sum.md">15. 三数之和 (中等)</a></li>
+<li><a href="docs/array/0016.3sum-closest.md">16. 最接近的三数之和 (中等)</a></li>
+<li><a href="docs/array/0018.4sum.md">18. 四数之和 (中等)</a></li>
+<li><a href="docs/array/0026.remove-duplicates-from-sorted-array.md">26. 删除有序数组中的重复项 (简单)</a></li>
+<li><a href="docs/array/0027.remove-element.md">27. 移除元素 (简单)</a></li>
+<li><a href="docs/array/0031.next-permutation.md">31. 下一个排列 (中等)</a></li>
+<li><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a></li>
+<li><a href="docs/array/0069.sqrtx.md">69. x的平方根 (简单)</a></li>
+<li><a href="docs/array/0088.merge-sorted-array.md">88. 合并两个有序数组 (简单)</a></li>
+<li><a href="docs/array/0118.pascals-triangle.md">118. 杨辉三角 (简单)</a></li>
+<li><a href="docs/array/0119.pascals-triangle-ii.md">119. 杨辉三角 II (简单)</a></li>
+<li><a href="docs/array/0121.best-time-to-buy-and-sell-stock.md">121. 买卖股票的最佳时机 (简单)</a></li>
+<li><a href="docs/array/0136.single-number.md">136. 只出现一次的数字 (简单)</a></li>
+<li><a href="docs/array/0209.minimum-size-subarray-sum.md">209. 长度最小的子数组 (中等)</a></li>
+<li><a href="docs/array/0283.move-zeroes.md">283. 移动零 (简单)</a></li>
+<li><a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></li>
+<li><a href="docs/array/0904.fruit-into-baskets.md">904. 水果成篮 (中等)</a></li>
+<li><a href="docs/array/0977.squares-of-a-sorted-array.md">977. 有序数组的平方 (简单)</a></li>
+<li><a href="docs/array/1403.minimum-subsequence-in-non-increasing-order.md">1403. 非递增顺序的最小子序列 (简单)</a></li>
+</ul></li>
+<li>字符串
+<ul>
+<li><a href="docs/string/1408.string-matching-in-an-array.md">1408. 数组中的字符串匹配 (简单)</a></li>
+<li><a href="docs/string/1417.reformat-the-string.md">1417. 重新格式化字符串 (简单)</a></li>
+</ul></li>
+<li>链表
+<ul>
+<li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
+</ul></li>
+</ul>]]></description>
+    <pubDate>Tue, 30 Aug 2022 10:41:41 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[说明]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/README</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/README</guid>
+    <description><![CDATA[<h1 id="说明">说明</h1>
+<p>LeetCode刷题记录 using Golang by <a href="//zggsong.cn">zggsong</a> with <a href="https://programmercarl.com/">代码随想录</a></p>
+<p>blog <a href="//www.zggsong.cn">www.zggsong.cn</a></p>
+<p>wiki <a href="//wiki.zggsong.cn">wiki.zggsong.cn</a></p>
+<p>RSS <a href="//pages.zsong.ml/leetcode-doc/feed.xml">pages.zsong.ml/leetcode-doc/feed.xml</a></p>]]></description>
+    <pubDate>Sun, 28 Aug 2022 20:19:51 +0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[ 长度最小的子数组]]></title>
     <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0209.minimum-size-subarray-sum</link>
     <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0209.minimum-size-subarray-sum</guid>
@@ -82,56 +204,6 @@
 <a class="sourceLine" id="cb4-26" title="26">    }</a>
 <a class="sourceLine" id="cb4-27" title="27">    <span class="kw">return</span> ret</a>
 <a class="sourceLine" id="cb4-28" title="28">}</a></code></pre></div>]]></description>
-    <pubDate>Fri, 26 Aug 2022 14:49:07 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[开始]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/_sidebar</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/_sidebar</guid>
-    <description><![CDATA[<ul>
-<li>开始
-<ul>
-<li><a href="README.md">说明</a></li>
-</ul></li>
-<li>方法
-<ul>
-<li><a href="docs/methods/binary-search.md">二分查找</a></li>
-<li><a href="docs/methods/double-pointer.md">双指针法</a></li>
-</ul></li>
-<li>数组
-<ul>
-<li><a href="docs/array/0001.two-sum.md">1. 两数之和 (简单)</a></li>
-<li><a href="docs/array/0011.container-with-most-water.md">11. 盛最多水的容器 (中等)</a></li>
-<li><a href="docs/array/0015.3sum.md">15. 三数之和 (中等)</a></li>
-<li><a href="docs/array/0016.3sum-closest.md">16. 最接近的三数之和 (中等)</a></li>
-<li><a href="docs/array/0018.4sum.md">18. 四数之和 (中等)</a></li>
-<li><a href="docs/array/0026.remove-duplicates-from-sorted-array.md">26. 删除有序数组中的重复项 (简单)</a></li>
-<li><a href="docs/array/0027.remove-element.md">27. 移除元素 (简单)</a></li>
-<li><a href="docs/array/0031.next-permutation.md">31. 下一个排列 (中等)</a></li>
-<li><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a></li>
-<li><a href="docs/array/0069.sqrtx.md">69. x的平方根 (简单)</a></li>
-<li><a href="docs/array/0088.merge-sorted-array.md">88. 合并两个有序数组 (简单)</a></li>
-<li><a href="docs/array/0118.pascals-triangle.md">118. 杨辉三角 (简单)</a></li>
-<li><a href="docs/array/0119.pascals-triangle-ii.md">119. 杨辉三角 II (简单)</a></li>
-<li><a href="docs/array/0121.best-time-to-buy-and-sell-stock.md">121. 买卖股票的最佳时机 (简单)</a></li>
-<li><a href="docs/array/0136.single-number.md">136. 只出现一次的数字 (简单)</a></li>
-<li><a href="docs/array/0209.minimum-size-subarray-sum.md">209. 长度最小的子数组 (中等)</a></li>
-<li><a href="docs/array/0283.move-zeroes.md">283. 移动零 (简单)</a></li>
-<li><a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></li>
-<li><a href="docs/array/0977.squares-of-a-sorted-array.md">977. 有序数组的平方 (简单)</a></li>
-<li><a href="docs/array/1403.minimum-subsequence-in-non-increasing-order.md">1403. 非递增顺序的最小子序列 (简单)</a></li>
-</ul></li>
-<li>字符串
-<ul>
-<li><a href="docs/string/1408.string-matching-in-an-array.md">1408. 数组中的字符串匹配 (简单)</a></li>
-<li><a href="docs/string/1417.reformat-the-string.md">1417. 重新格式化字符串 (简单)</a></li>
-</ul></li>
-<li>链表
-<ul>
-<li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
-</ul></li>
-</ul>]]></description>
     <pubDate>Fri, 26 Aug 2022 14:49:07 +0800</pubDate>
   </item>
    
@@ -516,108 +588,6 @@ for (int i = 0; i &lt; len; i++) {
 <a class="sourceLine" id="cb4-8" title="8">    }</a>
 <a class="sourceLine" id="cb4-9" title="9">    <span class="kw">return</span> slowIndex</a>
 <a class="sourceLine" id="cb4-10" title="10">}</a></code></pre></div>]]></description>
-    <pubDate>Fri, 26 Aug 2022 11:11:38 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ 删除有序数组中的重复项]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0026.remove-duplicates-from-sorted-array</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0026.remove-duplicates-from-sorted-array</guid>
-    <description><![CDATA[<h2 id="删除有序数组中的重复项">删除有序数组中的重复项</h2>
-<p>LeetCode: <a href="https://leetcode.cn/problems/remove-duplicates-from-sorted-array/">https://leetcode.cn/problems/remove-duplicates-from-sorted-array/</a></p>
-<h2 id="题目说明">题目说明</h2>
-<p>给你一个 升序排列 的数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。元素的 相对顺序 应该保持 一致 。</p>
-<p>由于在某些语言中不能改变数组的长度，所以必须将结果放在数组nums的第一部分。更规范地说，如果在删除重复项之后有 k 个元素，那么nums的前 k 个元素应该保存最终结果。</p>
-<p>将最终结果插入nums 的前 k 个位置后返回 k 。</p>
-<p>不要使用额外的空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。</p>
-<p>示例 1：</p>
-<pre class="text"><code>输入：nums = [1,1,2]
-输出：2, nums = [1,2,_]
-解释：函数应该返回新的长度 2 ，并且原数组 nums 的前两个元素被修改为 1, 2 。不需要考虑数组中超出新长度后面的元素。</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：nums = [0,0,1,1,1,2,2,3,3,4]
-输出：5, nums = [0,1,2,3,4]
-解释：函数应该返回新的长度 5 ， 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4 。不需要考虑数组中超出新长度后面的元素。</code></pre>
-<h2 id="解题思路">解题思路</h2>
-<ul>
-<li>双指针方法，双指针指向开头，如果两个数相同则快指针向后移动，慢指针保持不动，一旦快慢指针指向元素不想等，则后移慢指针并且将快指针的值赋给慢指针，这样就实现了每次都把新元素拿一个到前面，快指针++进入下一个循环，直到数组末尾，最终慢指针指向新数组最后一个值，慢指针+1 即为新数组长度，这样就实现了去重。</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">func</span> removeDuplicates(nums []<span class="dt">int</span>) <span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb3-2" title="2">    <span class="kw">var</span> slowIndex <span class="dt">int</span></a>
-<a class="sourceLine" id="cb3-3" title="3">    <span class="kw">for</span> fastIndex := <span class="dv">0</span>; fastIndex &lt; <span class="bu">len</span>(nums); fastIndex++ {</a>
-<a class="sourceLine" id="cb3-4" title="4">        <span class="kw">if</span> nums[slowIndex] != nums[fastIndex] {</a>
-<a class="sourceLine" id="cb3-5" title="5">            slowIndex++</a>
-<a class="sourceLine" id="cb3-6" title="6">            nums[slowIndex] = nums[fastIndex]</a>
-<a class="sourceLine" id="cb3-7" title="7">        }</a>
-<a class="sourceLine" id="cb3-8" title="8">    }</a>
-<a class="sourceLine" id="cb3-9" title="9">    <span class="kw">return</span> slowIndex + <span class="dv">1</span></a>
-<a class="sourceLine" id="cb3-10" title="10">}</a></code></pre></div>]]></description>
-    <pubDate>Fri, 26 Aug 2022 11:11:38 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ 四数之和]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0018.4sum</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0018.4sum</guid>
-    <description><![CDATA[<h2 id="四数之和">四数之和</h2>
-<p>LeetCode: <a href="https://leetcode.cn/problems/4sum/">https://leetcode.cn/problems/4sum/</a></p>
-<h2 id="题目说明">题目说明</h2>
-<p>给你一个由 n 个整数组成的数组nums ，和一个目标值 target 。请你找出并返回满足下述全部条件且不重复的四元组[nums[a], nums[b], nums[c], nums[d]（若两个四元组元素一一对应，则认为两个四元组重复）：</p>
-<p>0 &lt;= a, b, c, d &lt; n a、b、c 和 d 互不相同 nums[a] + nums[b] + nums[c] + nums[d] == target 你可以按 任意顺序 返回答案 。</p>
-<p>示例 1：</p>
-<pre class="text"><code>输入：nums = [1,0,-1,0,-2,2], target = 0
-输出：[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：nums = [2,2,2,2,2], target = 8
-输出：[[2,2,2,2]]</code></pre>
-<h2 id="解题思路">解题思路</h2>
-<ul>
-<li>本质上和第三题思路一致：排序+双指针，只是说，需要再加一层，然后操作双指针来取出结果
-<ol type="1">
-<li>最外层循环注意减少耗时的第一个数与target的比较，不再是0，负数的话，多个负数之和越来越小。</li>
-<li>此外层依旧需要对最开始的数进行去重，防止出现重复结果，不过注意初始值的下标：<code>j&gt;i+1</code>。</li>
-</ol></li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">func</span> fourSum(nums []<span class="dt">int</span>, target <span class="dt">int</span>) [][]<span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb3-2" title="2">    sort.Ints(nums)</a>
-<a class="sourceLine" id="cb3-3" title="3">    <span class="kw">var</span> ret [][]<span class="dt">int</span></a>
-<a class="sourceLine" id="cb3-4" title="4">    <span class="kw">for</span> i := <span class="dv">0</span>; i &lt; <span class="bu">len</span>(nums)-<span class="dv">3</span>; i++ {</a>
-<a class="sourceLine" id="cb3-5" title="5">        <span class="co">//去除此种状态，不能跟第三题一样，不是与0相比，多个负数相加会得到更小的值</span></a>
-<a class="sourceLine" id="cb3-6" title="6">        <span class="co">//if i == 0 &amp;&amp; nums[i] &gt; target {</span></a>
-<a class="sourceLine" id="cb3-7" title="7">        <span class="co">//  break</span></a>
-<a class="sourceLine" id="cb3-8" title="8">        <span class="co">//}</span></a>
-<a class="sourceLine" id="cb3-9" title="9">        <span class="co">//起始值去重</span></a>
-<a class="sourceLine" id="cb3-10" title="10">        <span class="kw">if</span> i &gt; <span class="dv">0</span> &amp;&amp; nums[i] == nums[i<span class="dv">-1</span>] {</a>
-<a class="sourceLine" id="cb3-11" title="11">            <span class="kw">continue</span></a>
-<a class="sourceLine" id="cb3-12" title="12">        }</a>
-<a class="sourceLine" id="cb3-13" title="13">        <span class="kw">for</span> j := i + <span class="dv">1</span>; j &lt; <span class="bu">len</span>(nums)-<span class="dv">2</span>; j++ {</a>
-<a class="sourceLine" id="cb3-14" title="14">            <span class="co">//起始值去重</span></a>
-<a class="sourceLine" id="cb3-15" title="15">            <span class="kw">if</span> j &gt; i+<span class="dv">1</span> &amp;&amp; nums[j] == nums[j<span class="dv">-1</span>] {</a>
-<a class="sourceLine" id="cb3-16" title="16">                <span class="kw">continue</span></a>
-<a class="sourceLine" id="cb3-17" title="17">            }</a>
-<a class="sourceLine" id="cb3-18" title="18">            l, r := j+<span class="dv">1</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
-<a class="sourceLine" id="cb3-19" title="19">            <span class="kw">for</span> l &lt; r {</a>
-<a class="sourceLine" id="cb3-20" title="20">                sum := nums[i] + nums[j] + nums[l] + nums[r]</a>
-<a class="sourceLine" id="cb3-21" title="21">                <span class="kw">if</span> sum == target {</a>
-<a class="sourceLine" id="cb3-22" title="22">                    ret = <span class="bu">append</span>(ret, []<span class="dt">int</span>{nums[i], nums[j], nums[l], nums[r]})</a>
-<a class="sourceLine" id="cb3-23" title="23">                    <span class="kw">for</span> l &lt; r &amp;&amp; nums[l] == nums[l+<span class="dv">1</span>] {</a>
-<a class="sourceLine" id="cb3-24" title="24">                        l++</a>
-<a class="sourceLine" id="cb3-25" title="25">                    }</a>
-<a class="sourceLine" id="cb3-26" title="26">                    <span class="kw">for</span> l &lt; r &amp;&amp; nums[r] == nums[r<span class="dv">-1</span>] {</a>
-<a class="sourceLine" id="cb3-27" title="27">                        r--</a>
-<a class="sourceLine" id="cb3-28" title="28">                    }</a>
-<a class="sourceLine" id="cb3-29" title="29">                    l++</a>
-<a class="sourceLine" id="cb3-30" title="30">                    r--</a>
-<a class="sourceLine" id="cb3-31" title="31">                } <span class="kw">else</span> <span class="kw">if</span> sum &gt; target {</a>
-<a class="sourceLine" id="cb3-32" title="32">                    r--</a>
-<a class="sourceLine" id="cb3-33" title="33">                } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb3-34" title="34">                    l++</a>
-<a class="sourceLine" id="cb3-35" title="35">                }</a>
-<a class="sourceLine" id="cb3-36" title="36">            }</a>
-<a class="sourceLine" id="cb3-37" title="37">        }</a>
-<a class="sourceLine" id="cb3-38" title="38">    }</a>
-<a class="sourceLine" id="cb3-39" title="39">    <span class="kw">return</span> ret</a>
-<a class="sourceLine" id="cb3-40" title="40">}</a></code></pre></div>]]></description>
     <pubDate>Fri, 26 Aug 2022 11:11:38 +0800</pubDate>
   </item>
   
