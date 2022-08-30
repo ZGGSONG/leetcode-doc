@@ -22,6 +22,7 @@
   * [209. 长度最小的子数组 (中等)](docs/array/0209.minimum-size-subarray-sum.md)
   * [283. 移动零 (简单)](docs/array/0283.move-zeroes.md)
   * [704. 二分查找 (简单)](docs/array/704.binary-search.md)
+  * [904. 水果成篮 (中等)](docs/array/0904.fruit-into-baskets.md)
   * [977. 有序数组的平方 (简单)](docs/array/0977.squares-of-a-sorted-array.md)
   * [1403. 非递增顺序的最小子序列 (简单)](docs/array/1403.minimum-subsequence-in-non-increasing-order.md)
 * 字符串
