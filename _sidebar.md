@@ -13,6 +13,7 @@
   * [27. 移除元素 (简单)](docs/array/0027.remove-element.md)
   * [31. 下一个排列 (中等)](docs/array/0031.next-permutation.md)
   * [34. 在排序数组中查找元素的第一个和最后一个位置 (中等)](docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md)
+  * [59. 螺旋矩阵II (中等)](docs/array/0059.spiral-matrix-ii.md)
   * [69. x的平方根 (简单)](docs/array/0069.sqrtx.md)
   * [88. 合并两个有序数组 (简单)](docs/array/0088.merge-sorted-array.md)
   * [118. 杨辉三角 (简单)](docs/array/0118.pascals-triangle.md)
