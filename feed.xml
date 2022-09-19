@@ -6,6 +6,138 @@
   <description>LeetCode刷题记录</description>
    
   <item>
+    <title><![CDATA[ 螺旋矩阵]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0054.spiral-matrix</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0054.spiral-matrix</guid>
+    <description><![CDATA[<h2 id="螺旋矩阵">螺旋矩阵</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/spiral-matrix/">https://leetcode.cn/problems/spiral-matrix/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。</p>
+<p>示例 1：</p>
+<pre class="text"><code>输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+输出：[1,2,3,6,9,8,7,4,5]</code></pre>
+<p>示例 2：</p>
+<pre class="text"><code>输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+输出：[1,2,3,4,8,12,11,10,9,5,6,7]</code></pre>
+<h2 id="解题思路">解题思路</h2>
+<p><a href="https://programmercarl.com/0059.%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.html#%E6%80%9D%E8%B7%AF">代码随想录</a></p>
+<p>本题解决思路继承自59.螺旋矩阵II，建议看完59.螺旋矩阵II之后再看本题</p>
+<p>与59.螺旋矩阵II相同的是：两者都是模拟矩形的顺时针旋转，所以核心依然是依然是坚持循环不变量，按照左闭右开的原则</p>
+<p>模拟顺时针画矩阵的过程:</p>
+<p>填充上行从左到右 填充右列从上到下 填充下行从右到左 填充左列从下到上 由外向内一圈一圈这么画下去，如下所示：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020121623550681.png" /></p>
+<p>这里每一种颜色，代表一条边，我们遍历的长度，可以看出每一个拐角处的处理规则，拐角处让给新的一条边来继续画。</p>
+<p>与59.螺旋矩阵II不同的是：前题中的螺旋矩阵是正方形，只有正方形的边长n一个边界条件，而本题中，需要考虑长方形的长和宽(m行和n列)两个边界条件。自然，m可以等于n，即前题可视为本题在m==n的特殊情况。</p>
+<p>我们从最一般的情况开始考虑，与59.螺旋矩阵II题解对比起来，m和n的带入，主要引来两方面的差异：</p>
+<p>loop的计算： 本题的loop计算与59.螺旋矩阵II算法略微差异，因为存在rows和columns两个维度，可自行分析，loop只能取min(rows, columns)，例如rows = 5, columns = 7，那loop = 5 / 7 = 2 mid的计算及填充： 1、同样的原理，本题的mid计算也存在上述差异； 2、 如果min(rows, columns)为偶数，则不需要在最后单独考虑矩阵最中间位置的赋值 如果min(rows, columns)为奇数，则矩阵最中间位置不只是[mid][mid],而是会留下来一个特殊的中间行或者中间列，具体是中间行还是中间列，要看rows和columns的大小，如果rows &gt; columns,则是中间列，相反，则是中间行 代码如下，已经详细注释了每一步的目的，可以看出while循环里判断的情况是很多的，代码里处理的原则也是统一的左闭右开。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">func</span> spiralOrder(matrix [][]<span class="dt">int</span>) []<span class="dt">int</span> {</a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="kw">var</span> rows = <span class="bu">len</span>(matrix)</a>
+<a class="sourceLine" id="cb3-3" title="3">    <span class="kw">var</span> columns = <span class="bu">len</span>(matrix[<span class="dv">0</span>])</a>
+<a class="sourceLine" id="cb3-4" title="4">    <span class="kw">if</span> <span class="bu">len</span>(matrix) == <span class="dv">0</span> || <span class="bu">len</span>(matrix[<span class="dv">0</span>]) == <span class="dv">0</span> {</a>
+<a class="sourceLine" id="cb3-5" title="5">        <span class="kw">return</span> []<span class="dt">int</span>{}</a>
+<a class="sourceLine" id="cb3-6" title="6">    }</a>
+<a class="sourceLine" id="cb3-7" title="7">    <span class="kw">var</span> ret []<span class="dt">int</span></a>
+<a class="sourceLine" id="cb3-8" title="8">    <span class="kw">var</span> startX, startY, i, j <span class="dt">int</span></a>
+<a class="sourceLine" id="cb3-9" title="9">    <span class="kw">var</span> loop, mid <span class="dt">int</span></a>
+<a class="sourceLine" id="cb3-10" title="10">    offset := <span class="dv">1</span></a>
+<a class="sourceLine" id="cb3-11" title="11">    <span class="kw">if</span> rows &gt; columns {</a>
+<a class="sourceLine" id="cb3-12" title="12">        loop = columns / <span class="dv">2</span></a>
+<a class="sourceLine" id="cb3-13" title="13">        mid = columns / <span class="dv">2</span></a>
+<a class="sourceLine" id="cb3-14" title="14">    } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb3-15" title="15">        loop = rows / <span class="dv">2</span></a>
+<a class="sourceLine" id="cb3-16" title="16">        mid = rows / <span class="dv">2</span></a>
+<a class="sourceLine" id="cb3-17" title="17">    }</a>
+<a class="sourceLine" id="cb3-18" title="18">    <span class="kw">for</span> ; loop &gt; <span class="dv">0</span>; loop-- {</a>
+<a class="sourceLine" id="cb3-19" title="19">        <span class="kw">for</span> j = startY; j &lt; startY+columns-offset; j++ {</a>
+<a class="sourceLine" id="cb3-20" title="20">            ret = <span class="bu">append</span>(ret, matrix[startX][j])</a>
+<a class="sourceLine" id="cb3-21" title="21">        }</a>
+<a class="sourceLine" id="cb3-22" title="22"></a>
+<a class="sourceLine" id="cb3-23" title="23">        <span class="kw">for</span> i = startX; i &lt; startX+rows-offset; i++ {</a>
+<a class="sourceLine" id="cb3-24" title="24">            ret = <span class="bu">append</span>(ret, matrix[i][j])</a>
+<a class="sourceLine" id="cb3-25" title="25">        }</a>
+<a class="sourceLine" id="cb3-26" title="26"></a>
+<a class="sourceLine" id="cb3-27" title="27">        <span class="kw">for</span> ; j &gt; startY; j-- {</a>
+<a class="sourceLine" id="cb3-28" title="28">            ret = <span class="bu">append</span>(ret, matrix[i][j])</a>
+<a class="sourceLine" id="cb3-29" title="29">        }</a>
+<a class="sourceLine" id="cb3-30" title="30"></a>
+<a class="sourceLine" id="cb3-31" title="31">        <span class="kw">for</span> ; i &gt; startX; i-- {</a>
+<a class="sourceLine" id="cb3-32" title="32">            ret = <span class="bu">append</span>(ret, matrix[i][j])</a>
+<a class="sourceLine" id="cb3-33" title="33">        }</a>
+<a class="sourceLine" id="cb3-34" title="34">        startX++</a>
+<a class="sourceLine" id="cb3-35" title="35">        startY++</a>
+<a class="sourceLine" id="cb3-36" title="36">        offset += <span class="dv">2</span></a>
+<a class="sourceLine" id="cb3-37" title="37">    }</a>
+<a class="sourceLine" id="cb3-38" title="38">    <span class="kw">if</span> <span class="dt">int</span>(math.Min(<span class="dt">float64</span>(rows), <span class="dt">float64</span>(columns)))%<span class="dv">2</span> == <span class="dv">1</span> {</a>
+<a class="sourceLine" id="cb3-39" title="39">        <span class="kw">if</span> rows &lt; columns {</a>
+<a class="sourceLine" id="cb3-40" title="40">            <span class="kw">for</span> i = mid; i &lt; mid+columns-rows+<span class="dv">1</span>; i++ {</a>
+<a class="sourceLine" id="cb3-41" title="41">                ret = <span class="bu">append</span>(ret, matrix[mid][i])</a>
+<a class="sourceLine" id="cb3-42" title="42">            }</a>
+<a class="sourceLine" id="cb3-43" title="43">        } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb3-44" title="44">            <span class="kw">for</span> i = mid; i &lt; mid+rows-columns+<span class="dv">1</span>; i++ {</a>
+<a class="sourceLine" id="cb3-45" title="45">                ret = <span class="bu">append</span>(ret, matrix[i][mid])</a>
+<a class="sourceLine" id="cb3-46" title="46">            }</a>
+<a class="sourceLine" id="cb3-47" title="47">        }</a>
+<a class="sourceLine" id="cb3-48" title="48">    }</a>
+<a class="sourceLine" id="cb3-49" title="49">    <span class="kw">return</span> ret</a>
+<a class="sourceLine" id="cb3-50" title="50">}</a></code></pre></div>]]></description>
+    <pubDate>Mon, 19 Sep 2022 20:48:24 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[开始]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/_sidebar</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/_sidebar</guid>
+    <description><![CDATA[<ul>
+<li>开始
+<ul>
+<li><a href="README.md">说明</a></li>
+</ul></li>
+<li>方法
+<ul>
+<li><a href="docs/methods/binary-search.md">二分查找</a></li>
+<li><a href="docs/methods/double-pointer.md">双指针法</a></li>
+</ul></li>
+<li>数组
+<ul>
+<li><a href="docs/array/0001.two-sum.md">1. 两数之和 (简单)</a></li>
+<li><a href="docs/array/0011.container-with-most-water.md">11. 盛最多水的容器 (中等)</a></li>
+<li><a href="docs/array/0015.3sum.md">15. 三数之和 (中等)</a></li>
+<li><a href="docs/array/0016.3sum-closest.md">16. 最接近的三数之和 (中等)</a></li>
+<li><a href="docs/array/0018.4sum.md">18. 四数之和 (中等)</a></li>
+<li><a href="docs/array/0026.remove-duplicates-from-sorted-array.md">26. 删除有序数组中的重复项 (简单)</a></li>
+<li><a href="docs/array/0027.remove-element.md">27. 移除元素 (简单)</a></li>
+<li><a href="docs/array/0031.next-permutation.md">31. 下一个排列 (中等)</a></li>
+<li><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a></li>
+<li><a href="docs/array/0054.spiral-matrix.md">54. 螺旋矩阵 (中等)</a></li>
+<li><a href="docs/array/0059.spiral-matrix-ii.md">59. 螺旋矩阵II (中等)</a></li>
+<li><a href="docs/array/0069.sqrtx.md">69. x的平方根 (简单)</a></li>
+<li><a href="docs/array/0088.merge-sorted-array.md">88. 合并两个有序数组 (简单)</a></li>
+<li><a href="docs/array/0118.pascals-triangle.md">118. 杨辉三角 (简单)</a></li>
+<li><a href="docs/array/0119.pascals-triangle-ii.md">119. 杨辉三角 II (简单)</a></li>
+<li><a href="docs/array/0121.best-time-to-buy-and-sell-stock.md">121. 买卖股票的最佳时机 (简单)</a></li>
+<li><a href="docs/array/0136.single-number.md">136. 只出现一次的数字 (简单)</a></li>
+<li><a href="docs/array/0209.minimum-size-subarray-sum.md">209. 长度最小的子数组 (中等)</a></li>
+<li><a href="docs/array/0283.move-zeroes.md">283. 移动零 (简单)</a></li>
+<li><a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></li>
+<li><a href="docs/array/0904.fruit-into-baskets.md">904. 水果成篮 (中等)</a></li>
+<li><a href="docs/array/0977.squares-of-a-sorted-array.md">977. 有序数组的平方 (简单)</a></li>
+<li><a href="docs/array/1403.minimum-subsequence-in-non-increasing-order.md">1403. 非递增顺序的最小子序列 (简单)</a></li>
+</ul></li>
+<li>字符串
+<ul>
+<li><a href="docs/string/0076.minimum-window-substring.md">76. 最小覆盖子串 (困难)</a></li>
+<li><a href="docs/string/1408.string-matching-in-an-array.md">1408. 数组中的字符串匹配 (简单)</a></li>
+<li><a href="docs/string/1417.reformat-the-string.md">1417. 重新格式化字符串 (简单)</a></li>
+</ul></li>
+<li>链表
+<ul>
+<li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
+</ul></li>
+</ul>]]></description>
+    <pubDate>Mon, 19 Sep 2022 20:48:24 +0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[ 螺旋矩阵II]]></title>
     <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0059.spiral-matrix-ii</link>
     <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0059.spiral-matrix-ii</guid>
@@ -62,59 +194,6 @@
 <a class="sourceLine" id="cb3-37" title="37">    }</a>
 <a class="sourceLine" id="cb3-38" title="38">    <span class="kw">return</span> matrix</a>
 <a class="sourceLine" id="cb3-39" title="39">}</a></code></pre></div>]]></description>
-    <pubDate>Sun, 18 Sep 2022 21:30:35 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[开始]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/_sidebar</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/_sidebar</guid>
-    <description><![CDATA[<ul>
-<li>开始
-<ul>
-<li><a href="README.md">说明</a></li>
-</ul></li>
-<li>方法
-<ul>
-<li><a href="docs/methods/binary-search.md">二分查找</a></li>
-<li><a href="docs/methods/double-pointer.md">双指针法</a></li>
-</ul></li>
-<li>数组
-<ul>
-<li><a href="docs/array/0001.two-sum.md">1. 两数之和 (简单)</a></li>
-<li><a href="docs/array/0011.container-with-most-water.md">11. 盛最多水的容器 (中等)</a></li>
-<li><a href="docs/array/0015.3sum.md">15. 三数之和 (中等)</a></li>
-<li><a href="docs/array/0016.3sum-closest.md">16. 最接近的三数之和 (中等)</a></li>
-<li><a href="docs/array/0018.4sum.md">18. 四数之和 (中等)</a></li>
-<li><a href="docs/array/0026.remove-duplicates-from-sorted-array.md">26. 删除有序数组中的重复项 (简单)</a></li>
-<li><a href="docs/array/0027.remove-element.md">27. 移除元素 (简单)</a></li>
-<li><a href="docs/array/0031.next-permutation.md">31. 下一个排列 (中等)</a></li>
-<li><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a></li>
-<li><a href="docs/array/0059.spiral-matrix-ii.md">59. 螺旋矩阵II (中等)</a></li>
-<li><a href="docs/array/0069.sqrtx.md">69. x的平方根 (简单)</a></li>
-<li><a href="docs/array/0088.merge-sorted-array.md">88. 合并两个有序数组 (简单)</a></li>
-<li><a href="docs/array/0118.pascals-triangle.md">118. 杨辉三角 (简单)</a></li>
-<li><a href="docs/array/0119.pascals-triangle-ii.md">119. 杨辉三角 II (简单)</a></li>
-<li><a href="docs/array/0121.best-time-to-buy-and-sell-stock.md">121. 买卖股票的最佳时机 (简单)</a></li>
-<li><a href="docs/array/0136.single-number.md">136. 只出现一次的数字 (简单)</a></li>
-<li><a href="docs/array/0209.minimum-size-subarray-sum.md">209. 长度最小的子数组 (中等)</a></li>
-<li><a href="docs/array/0283.move-zeroes.md">283. 移动零 (简单)</a></li>
-<li><a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></li>
-<li><a href="docs/array/0904.fruit-into-baskets.md">904. 水果成篮 (中等)</a></li>
-<li><a href="docs/array/0977.squares-of-a-sorted-array.md">977. 有序数组的平方 (简单)</a></li>
-<li><a href="docs/array/1403.minimum-subsequence-in-non-increasing-order.md">1403. 非递增顺序的最小子序列 (简单)</a></li>
-</ul></li>
-<li>字符串
-<ul>
-<li><a href="docs/string/0076.minimum-window-substring.md">76. 最小覆盖子串 (困难)</a></li>
-<li><a href="docs/string/1408.string-matching-in-an-array.md">1408. 数组中的字符串匹配 (简单)</a></li>
-<li><a href="docs/string/1417.reformat-the-string.md">1417. 重新格式化字符串 (简单)</a></li>
-</ul></li>
-<li>链表
-<ul>
-<li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
-</ul></li>
-</ul>]]></description>
     <pubDate>Sun, 18 Sep 2022 21:30:35 +0800</pubDate>
   </item>
    
@@ -521,108 +600,6 @@
 <a class="sourceLine" id="cb5-5" title="5">    }</a>
 <a class="sourceLine" id="cb5-6" title="6">    <span class="kw">return</span> r</a>
 <a class="sourceLine" id="cb5-7" title="7">}</a></code></pre></div>]]></description>
-    <pubDate>Fri, 26 Aug 2022 11:11:38 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ 在排序数组中查找元素的第一个和最后一个位置]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0034.find-first-and-last-position-of-element-in-sorted-array</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0034.find-first-and-last-position-of-element-in-sorted-array</guid>
-    <description><![CDATA[<h2 id="在排序数组中查找元素的第一个和最后一个位置">在排序数组中查找元素的第一个和最后一个位置</h2>
-<p>LeetCode: <a href="https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/">https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/</a></p>
-<h2 id="题目说明">题目说明</h2>
-<p>给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。请你找出给定目标值在数组中的开始位置和结束位置。</p>
-<p>如果数组中不存在目标值 target，返回[-1, -1]。</p>
-<p>你必须设计并实现时间复杂度为O(log n)的算法解决此问题。</p>
-<p>示例 1：</p>
-<pre class="text"><code>输入：nums = [5,7,7,8,8,10], target = 8
-输出：[3,4]</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：nums = [5,7,7,8,8,10], target = 6
-输出：[-1,-1]</code></pre>
-<p>示例 3：</p>
-<pre><code>输入：nums = [], target = 0
-输出：[-1,-1]</code></pre>
-<h2 id="解题思路">解题思路</h2>
-<ul>
-<li>分为三种情况：1. 数组范围外，2. 数组范围内且存在，3. 数组范围内且不存在。先判断是否在数组外，如果在随后使用二分法，根据题意使用左闭右闭的方式(即<code>left&lt;=right</code>)，在mid==target的条件下往左查找开始位置，往右查找结束位置，注意数组边界；如果始终不满足mid==target条件，则返回[-1,-1]</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">func</span> searchRange(nums []<span class="dt">int</span>, target <span class="dt">int</span>) []<span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb4-2" title="2">    <span class="co">//1. 在数组外</span></a>
-<a class="sourceLine" id="cb4-3" title="3">    <span class="kw">if</span> <span class="bu">len</span>(nums) == <span class="dv">0</span> || nums[<span class="dv">0</span>] &gt; target || nums[<span class="bu">len</span>(nums)-<span class="dv">1</span>] &lt; target {</a>
-<a class="sourceLine" id="cb4-4" title="4">        <span class="kw">return</span> []<span class="dt">int</span>{-<span class="dv">1</span>, <span class="dv">-1</span>}</a>
-<a class="sourceLine" id="cb4-5" title="5">    }</a>
-<a class="sourceLine" id="cb4-6" title="6">    <span class="co">//2. 在数组内</span></a>
-<a class="sourceLine" id="cb4-7" title="7">    left, right := <span class="dv">0</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-8" title="8">    <span class="kw">var</span> ret []<span class="dt">int</span></a>
-<a class="sourceLine" id="cb4-9" title="9">    <span class="kw">for</span> left &lt;= right {</a>
-<a class="sourceLine" id="cb4-10" title="10">        mid := left + (right-left)/<span class="dv">2</span></a>
-<a class="sourceLine" id="cb4-11" title="11">        <span class="kw">if</span> nums[mid] &lt; target {</a>
-<a class="sourceLine" id="cb4-12" title="12">            left = mid + <span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-13" title="13">        } <span class="kw">else</span> <span class="kw">if</span> nums[mid] &gt; target {</a>
-<a class="sourceLine" id="cb4-14" title="14">            right = mid - <span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-15" title="15">        } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb4-16" title="16">            <span class="co">//2.1 在数组范围内且存在</span></a>
-<a class="sourceLine" id="cb4-17" title="17">            mid2 := mid</a>
-<a class="sourceLine" id="cb4-18" title="18">            <span class="kw">for</span> mid<span class="dv">-1</span> &gt;= <span class="dv">0</span> &amp;&amp; nums[mid<span class="dv">-1</span>] == target {</a>
-<a class="sourceLine" id="cb4-19" title="19">                mid--</a>
-<a class="sourceLine" id="cb4-20" title="20">            }</a>
-<a class="sourceLine" id="cb4-21" title="21">            ret = <span class="bu">append</span>(ret, mid)</a>
-<a class="sourceLine" id="cb4-22" title="22">            <span class="kw">for</span> mid2+<span class="dv">1</span> &lt;= <span class="bu">len</span>(nums)-<span class="dv">1</span> &amp;&amp; nums[mid2+<span class="dv">1</span>] == target {</a>
-<a class="sourceLine" id="cb4-23" title="23">                mid2++</a>
-<a class="sourceLine" id="cb4-24" title="24">            }</a>
-<a class="sourceLine" id="cb4-25" title="25">            ret = <span class="bu">append</span>(ret, mid2)</a>
-<a class="sourceLine" id="cb4-26" title="26">            <span class="kw">return</span> ret</a>
-<a class="sourceLine" id="cb4-27" title="27">        }</a>
-<a class="sourceLine" id="cb4-28" title="28">    }</a>
-<a class="sourceLine" id="cb4-29" title="29">    <span class="co">//2.2 在数组范围内且不存在</span></a>
-<a class="sourceLine" id="cb4-30" title="30">    <span class="kw">return</span> []<span class="dt">int</span>{-<span class="dv">1</span>, <span class="dv">-1</span>}</a>
-<a class="sourceLine" id="cb4-31" title="31">}</a></code></pre></div>
-<ul>
-<li>来自<a href="https://books.halfrost.com/leetcode/ChapterFour/0001~0099/0034.Find-First-and-Last-Position-of-Element-in-Sorted-Array/">LeetCodeCookBook</a> 也是从三种情况入手，不过处理方式是分别处理开始位置和结束位置</li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">func</span> searchRange(nums []<span class="dt">int</span>, target <span class="dt">int</span>) []<span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb5-2" title="2">    <span class="kw">return</span> []<span class="dt">int</span>{searchFirstEqualElement(nums, target), searchLastEqualElement(nums, target)}</a>
-<a class="sourceLine" id="cb5-3" title="3"></a>
-<a class="sourceLine" id="cb5-4" title="4">}</a>
-<a class="sourceLine" id="cb5-5" title="5"></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="co">// 二分查找第一个与 target 相等的元素，时间复杂度 O(logn)</span></a>
-<a class="sourceLine" id="cb5-7" title="7"><span class="kw">func</span> searchFirstEqualElement(nums []<span class="dt">int</span>, target <span class="dt">int</span>) <span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb5-8" title="8">    low, high := <span class="dv">0</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
-<a class="sourceLine" id="cb5-9" title="9">    <span class="kw">for</span> low &lt;= high {</a>
-<a class="sourceLine" id="cb5-10" title="10">        mid := low + ((high - low) &gt;&gt; <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb5-11" title="11">        <span class="kw">if</span> nums[mid] &gt; target {</a>
-<a class="sourceLine" id="cb5-12" title="12">            high = mid - <span class="dv">1</span></a>
-<a class="sourceLine" id="cb5-13" title="13">        } <span class="kw">else</span> <span class="kw">if</span> nums[mid] &lt; target {</a>
-<a class="sourceLine" id="cb5-14" title="14">            low = mid + <span class="dv">1</span></a>
-<a class="sourceLine" id="cb5-15" title="15">        } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb5-16" title="16">            <span class="kw">if</span> (mid == <span class="dv">0</span>) || (nums[mid<span class="dv">-1</span>] != target) { <span class="co">// 找到第一个与 target 相等的元素</span></a>
-<a class="sourceLine" id="cb5-17" title="17">                <span class="kw">return</span> mid</a>
-<a class="sourceLine" id="cb5-18" title="18">            }</a>
-<a class="sourceLine" id="cb5-19" title="19">            high = mid - <span class="dv">1</span></a>
-<a class="sourceLine" id="cb5-20" title="20">        }</a>
-<a class="sourceLine" id="cb5-21" title="21">    }</a>
-<a class="sourceLine" id="cb5-22" title="22">    <span class="kw">return</span> <span class="dv">-1</span></a>
-<a class="sourceLine" id="cb5-23" title="23">}</a>
-<a class="sourceLine" id="cb5-24" title="24"></a>
-<a class="sourceLine" id="cb5-25" title="25"><span class="co">// 二分查找最后一个与 target 相等的元素，时间复杂度 O(logn)</span></a>
-<a class="sourceLine" id="cb5-26" title="26"><span class="kw">func</span> searchLastEqualElement(nums []<span class="dt">int</span>, target <span class="dt">int</span>) <span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb5-27" title="27">    low, high := <span class="dv">0</span>, <span class="bu">len</span>(nums)-<span class="dv">1</span></a>
-<a class="sourceLine" id="cb5-28" title="28">    <span class="kw">for</span> low &lt;= high {</a>
-<a class="sourceLine" id="cb5-29" title="29">        mid := low + ((high - low) &gt;&gt; <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb5-30" title="30">        <span class="kw">if</span> nums[mid] &gt; target {</a>
-<a class="sourceLine" id="cb5-31" title="31">            high = mid - <span class="dv">1</span></a>
-<a class="sourceLine" id="cb5-32" title="32">        } <span class="kw">else</span> <span class="kw">if</span> nums[mid] &lt; target {</a>
-<a class="sourceLine" id="cb5-33" title="33">            low = mid + <span class="dv">1</span></a>
-<a class="sourceLine" id="cb5-34" title="34">        } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb5-35" title="35">            <span class="kw">if</span> (mid == <span class="bu">len</span>(nums)-<span class="dv">1</span>) || (nums[mid+<span class="dv">1</span>] != target) { <span class="co">// 找到最后一个与 target 相等的元素</span></a>
-<a class="sourceLine" id="cb5-36" title="36">                <span class="kw">return</span> mid</a>
-<a class="sourceLine" id="cb5-37" title="37">            }</a>
-<a class="sourceLine" id="cb5-38" title="38">            low = mid + <span class="dv">1</span></a>
-<a class="sourceLine" id="cb5-39" title="39">        }</a>
-<a class="sourceLine" id="cb5-40" title="40">    }</a>
-<a class="sourceLine" id="cb5-41" title="41">    <span class="kw">return</span> <span class="dv">-1</span></a>
-<a class="sourceLine" id="cb5-42" title="42">}</a></code></pre></div>]]></description>
     <pubDate>Fri, 26 Aug 2022 11:11:38 +0800</pubDate>
   </item>
   
