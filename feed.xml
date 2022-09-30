@@ -6,6 +6,96 @@
   <description>LeetCode刷题记录</description>
    
   <item>
+    <title><![CDATA[ 移除链表元素]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/linkedList/0203.remove-linked-list-elements</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/linkedList/0203.remove-linked-list-elements</guid>
+    <description><![CDATA[<h2 id="移除链表元素">移除链表元素</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/remove-linked-list-elements/">https://leetcode.cn/problems/remove-linked-list-elements/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val == val 的节点，并返回 新的头节点 。</p>
+<p>示例 1：</p>
+<pre class="text"><code>输入：head = [1,2,6,3,4,5,6], val = 6
+输出：[1,2,3,4,5]</code></pre>
+<p>示例 2：</p>
+<pre class="text"><code>输入：head = [], val = 1
+输出：[]</code></pre>
+<h2 id="解题思路">解题思路</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">func</span> removeElements(head *ListNode, val <span class="dt">int</span>) *ListNode {</a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="kw">if</span> head == <span class="ot">nil</span> {</a>
+<a class="sourceLine" id="cb3-3" title="3">        <span class="kw">return</span> head</a>
+<a class="sourceLine" id="cb3-4" title="4">    }</a>
+<a class="sourceLine" id="cb3-5" title="5">    newHead := &amp;ListNode{Val: <span class="dv">0</span>, Next: head}</a>
+<a class="sourceLine" id="cb3-6" title="6">    pre := newHead</a>
+<a class="sourceLine" id="cb3-7" title="7">    cur := head</a>
+<a class="sourceLine" id="cb3-8" title="8">    <span class="kw">for</span> cur != <span class="ot">nil</span> {</a>
+<a class="sourceLine" id="cb3-9" title="9">        <span class="kw">if</span> cur.Val == val {</a>
+<a class="sourceLine" id="cb3-10" title="10">            pre.Next = cur.Next</a>
+<a class="sourceLine" id="cb3-11" title="11">        } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb3-12" title="12">            pre = cur</a>
+<a class="sourceLine" id="cb3-13" title="13">        }</a>
+<a class="sourceLine" id="cb3-14" title="14">        cur = cur.Next</a>
+<a class="sourceLine" id="cb3-15" title="15">    }</a>
+<a class="sourceLine" id="cb3-16" title="16">    <span class="kw">return</span> newHead.Next</a>
+<a class="sourceLine" id="cb3-17" title="17">}</a></code></pre></div>]]></description>
+    <pubDate>Fri, 30 Sep 2022 16:40:58 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[开始]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/_sidebar</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/_sidebar</guid>
+    <description><![CDATA[<ul>
+<li>开始
+<ul>
+<li><a href="README.md">说明</a></li>
+</ul></li>
+<li>方法
+<ul>
+<li><a href="docs/methods/binary-search.md">二分查找</a></li>
+<li><a href="docs/methods/double-pointer.md">双指针法</a></li>
+</ul></li>
+<li>数组
+<ul>
+<li><a href="docs/array/0001.two-sum.md">1. 两数之和 (简单)</a></li>
+<li><a href="docs/array/0011.container-with-most-water.md">11. 盛最多水的容器 (中等)</a></li>
+<li><a href="docs/array/0015.3sum.md">15. 三数之和 (中等)</a></li>
+<li><a href="docs/array/0016.3sum-closest.md">16. 最接近的三数之和 (中等)</a></li>
+<li><a href="docs/array/0018.4sum.md">18. 四数之和 (中等)</a></li>
+<li><a href="docs/array/0026.remove-duplicates-from-sorted-array.md">26. 删除有序数组中的重复项 (简单)</a></li>
+<li><a href="docs/array/0027.remove-element.md">27. 移除元素 (简单)</a></li>
+<li><a href="docs/array/0031.next-permutation.md">31. 下一个排列 (中等)</a></li>
+<li><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a></li>
+<li><a href="docs/array/0054.spiral-matrix.md">54. 螺旋矩阵 (中等)</a></li>
+<li><a href="docs/array/0059.spiral-matrix-ii.md">59. 螺旋矩阵II (中等)</a></li>
+<li><a href="docs/array/0069.sqrtx.md">69. x的平方根 (简单)</a></li>
+<li><a href="docs/array/0088.merge-sorted-array.md">88. 合并两个有序数组 (简单)</a></li>
+<li><a href="docs/array/0118.pascals-triangle.md">118. 杨辉三角 (简单)</a></li>
+<li><a href="docs/array/0119.pascals-triangle-ii.md">119. 杨辉三角 II (简单)</a></li>
+<li><a href="docs/array/0121.best-time-to-buy-and-sell-stock.md">121. 买卖股票的最佳时机 (简单)</a></li>
+<li><a href="docs/array/0136.single-number.md">136. 只出现一次的数字 (简单)</a></li>
+<li><a href="docs/array/0209.minimum-size-subarray-sum.md">209. 长度最小的子数组 (中等)</a></li>
+<li><a href="docs/array/0283.move-zeroes.md">283. 移动零 (简单)</a></li>
+<li><a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></li>
+<li><a href="docs/array/0904.fruit-into-baskets.md">904. 水果成篮 (中等)</a></li>
+<li><a href="docs/array/0977.squares-of-a-sorted-array.md">977. 有序数组的平方 (简单)</a></li>
+<li><a href="docs/array/1403.minimum-subsequence-in-non-increasing-order.md">1403. 非递增顺序的最小子序列 (简单)</a></li>
+</ul></li>
+<li>字符串
+<ul>
+<li><a href="docs/string/0076.minimum-window-substring.md">76. 最小覆盖子串 (困难)</a></li>
+<li><a href="docs/string/1408.string-matching-in-an-array.md">1408. 数组中的字符串匹配 (简单)</a></li>
+<li><a href="docs/string/1417.reformat-the-string.md">1417. 重新格式化字符串 (简单)</a></li>
+</ul></li>
+<li>链表
+<ul>
+<li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
+<li><a href="docs/linkedList/0203.remove-linked-list-elements.md">203. 移除链表元素 (简单)</a></li>
+</ul></li>
+</ul>]]></description>
+    <pubDate>Fri, 30 Sep 2022 16:40:58 +0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[ 螺旋矩阵]]></title>
     <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0054.spiral-matrix</link>
     <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0054.spiral-matrix</guid>
@@ -80,60 +170,6 @@
 <a class="sourceLine" id="cb3-48" title="48">    }</a>
 <a class="sourceLine" id="cb3-49" title="49">    <span class="kw">return</span> ret</a>
 <a class="sourceLine" id="cb3-50" title="50">}</a></code></pre></div>]]></description>
-    <pubDate>Mon, 19 Sep 2022 20:48:24 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[开始]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/_sidebar</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/_sidebar</guid>
-    <description><![CDATA[<ul>
-<li>开始
-<ul>
-<li><a href="README.md">说明</a></li>
-</ul></li>
-<li>方法
-<ul>
-<li><a href="docs/methods/binary-search.md">二分查找</a></li>
-<li><a href="docs/methods/double-pointer.md">双指针法</a></li>
-</ul></li>
-<li>数组
-<ul>
-<li><a href="docs/array/0001.two-sum.md">1. 两数之和 (简单)</a></li>
-<li><a href="docs/array/0011.container-with-most-water.md">11. 盛最多水的容器 (中等)</a></li>
-<li><a href="docs/array/0015.3sum.md">15. 三数之和 (中等)</a></li>
-<li><a href="docs/array/0016.3sum-closest.md">16. 最接近的三数之和 (中等)</a></li>
-<li><a href="docs/array/0018.4sum.md">18. 四数之和 (中等)</a></li>
-<li><a href="docs/array/0026.remove-duplicates-from-sorted-array.md">26. 删除有序数组中的重复项 (简单)</a></li>
-<li><a href="docs/array/0027.remove-element.md">27. 移除元素 (简单)</a></li>
-<li><a href="docs/array/0031.next-permutation.md">31. 下一个排列 (中等)</a></li>
-<li><a href="docs/array/0034.find-first-and-last-position-of-element-in-sorted-array.md">34. 在排序数组中查找元素的第一个和最后一个位置 (中等)</a></li>
-<li><a href="docs/array/0054.spiral-matrix.md">54. 螺旋矩阵 (中等)</a></li>
-<li><a href="docs/array/0059.spiral-matrix-ii.md">59. 螺旋矩阵II (中等)</a></li>
-<li><a href="docs/array/0069.sqrtx.md">69. x的平方根 (简单)</a></li>
-<li><a href="docs/array/0088.merge-sorted-array.md">88. 合并两个有序数组 (简单)</a></li>
-<li><a href="docs/array/0118.pascals-triangle.md">118. 杨辉三角 (简单)</a></li>
-<li><a href="docs/array/0119.pascals-triangle-ii.md">119. 杨辉三角 II (简单)</a></li>
-<li><a href="docs/array/0121.best-time-to-buy-and-sell-stock.md">121. 买卖股票的最佳时机 (简单)</a></li>
-<li><a href="docs/array/0136.single-number.md">136. 只出现一次的数字 (简单)</a></li>
-<li><a href="docs/array/0209.minimum-size-subarray-sum.md">209. 长度最小的子数组 (中等)</a></li>
-<li><a href="docs/array/0283.move-zeroes.md">283. 移动零 (简单)</a></li>
-<li><a href="docs/array/704.binary-search.md">704. 二分查找 (简单)</a></li>
-<li><a href="docs/array/0904.fruit-into-baskets.md">904. 水果成篮 (中等)</a></li>
-<li><a href="docs/array/0977.squares-of-a-sorted-array.md">977. 有序数组的平方 (简单)</a></li>
-<li><a href="docs/array/1403.minimum-subsequence-in-non-increasing-order.md">1403. 非递增顺序的最小子序列 (简单)</a></li>
-</ul></li>
-<li>字符串
-<ul>
-<li><a href="docs/string/0076.minimum-window-substring.md">76. 最小覆盖子串 (困难)</a></li>
-<li><a href="docs/string/1408.string-matching-in-an-array.md">1408. 数组中的字符串匹配 (简单)</a></li>
-<li><a href="docs/string/1417.reformat-the-string.md">1417. 重新格式化字符串 (简单)</a></li>
-</ul></li>
-<li>链表
-<ul>
-<li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
-</ul></li>
-</ul>]]></description>
     <pubDate>Mon, 19 Sep 2022 20:48:24 +0800</pubDate>
   </item>
    
@@ -531,75 +567,6 @@
 <a class="sourceLine" id="cb4-13" title="13">        }</a>
 <a class="sourceLine" id="cb4-14" title="14">    }</a>
 <a class="sourceLine" id="cb4-15" title="15">}</a></code></pre></div>]]></description>
-    <pubDate>Fri, 26 Aug 2022 11:11:38 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ x的平方根]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0069.sqrtx</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0069.sqrtx</guid>
-    <description><![CDATA[<h2 id="x的平方根">x的平方根</h2>
-<p>LeetCode: <a href="https://leetcode.cn/problems/sqrtx/">https://leetcode.cn/problems/sqrtx/</a></p>
-<h2 id="题目说明">题目说明</h2>
-<p>给你一个非负整数 x ，计算并返回x的 算术平方根 。</p>
-<p>由于返回类型是整数，结果只保留 整数部分 ，小数部分将被 舍去 。</p>
-<p>注意：不允许使用任何内置指数函数和算符，例如 pow(x, 0.5) 或者 x ** 0.5 。</p>
-<p>示例 1：</p>
-<pre class="text"><code>输入：x = 4
-输出：2</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：x = 8
-输出：2
-解释：8 的算术平方根是 2.82842..., 由于返回类型是整数，小数部分将被舍去。</code></pre>
-<h2 id="解题思路">解题思路</h2>
-<blockquote>
-<p><a href="https://baike.baidu.com/item/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/10628618#%E7%AE%97%E6%B3%95%E8%A6%81%E6%B1%82">二分查找条件</a>：顺序存储结构、关键字按大小顺序排列</p>
-</blockquote>
-<ul>
-<li>二分查找，整数的的算术平方根必然在[0,x]之间，除1外，当两者相差大于1才能往中间去值计算平方才能与x进行比较，否则返回左边的值(小数取整)，在循环内部则可以理解成左右均为<a href="https://programmercarl.com/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html#%E6%80%9D%E8%B7%AF">开区间</a>，不满足条件则分别将mid赋值给left或者right，如果正好有算术平方根则返回</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">func</span> mySqrt(x <span class="dt">int</span>) <span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb3-2" title="2">    <span class="kw">if</span> x == <span class="dv">1</span> {</a>
-<a class="sourceLine" id="cb3-3" title="3">        <span class="kw">return</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb3-4" title="4">    }</a>
-<a class="sourceLine" id="cb3-5" title="5">    left, right := <span class="dv">0</span>, x</a>
-<a class="sourceLine" id="cb3-6" title="6">    <span class="kw">for</span> right-left &gt; <span class="dv">1</span> {</a>
-<a class="sourceLine" id="cb3-7" title="7">        mid := left + (right-left)/<span class="dv">2</span></a>
-<a class="sourceLine" id="cb3-8" title="8">        <span class="kw">if</span> mid*mid &gt; x {</a>
-<a class="sourceLine" id="cb3-9" title="9">            right = mid</a>
-<a class="sourceLine" id="cb3-10" title="10">        } <span class="kw">else</span> <span class="kw">if</span> mid*mid &lt; x {</a>
-<a class="sourceLine" id="cb3-11" title="11">            left = mid</a>
-<a class="sourceLine" id="cb3-12" title="12">        } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb3-13" title="13">            <span class="kw">return</span> mid</a>
-<a class="sourceLine" id="cb3-14" title="14">        }</a>
-<a class="sourceLine" id="cb3-15" title="15">    }</a>
-<a class="sourceLine" id="cb3-16" title="16">    <span class="kw">return</span> left</a>
-<a class="sourceLine" id="cb3-17" title="17">}</a></code></pre></div>
-<ul>
-<li>二分查找，典型的<a href="https://programmercarl.com/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html#%E6%80%9D%E8%B7%AF">左闭右开</a>，条件<code>l&lt;r</code></li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">func</span> mySqrt(x <span class="dt">int</span>) <span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb4-2" title="2">    l, r := <span class="dv">0</span>, x</a>
-<a class="sourceLine" id="cb4-3" title="3">    <span class="kw">for</span> l &lt; r {</a>
-<a class="sourceLine" id="cb4-4" title="4">        mid := (l + r + <span class="dv">1</span>) / <span class="dv">2</span></a>
-<a class="sourceLine" id="cb4-5" title="5">        <span class="kw">if</span> mid*mid &gt; x {</a>
-<a class="sourceLine" id="cb4-6" title="6">            r = mid - <span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-7" title="7">        } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb4-8" title="8">            l = mid</a>
-<a class="sourceLine" id="cb4-9" title="9">        }</a>
-<a class="sourceLine" id="cb4-10" title="10">    }</a>
-<a class="sourceLine" id="cb4-11" title="11">    <span class="kw">return</span> l</a>
-<a class="sourceLine" id="cb4-12" title="12">}</a></code></pre></div>
-<ul>
-<li>牛顿迭代法, <a href="https://en.wikipedia.org/wiki/Integer_square_root">https://en.wikipedia.org/wiki/Integer_square_root</a>，求根号 x，即求满足 x^2 - n = 0 方程的所有解。 &gt; 执行用时： 4 ms，在所有 Go 提交中击败了 43.85% 的用户 内存消耗： 2 MB，在所有 Go 提交中击败了 99.83% 的用户</li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">func</span> mySqrt(x <span class="dt">int</span>) <span class="dt">int</span> {</a>
-<a class="sourceLine" id="cb5-2" title="2">    r := x</a>
-<a class="sourceLine" id="cb5-3" title="3">    <span class="kw">for</span> r*r &gt; x {</a>
-<a class="sourceLine" id="cb5-4" title="4">        r = (r + x/r) / <span class="dv">2</span></a>
-<a class="sourceLine" id="cb5-5" title="5">    }</a>
-<a class="sourceLine" id="cb5-6" title="6">    <span class="kw">return</span> r</a>
-<a class="sourceLine" id="cb5-7" title="7">}</a></code></pre></div>]]></description>
     <pubDate>Fri, 26 Aug 2022 11:11:38 +0800</pubDate>
   </item>
   
