@@ -33,3 +33,4 @@
   * [1417. 重新格式化字符串 (简单)](docs/string/1417.reformat-the-string.md)
 * 链表
   * [2. 两数相加 (中等)](docs/linkedList/0002.add-two-numbers.md)
+  * [203. 移除链表元素 (简单)](docs/linkedList/0203.remove-linked-list-elements.md)
