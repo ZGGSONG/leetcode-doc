@@ -34,3 +34,4 @@
 * 链表
   * [2. 两数相加 (中等)](docs/linkedList/0002.add-two-numbers.md)
   * [203. 移除链表元素 (简单)](docs/linkedList/0203.remove-linked-list-elements.md)
+  * [707. 设计链表 (中等)](docs/linkedList/0707.design-linked-list.md)

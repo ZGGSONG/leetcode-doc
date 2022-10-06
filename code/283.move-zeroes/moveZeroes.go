@@ -1,12 +1,11 @@
-package main
+package moveZeroes
 
-import "fmt"
-
-func main() {
-	nums := []int{-1, 0, 0, -4, 5, 6, 0}
-	moveZeroes(nums)
-	fmt.Println(nums)
-}
+//
+//func main() {
+//	nums := []int{-1, 0, 0, -4, 5, 6, 0}
+//	moveZeroes(nums)
+//	fmt.Println(nums)
+//}
 
 //双指针
 func moveZeroes(nums []int) {
