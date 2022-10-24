@@ -6,38 +6,32 @@
   <description>LeetCode刷题记录</description>
    
   <item>
-    <title><![CDATA[ 移除链表元素]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/linkedList/0203.remove-linked-list-elements</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/linkedList/0203.remove-linked-list-elements</guid>
-    <description><![CDATA[<h2 id="移除链表元素">移除链表元素</h2>
-<p>LeetCode: <a href="https://leetcode.cn/problems/remove-linked-list-elements/">https://leetcode.cn/problems/remove-linked-list-elements/</a></p>
+    <title><![CDATA[ 设计链表]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/linkedList/0707.design-linked-list</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/linkedList/0707.design-linked-list</guid>
+    <description><![CDATA[<h2 id="设计链表">设计链表</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/design-linked-list/">https://leetcode.cn/problems/design-linked-list/</a></p>
 <h2 id="题目说明">题目说明</h2>
-<p>给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val == val 的节点，并返回 新的头节点 。</p>
-<p>示例 1：</p>
-<pre class="text"><code>输入：head = [1,2,6,3,4,5,6], val = 6
-输出：[1,2,3,4,5]</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入：head = [], val = 1
-输出：[]</code></pre>
+<p>设计链表的实现。您可以选择使用单链表或双链表。单链表中的节点应该具有两个属性：val 和 next。val 是当前节点的值，next是指向下一个节点的指针引用。如果要使用双向链表，则还需要一个属性 prev 以指示链表中的上一个节点。假设链表中的所有节点都是 O-index 的。</p>
+<p>在链表类中实现这些功能：</p>
+<p>get(index)：获取链表中第 index 个节点的值。如果索引无效，则返回-1</p>
+<p>addAtHead(val)：在链表的第一个元素之前添加一个值为 val的节点。插入后，新节点将成为链表的第一个节点。</p>
+<p>addAtTail(val)：将值为 val 的节点追加到链表的最后一个元素。</p>
+<p>addAtindex (index，val)：在链表中的第 index 个节点之前添加值为 val 的节点。如果 index 等于链表的长度，则该节点将附加到链表的末尾。如果 index 大于链表长度，则不会插入节点。如果 index 小于0，则在头部插入节点。</p>
+<p>deleteAtindex(index)：如果索引 index 有效，则删除链表中的第 index 个节点。</p>
+<p>示例：</p>
+<pre class="text"><code>MyLinkedList linkedList = new MyLinkedList();
+linkedList.addAtHead(1);
+linkedList.addAtTail(3);
+linkedList.addAtIndex(1,2);   //链表变为1-&gt; 2-&gt; 3
+linkedList.get(1);            //返回2
+linkedList.deleteAtIndex(1);  //现在链表是1-&gt; 3
+linkedList.get(1);            //返回3</code></pre>
 <h2 id="解题思路">解题思路</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">func</span> removeElements(head *ListNode, val <span class="dt">int</span>) *ListNode {</a>
-<a class="sourceLine" id="cb3-2" title="2">    <span class="kw">if</span> head == <span class="ot">nil</span> {</a>
-<a class="sourceLine" id="cb3-3" title="3">        <span class="kw">return</span> head</a>
-<a class="sourceLine" id="cb3-4" title="4">    }</a>
-<a class="sourceLine" id="cb3-5" title="5">    newHead := &amp;ListNode{Val: <span class="dv">0</span>, Next: head}</a>
-<a class="sourceLine" id="cb3-6" title="6">    pre := newHead</a>
-<a class="sourceLine" id="cb3-7" title="7">    cur := head</a>
-<a class="sourceLine" id="cb3-8" title="8">    <span class="kw">for</span> cur != <span class="ot">nil</span> {</a>
-<a class="sourceLine" id="cb3-9" title="9">        <span class="kw">if</span> cur.Val == val {</a>
-<a class="sourceLine" id="cb3-10" title="10">            pre.Next = cur.Next</a>
-<a class="sourceLine" id="cb3-11" title="11">        } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb3-12" title="12">            pre = cur</a>
-<a class="sourceLine" id="cb3-13" title="13">        }</a>
-<a class="sourceLine" id="cb3-14" title="14">        cur = cur.Next</a>
-<a class="sourceLine" id="cb3-15" title="15">    }</a>
-<a class="sourceLine" id="cb3-16" title="16">    <span class="kw">return</span> newHead.Next</a>
-<a class="sourceLine" id="cb3-17" title="17">}</a></code></pre></div>]]></description>
-    <pubDate>Fri, 30 Sep 2022 16:40:58 +0800</pubDate>
+<ul>
+<li></li>
+</ul>]]></description>
+    <pubDate>Thu, 6 Oct 2022 21:51:16 +0800</pubDate>
   </item>
    
   <item>
@@ -90,8 +84,44 @@
 <ul>
 <li><a href="docs/linkedList/0002.add-two-numbers.md">2. 两数相加 (中等)</a></li>
 <li><a href="docs/linkedList/0203.remove-linked-list-elements.md">203. 移除链表元素 (简单)</a></li>
+<li><a href="docs/linkedList/0707.design-linked-list.md">707. 设计链表 (中等)</a></li>
 </ul></li>
 </ul>]]></description>
+    <pubDate>Thu, 6 Oct 2022 21:51:16 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[ 移除链表元素]]></title>
+    <link>https://pages.zsong.ml/leetcode-doc/#/docs/linkedList/0203.remove-linked-list-elements</link>
+    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/linkedList/0203.remove-linked-list-elements</guid>
+    <description><![CDATA[<h2 id="移除链表元素">移除链表元素</h2>
+<p>LeetCode: <a href="https://leetcode.cn/problems/remove-linked-list-elements/">https://leetcode.cn/problems/remove-linked-list-elements/</a></p>
+<h2 id="题目说明">题目说明</h2>
+<p>给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val == val 的节点，并返回 新的头节点 。</p>
+<p>示例 1：</p>
+<pre class="text"><code>输入：head = [1,2,6,3,4,5,6], val = 6
+输出：[1,2,3,4,5]</code></pre>
+<p>示例 2：</p>
+<pre class="text"><code>输入：head = [], val = 1
+输出：[]</code></pre>
+<h2 id="解题思路">解题思路</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">func</span> removeElements(head *ListNode, val <span class="dt">int</span>) *ListNode {</a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="kw">if</span> head == <span class="ot">nil</span> {</a>
+<a class="sourceLine" id="cb3-3" title="3">        <span class="kw">return</span> head</a>
+<a class="sourceLine" id="cb3-4" title="4">    }</a>
+<a class="sourceLine" id="cb3-5" title="5">    newHead := &amp;ListNode{Val: <span class="dv">0</span>, Next: head}</a>
+<a class="sourceLine" id="cb3-6" title="6">    pre := newHead</a>
+<a class="sourceLine" id="cb3-7" title="7">    cur := head</a>
+<a class="sourceLine" id="cb3-8" title="8">    <span class="kw">for</span> cur != <span class="ot">nil</span> {</a>
+<a class="sourceLine" id="cb3-9" title="9">        <span class="kw">if</span> cur.Val == val {</a>
+<a class="sourceLine" id="cb3-10" title="10">            pre.Next = cur.Next</a>
+<a class="sourceLine" id="cb3-11" title="11">        } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb3-12" title="12">            pre = cur</a>
+<a class="sourceLine" id="cb3-13" title="13">        }</a>
+<a class="sourceLine" id="cb3-14" title="14">        cur = cur.Next</a>
+<a class="sourceLine" id="cb3-15" title="15">    }</a>
+<a class="sourceLine" id="cb3-16" title="16">    <span class="kw">return</span> newHead.Next</a>
+<a class="sourceLine" id="cb3-17" title="17">}</a></code></pre></div>]]></description>
     <pubDate>Fri, 30 Sep 2022 16:40:58 +0800</pubDate>
   </item>
    
@@ -509,64 +539,6 @@
 <a class="sourceLine" id="cb4-16" title="16">    }</a>
 <a class="sourceLine" id="cb4-17" title="17">    <span class="kw">return</span> ret</a>
 <a class="sourceLine" id="cb4-18" title="18">}</a></code></pre></div>]]></description>
-    <pubDate>Fri, 26 Aug 2022 11:11:38 +0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[ 移动零]]></title>
-    <link>https://pages.zsong.ml/leetcode-doc/#/docs/array/0283.move-zeroes</link>
-    <guid isPermaLink="false">https://pages.zsong.ml/leetcode-doc/#/docs/array/0283.move-zeroes</guid>
-    <description><![CDATA[<h2 id="移动零">移动零</h2>
-<p>LeetCode: <a href="https://leetcode.cn/problems/move-zeroes/">https://leetcode.cn/problems/move-zeroes/</a></p>
-<h2 id="题目说明">题目说明</h2>
-<p>给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
-<p>请注意 ，必须在不复制数组的情况下原地对数组进行操作。</p>
-<p>示例 1：</p>
-<pre class="text"><code>输入: nums = [0,1,0,3,12]
-输出: [1,3,12,0,0]</code></pre>
-<p>示例 2：</p>
-<pre class="text"><code>输入: nums = [0]
-输出: [0]</code></pre>
-<h2 id="解题思路">解题思路</h2>
-<ul>
-<li>双指针，找到第一个0，快慢指针均指向他，随后循环找到第一个不为零得数，替换快慢指针元素，随后慢指针后移，快指针++，如此往复</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1"><span class="co">//双指针</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw">func</span> moveZeroes(nums []<span class="dt">int</span>) {</a>
-<a class="sourceLine" id="cb3-3" title="3">    <span class="kw">var</span> slowIndex <span class="dt">int</span></a>
-<a class="sourceLine" id="cb3-4" title="4">    <span class="co">//是否找到第一个0</span></a>
-<a class="sourceLine" id="cb3-5" title="5">    <span class="kw">var</span> flag <span class="dt">bool</span></a>
-<a class="sourceLine" id="cb3-6" title="6">    <span class="kw">for</span> fastIndex := <span class="dv">0</span>; fastIndex &lt; <span class="bu">len</span>(nums); fastIndex++ {</a>
-<a class="sourceLine" id="cb3-7" title="7">        <span class="co">//先找到第一个0</span></a>
-<a class="sourceLine" id="cb3-8" title="8">        <span class="kw">if</span> nums[fastIndex] == <span class="dv">0</span> &amp;&amp; !flag {</a>
-<a class="sourceLine" id="cb3-9" title="9">            slowIndex = fastIndex</a>
-<a class="sourceLine" id="cb3-10" title="10">            flag = <span class="ot">true</span></a>
-<a class="sourceLine" id="cb3-11" title="11">        }</a>
-<a class="sourceLine" id="cb3-12" title="12">        <span class="co">//找到之后跟后面非0得数进行对调</span></a>
-<a class="sourceLine" id="cb3-13" title="13">        <span class="kw">if</span> nums[fastIndex] != <span class="dv">0</span> &amp;&amp; flag {</a>
-<a class="sourceLine" id="cb3-14" title="14">            nums[slowIndex], nums[fastIndex] = nums[fastIndex], nums[slowIndex]</a>
-<a class="sourceLine" id="cb3-15" title="15">            slowIndex++</a>
-<a class="sourceLine" id="cb3-16" title="16">        }</a>
-<a class="sourceLine" id="cb3-17" title="17">    }</a>
-<a class="sourceLine" id="cb3-18" title="18">}</a></code></pre></div>
-<blockquote>
-<p>执行用时：28 ms，在所有 Go 提交中击败了 15.79% 的用户 内存消耗： 6.5 MB，在所有 Go 提交中击败了 97.59%的用户</p>
-</blockquote>
-<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">func</span> moveZeroes(nums []<span class="dt">int</span>) {</a>
-<a class="sourceLine" id="cb4-2" title="2">    <span class="kw">var</span> slowIndex <span class="dt">int</span></a>
-<a class="sourceLine" id="cb4-3" title="3">    <span class="kw">for</span> k, v := <span class="kw">range</span> nums {</a>
-<a class="sourceLine" id="cb4-4" title="4">        <span class="kw">if</span> v == <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb4-5" title="5">            slowIndex = k</a>
-<a class="sourceLine" id="cb4-6" title="6">            <span class="kw">break</span></a>
-<a class="sourceLine" id="cb4-7" title="7">        }</a>
-<a class="sourceLine" id="cb4-8" title="8">    }</a>
-<a class="sourceLine" id="cb4-9" title="9">    <span class="kw">for</span> fastIndex := slowIndex; fastIndex &lt; <span class="bu">len</span>(nums); fastIndex++ {</a>
-<a class="sourceLine" id="cb4-10" title="10">        <span class="kw">if</span> nums[fastIndex] != <span class="dv">0</span> {</a>
-<a class="sourceLine" id="cb4-11" title="11">            nums[slowIndex], nums[fastIndex] = nums[fastIndex], nums[slowIndex]</a>
-<a class="sourceLine" id="cb4-12" title="12">            slowIndex++</a>
-<a class="sourceLine" id="cb4-13" title="13">        }</a>
-<a class="sourceLine" id="cb4-14" title="14">    }</a>
-<a class="sourceLine" id="cb4-15" title="15">}</a></code></pre></div>]]></description>
     <pubDate>Fri, 26 Aug 2022 11:11:38 +0800</pubDate>
   </item>
   
