@@ -1,9 +1,7 @@
 # 说明
 
-LeetCode刷题记录 using Golang by [zggsong](//zggsong.cn) with [代码随想录](https://programmercarl.com/)
+LeetCode刷题记录 using Golang by [zggsong](https://zggsong.com) with [代码随想录](https://programmercarl.com/)
 
-blog [www.zggsong.cn](//www.zggsong.cn)
+blog [zggsong.com](https://www.zggsong.cn)
 
-wiki [pages.zggsong.cn](//pages.zsong.ml)
-
-RSS [pages.zsong.ml/leetcode-doc/feed.xml](//pages.zsong.ml/leetcode-doc/feed.xml)  
+RSS [zggsong.github.io/leetcode-doc/feed.xml](https://zggsong.github.io/leetcode-doc/feed.xml)  

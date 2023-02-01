@@ -2,7 +2,7 @@
 
 feed="feed.xml"
 website_title="LeetCode刷题记录"
-website_link="https://pages.zsong.ml/leetcode-doc"
+website_link="https://zggsong.github.io/leetcode-doc"
 description="LeetCode刷题记录"
 
 urlencode() {
