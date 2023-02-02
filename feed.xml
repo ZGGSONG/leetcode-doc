@@ -6,17 +6,6 @@
   <description>LeetCode刷题记录</description>
    
   <item>
-    <title><![CDATA[说明]]></title>
-    <link>https://zggsong.github.io/leetcode-doc/#/README</link>
-    <guid isPermaLink="false">https://zggsong.github.io/leetcode-doc/#/README</guid>
-    <description><![CDATA[<h1 id="说明">说明</h1>
-<p>LeetCode刷题记录 using Golang by <a href="https://zggsong.com">zggsong</a> with <a href="https://programmercarl.com/">代码随想录</a></p>
-<p>blog <a href="https://www.zggsong.cn">zggsong.com</a></p>
-<p>RSS <a href="https://zggsong.github.io/leetcode-doc/feed.xml">zggsong.github.io/leetcode-doc/feed.xml</a></p>]]></description>
-    <pubDate>Wed, 1 Feb 2023 10:34:20 +0800</pubDate>
-  </item>
-   
-  <item>
     <title><![CDATA[ 设计链表]]></title>
     <link>https://zggsong.github.io/leetcode-doc/#/docs/linkedList/0707.design-linked-list</link>
     <guid isPermaLink="false">https://zggsong.github.io/leetcode-doc/#/docs/linkedList/0707.design-linked-list</guid>
@@ -38,11 +27,19 @@ linkedList.addAtIndex(1,2);   //链表变为1-&gt; 2-&gt; 3
 linkedList.get(1);            //返回2
 linkedList.deleteAtIndex(1);  //现在链表是1-&gt; 3
 linkedList.get(1);            //返回3</code></pre>
-<h2 id="解题思路">解题思路</h2>
-<ul>
-<li></li>
-</ul>]]></description>
-    <pubDate>Thu, 6 Oct 2022 21:51:16 +0800</pubDate>
+<h2 id="解题思路">解题思路</h2>]]></description>
+    <pubDate>Thu, 2 Feb 2023 11:48:06 +0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[说明]]></title>
+    <link>https://zggsong.github.io/leetcode-doc/#/README</link>
+    <guid isPermaLink="false">https://zggsong.github.io/leetcode-doc/#/README</guid>
+    <description><![CDATA[<h1 id="说明">说明</h1>
+<p>LeetCode刷题记录 using Golang by <a href="https://zggsong.com">zggsong</a> with <a href="https://programmercarl.com/">代码随想录</a></p>
+<p>blog <a href="https://www.zggsong.cn">zggsong.com</a></p>
+<p>RSS <a href="https://zggsong.github.io/leetcode-doc/feed.xml">zggsong.github.io/leetcode-doc/feed.xml</a></p>]]></description>
+    <pubDate>Wed, 1 Feb 2023 10:34:20 +0800</pubDate>
   </item>
    
   <item>
